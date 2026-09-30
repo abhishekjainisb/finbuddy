@@ -144,4 +144,4 @@ export function hashStr(s: string) { let h = 2166136261; for (let i = 0; i < s.l
 export function BrandMark({ size = 34 }: { size?: number }) {
   return <img src={markUrl} alt="ISB Finance Club" width={size} height={size} className="brand-img" style={{ width: size, height: size, borderRadius: Math.round(size * 0.18) }} />;
 }
-export const TAGLINE = 'Built by Finance Club with love 📈 Compound daily.';
+export const TAGLINE = 'Built by an Innocent Engineer with ❤️';
