@@ -2,7 +2,7 @@ import { useState, type ReactNode } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useStore, getTheme, applyTheme } from '../lib/store';
 import { streakOf, levelOf, openErrors, dueCards, dayKey, currentWeek } from '../lib/state';
-import { Icon } from './ui';
+import { Icon, BrandMark, TAGLINE } from './ui';
 
 const NAV = [
   { to: '/', n: 'home', l: 'Today', end: true },
@@ -32,7 +32,7 @@ export function Layout({ children }: { children: ReactNode }) {
     <div className="shell">
       <aside className="side">
         <Link to="/" className="brand" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <div className="brand-mark">FC</div>
+          <BrandMark />
           <div><b>FinBuddy</b><span>ISB Finance Club · Co'27</span></div>
         </Link>
         <nav className="nav">
@@ -44,13 +44,14 @@ export function Layout({ children }: { children: ReactNode }) {
           ))}
         </nav>
         <div className="side-foot stack" style={{ gap: 6 }}>
+          <div className="tagline">{TAGLINE}</div>
           <div>Week {currentWeek(s)} of 8 · {lv.name}</div>
           <div>{backend.kind === 'local' ? 'Saved on this device' : backend.kind === 'artifact' ? 'Synced to your account' : 'Synced to the club server'}{saving ? ' · saving' : ''}</div>
         </div>
       </aside>
       <div className="main">
         <header className="topbar">
-          <Link to="/" className="brand-mark show-sm" style={{ textDecoration: 'none', width: 30, height: 30, fontSize: 12 }} aria-label="Home">FC</Link>
+          <Link to="/" className="show-sm" style={{ display: 'grid' }} aria-label="Home"><BrandMark size={30} /></Link>
           <div className="row" style={{ gap: 8 }}>
             <span className={`pill flame ${st.todayDone ? '' : 'off'}`} title={st.todayDone ? 'Streak safe today' : `Earn ${20 - Math.min(20, today)} more XP today to keep the streak`}>
               <Icon n="flame" s={16} /> {st.current}
@@ -94,6 +95,7 @@ export function More() {
           </Link>
         ))}
       </div>
+      <div className="row tagline" style={{ justifyContent: 'center', marginTop: 22, gap: 8 }}><BrandMark size={20} /> {TAGLINE}</div>
     </div>
   );
 }

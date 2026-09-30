@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { authReturnError, type Backend } from '../lib/backend';
-import { Icon } from '../components/ui';
+import { Icon, BrandMark, TAGLINE } from '../components/ui';
 
 // Sign-in: the student finds themselves by name or PGID, and a 6-digit code goes to
 // their ISB email from the class list. The verified address links the PGID on the
@@ -46,7 +46,7 @@ export default function Login({ backend, onDone }: { backend: Backend; onDone: (
   return (
     <div className="auth">
       <div className="row" style={{ marginBottom: 22, flexWrap: 'nowrap' }}>
-        <div className="brand-mark">FC</div>
+        <BrandMark size={40} />
         <div><div className="kicker">ISB Finance Club · Co'27</div><b style={{ fontSize: 18 }}>FinBuddy</b></div>
       </div>
       <form className="stepcard stack" style={{ minHeight: 0, gap: 14 }} onSubmit={(e) => e.preventDefault()}>
@@ -118,6 +118,7 @@ export default function Login({ backend, onDone }: { backend: Backend; onDone: (
         {err && <div className="feedback no" style={{ marginTop: 0 }} role="alert"><p><Icon n="alert" s={14} /> {err}</p></div>}
       </form>
       <p className="small muted" style={{ textAlign: 'center', marginTop: 18 }}>Trouble signing in? Message the Finance Club team.</p>
+      <p className="tagline" style={{ textAlign: 'center', marginTop: 4 }}>{TAGLINE}</p>
     </div>
   );
 }

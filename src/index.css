@@ -351,3 +351,5 @@ table.gt td:not(:first-child) { font-variant-numeric: tabular-nums; }
 @media (prefers-reduced-motion: reduce) { .st-row.flash { animation: none; background: var(--warn-bg); } }
 .rgroup { display: grid; grid-template-columns: 170px 1fr; gap: 8px; align-items: center; }
 @media (max-width: 620px) { .rgroup { grid-template-columns: 1fr; gap: 4px; } }
+.brand-img { display: block; flex: none; object-fit: cover; box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+.tagline { font-size: 11.5px; font-style: italic; color: var(--muted); }

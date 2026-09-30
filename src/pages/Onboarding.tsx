@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useStore } from '../lib/store';
 import { dayKey, type Profile } from '../lib/state';
 import { READING_PATHS, TRACK_FIT, ONE_PAGE } from '../data/startHere';
-import { Icon, Bar } from '../components/ui';
+import { Icon, Bar, BrandMark, TAGLINE } from '../components/ui';
 
 import { TRACK_DEFS } from '../data/tracks';
 export const TRACKS = TRACK_DEFS.map((t) => t.name);
@@ -26,8 +26,8 @@ export default function Onboarding() {
   return (
     <div className="content narrow" style={{ paddingTop: 'calc(24px + env(safe-area-inset-top, 0px))' }}>
       <div className="row" style={{ marginBottom: 18 }}>
-        <div className="brand-mark">FC</div>
-        <div><div className="kicker">ISB Finance Club · Co'27</div><b>FinBuddy</b></div>
+        <BrandMark size={38} />
+        <div><div className="kicker">ISB Finance Club · Co'27</div><b>FinBuddy</b><div className="tagline">{TAGLINE}</div></div>
       </div>
       <div className="row" style={{ gap: 6, marginBottom: 8 }}>
         {STEPS.map((l, i) => <span key={l} className={`chip ${i === step ? 'p1' : ''}`} style={{ opacity: i > step ? 0.5 : 1 }}>{i + 1}. {l}</span>)}

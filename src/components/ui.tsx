@@ -1,6 +1,7 @@
 import { Fragment, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { FACTS } from '../data/facts';
+import markUrl from '../assets/fc-mark.png';
 import { dayKey, type TopicState, STATE_LABEL } from '../lib/state';
 
 // ---------- icons (stroke icons, 20px grid)
@@ -138,3 +139,9 @@ export function shuffled<T>(a: T[], seed: number): T[] {
   return r;
 }
 export function hashStr(s: string) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+
+// ISB Finance Club mark, used wherever the app shows its logo
+export function BrandMark({ size = 34 }: { size?: number }) {
+  return <img src={markUrl} alt="ISB Finance Club" width={size} height={size} className="brand-img" style={{ width: size, height: size, borderRadius: Math.round(size * 0.18) }} />;
+}
+export const TAGLINE = 'From your own ISBuddies at the Finance Club';

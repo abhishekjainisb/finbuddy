@@ -2,6 +2,7 @@ import { Component, useEffect, type ReactNode } from 'react';
 import { HashRouter, MemoryRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { StoreProvider, useBoot, useStore, applyTheme, getTheme } from './lib/store';
 import { Layout, More } from './components/Layout';
+import { BrandMark } from './components/ui';
 import Onboarding from './pages/Onboarding';
 import Login from './pages/Login';
 import Today from './pages/Today';
@@ -93,7 +94,7 @@ export default function App() {
     return (
       <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center' }}>
         <div className="stack" style={{ alignItems: 'center' }}>
-          <div className="brand-mark" style={{ width: 48, height: 48, fontSize: 17 }}>FC</div>
+          <BrandMark size={56} />
           <div className="small muted">Loading your progress</div>
         </div>
       </div>
