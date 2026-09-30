@@ -1,0 +1,681 @@
+[
+ {
+  "folder": "Finance Interview Prep (root): Start here",
+  "name": "START HERE - Finance Prep Roadmap",
+  "sub": "",
+  "use": "The team roadmap for the folder",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/00%20START%20HERE%20-%20Finance%20Prep%20Roadmap.pdf"
+ },
+ {
+  "folder": "01 Foundations: Accounting, corporate finance, macro, markets and industry primers. Start here if finance is new.",
+  "name": "SIGFi Primer - Financial Reporting & Analysis",
+  "sub": "Accounting & Financial Reporting",
+  "use": "Financial reporting and ratio analysis",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/01%20Foundations/01%20Accounting%20%26%20Financial%20Reporting/01%20SIGFi%20Primer%20-%20Financial%20Reporting%20%26%20Analysis.pdf"
+ },
+ {
+  "folder": "01 Foundations: Accounting, corporate finance, macro, markets and industry primers. Start here if finance is new.",
+  "name": "Finance Session 1 - Intro, NPV, WACC & CAPM",
+  "sub": "Corporate Finance",
+  "use": "NPV, WACC and CAPM in one session",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/01%20Foundations/02%20Corporate%20Finance/01%20Finance%20Session%201%20-%20Intro%2C%20NPV%2C%20WACC%20%26%20CAPM.pptx"
+ },
+ {
+  "folder": "01 Foundations: Accounting, corporate finance, macro, markets and industry primers. Start here if finance is new.",
+  "name": "Finance Session 2 - Time Value of Money & Capital Budgeting",
+  "sub": "Corporate Finance",
+  "use": "TVM and capital budgeting",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/01%20Foundations/02%20Corporate%20Finance/02%20Finance%20Session%202%20-%20Time%20Value%20of%20Money%20%26%20Capital%20Budgeting.docx"
+ },
+ {
+  "folder": "01 Foundations: Accounting, corporate finance, macro, markets and industry primers. Start here if finance is new.",
+  "name": "SIGFi Primer - Capital Budgeting (NPV & IRR)",
+  "sub": "Corporate Finance",
+  "use": "NPV, IRR and capital budgeting",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/01%20Foundations/02%20Corporate%20Finance/03%20SIGFi%20Primer%20-%20Capital%20Budgeting%20%28NPV%20%26%20IRR%29.pdf"
+ },
+ {
+  "folder": "01 Foundations: Accounting, corporate finance, macro, markets and industry primers. Start here if finance is new.",
+  "name": "Beta Corporate Finance Primer 2025",
+  "sub": "Corporate Finance",
+  "use": "Corporate finance primer (2025)",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/01%20Foundations/02%20Corporate%20Finance/04%20Beta%20Corporate%20Finance%20Primer%202025.pdf"
+ },
+ {
+  "folder": "01 Foundations: Accounting, corporate finance, macro, markets and industry primers. Start here if finance is new.",
+  "name": "Beta Corporate Finance Primer 2022",
+  "sub": "Corporate Finance",
+  "use": "Corporate finance primer (2022)",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/01%20Foundations/02%20Corporate%20Finance/04%20Beta%20Corporate%20Finance%20Primer%202025.pdf"
+ },
+ {
+  "folder": "01 Foundations: Accounting, corporate finance, macro, markets and industry primers. Start here if finance is new.",
+  "name": "Corporate Finance Primer (IIM)",
+  "sub": "Corporate Finance",
+  "use": "Corporate finance primer",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/01%20Foundations/02%20Corporate%20Finance/06%20Corporate%20Finance%20Primer%20%28IIM%29.pdf"
+ },
+ {
+  "folder": "01 Foundations: Accounting, corporate finance, macro, markets and industry primers. Start here if finance is new.",
+  "name": "IIM Calcutta Corporate Finance Primer",
+  "sub": "Corporate Finance",
+  "use": "Corporate finance primer",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/01%20Foundations/02%20Corporate%20Finance/07%20IIM%20Calcutta%20Corporate%20Finance%20Primer.pdf"
+ },
+ {
+  "folder": "01 Foundations: Accounting, corporate finance, macro, markets and industry primers. Start here if finance is new.",
+  "name": "Macroeconomics Crash Course",
+  "sub": "Economics for Finance",
+  "use": "Macro crash course",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/01%20Foundations/03%20Economics%20for%20Finance/01%20Macroeconomics%20Crash%20Course.docx"
+ },
+ {
+  "folder": "01 Foundations: Accounting, corporate finance, macro, markets and industry primers. Start here if finance is new.",
+  "name": "Macroeconomics for Financial Markets",
+  "sub": "Economics for Finance",
+  "use": "Macro for markets",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/01%20Foundations/03%20Economics%20for%20Finance/02%20Macroeconomics%20for%20Financial%20Markets.docx"
+ },
+ {
+  "folder": "01 Foundations: Accounting, corporate finance, macro, markets and industry primers. Start here if finance is new.",
+  "name": "NCFM Financial Markets - Beginner Module",
+  "sub": "Financial Markets Basics",
+  "use": "Indian market structure basics",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/01%20Foundations/04%20Financial%20Markets%20Basics/01%20NCFM%20Financial%20Markets%20-%20Beginner%20Module.pdf"
+ },
+ {
+  "folder": "01 Foundations: Accounting, corporate finance, macro, markets and industry primers. Start here if finance is new.",
+  "name": "Markets Primer (IIM)",
+  "sub": "Financial Markets Basics",
+  "use": "Markets primer",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/01%20Foundations/04%20Financial%20Markets%20Basics/02%20Markets%20Primer%20%28IIM%29.pdf"
+ },
+ {
+  "folder": "01 Foundations: Accounting, corporate finance, macro, markets and industry primers. Start here if finance is new.",
+  "name": "Beta Markets Primer 2022",
+  "sub": "Financial Markets Basics",
+  "use": "Markets primer",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/01%20Foundations/04%20Financial%20Markets%20Basics/03%20Beta%20Markets%20Primer%202022.pdf"
+ },
+ {
+  "folder": "01 Foundations: Accounting, corporate finance, macro, markets and industry primers. Start here if finance is new.",
+  "name": "IIM Calcutta Markets Primer",
+  "sub": "Financial Markets Basics",
+  "use": "Markets primer",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/01%20Foundations/04%20Financial%20Markets%20Basics/04%20IIM%20Calcutta%20Markets%20Primer.pdf"
+ },
+ {
+  "folder": "01 Foundations: Accounting, corporate finance, macro, markets and industry primers. Start here if finance is new.",
+  "name": "Beta Industry Primer 2025",
+  "sub": "Industry & Sector Knowledge",
+  "use": "Sector primers for company and deal discussions",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/01%20Foundations/05%20Industry%20%26%20Sector%20Knowledge/01%20Beta%20Industry%20Primer%202025.pdf"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Valuation 101 (PEVC Society)",
+  "sub": "Valuation Fundamentals",
+  "use": "Valuation basics",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/01%20Valuation%20Fundamentals/01%20Valuation%20101%20%28PEVC%20Society%29.pdf"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Valuation Fundamentals",
+  "sub": "Valuation Fundamentals",
+  "use": "Valuation fundamentals",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/01%20Valuation%20Fundamentals/02%20Valuation%20Fundamentals.pdf"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "SIGFi Primer - Valuation",
+  "sub": "Valuation Fundamentals",
+  "use": "Valuation primer",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/01%20Valuation%20Fundamentals/03%20SIGFi%20Primer%20-%20Valuation.pdf"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Valuation Masterclass - Overview, DCF, Comps & LBO",
+  "sub": "Valuation Fundamentals",
+  "use": "DCF, comps and LBO overview",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/01%20Valuation%20Fundamentals/04%20Valuation%20Masterclass%20-%20Overview%2C%20DCF%2C%20Comps%20%26%20LBO.pdf"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Free Cash Flow Valuation",
+  "sub": "DCF & Intrinsic Valuation",
+  "use": "FCFF and FCFE valuation",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/02%20DCF%20%26%20Intrinsic%20Valuation/01%20Free%20Cash%20Flow%20Valuation.pdf"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Valuation Session - DCF",
+  "sub": "DCF & Intrinsic Valuation",
+  "use": "DCF session deck",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/02%20DCF%20%26%20Intrinsic%20Valuation/02%20Valuation%20Session%20-%20DCF.pdf"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Relative & Comparable Valuation",
+  "sub": "Relative Valuation & Comps",
+  "use": "Relative valuation",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/03%20Relative%20Valuation%20%26%20Comps/01%20Relative%20%26%20Comparable%20Valuation.pdf"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Comparable Company & Transaction Analysis",
+  "sub": "Relative Valuation & Comps",
+  "use": "Trading comps and precedent transactions",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/03%20Relative%20Valuation%20%26%20Comps/02%20Comparable%20Company%20%26%20Transaction%20Analysis.pdf"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Valuation Session - Relative Valuation",
+  "sub": "Relative Valuation & Comps",
+  "use": "Relative valuation session deck",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/03%20Relative%20Valuation%20%26%20Comps/03%20Valuation%20Session%20-%20Relative%20Valuation.pdf"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Dilutive Securities & EPS",
+  "sub": "Relative Valuation & Comps",
+  "use": "Diluted shares, treasury stock method, EPS",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/03%20Relative%20Valuation%20%26%20Comps/04%20Dilutive%20Securities%20%26%20EPS.pdf"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Sector-Specific Ratios & Valuation",
+  "sub": "Sector-Specific & Bank Valuation",
+  "use": "Sector ratios and valuation metrics",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/04%20Sector-Specific%20%26%20Bank%20Valuation/01%20Sector-Specific%20Ratios%20%26%20Valuation.pdf"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Valuation for Banks",
+  "sub": "Sector-Specific & Bank Valuation",
+  "use": "Valuing banks (P/B, ROE, excess return)",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/04%20Sector-Specific%20%26%20Bank%20Valuation/02%20Valuation%20for%20Banks.pdf"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Technicals of Financial Modelling",
+  "sub": "Financial Modelling & Sample Models",
+  "use": "Modelling mechanics",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/05%20Financial%20Modelling%20%26%20Sample%20Models/01%20Technicals%20of%20Financial%20Modelling.pdf"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Financial Modelling Handbook",
+  "sub": "Financial Modelling & Sample Models",
+  "use": "Full modelling handbook",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/05%20Financial%20Modelling%20%26%20Sample%20Models/02%20Financial%20Modelling%20Handbook.pdf"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "ISB TAG - Financial Modelling & Valuation Training",
+  "sub": "Financial Modelling & Sample Models",
+  "use": "ISB TAG modelling training",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/05%20Financial%20Modelling%20%26%20Sample%20Models/03%20ISB%20TAG%20-%20Financial%20Modelling%20%26%20Valuation%20Training.pdf"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Sample Model - Colgate (3-Statement)",
+  "sub": "Financial Modelling & Sample Models",
+  "use": "Three-statement model to rebuild",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/05%20Financial%20Modelling%20%26%20Sample%20Models/04%20Sample%20Model%20-%20Colgate%20%283-Statement%29.xlsx"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Sample Model - Valuation",
+  "sub": "Financial Modelling & Sample Models",
+  "use": "Valuation model",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/05%20Financial%20Modelling%20%26%20Sample%20Models/05%20Sample%20Model%20-%20Valuation.xlsx"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Sample Model - M&A Accretion-Dilution",
+  "sub": "Financial Modelling & Sample Models",
+  "use": "Accretion/dilution model",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/05%20Financial%20Modelling%20%26%20Sample%20Models/06%20Sample%20Model%20-%20M%26A%20Accretion-Dilution.xlsx"
+ },
+ {
+  "folder": "02 Valuation & Financial Modelling: Valuation theory, DCF, comps, sector valuation, and four sample Excel models.",
+  "name": "Sample Model - LBO",
+  "sub": "Financial Modelling & Sample Models",
+  "use": "LBO model",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/02%20Valuation%20%26%20Financial%20Modelling/05%20Financial%20Modelling%20%26%20Sample%20Models/07%20Sample%20Model%20-%20LBO.xlsx"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "Beta IB Primer 2025",
+  "sub": "IB Primers & Role Overview",
+  "use": "IB primer (India, 2025)",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/01%20IB%20Primers%20%26%20Role%20Overview/01%20Beta%20IB%20Primer%202025.pdf"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "Beta IB Advanced Primer 2025",
+  "sub": "IB Primers & Role Overview",
+  "use": "Advanced IB primer (2025)",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/01%20IB%20Primers%20%26%20Role%20Overview/02%20Beta%20IB%20Advanced%20Primer%202025.pdf"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "Beta IB Primer 2022",
+  "sub": "IB Primers & Role Overview",
+  "use": "IB primer (2022)",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/01%20IB%20Primers%20%26%20Role%20Overview/03%20Beta%20IB%20Primer%202022.pdf"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "Investment Banking Primer (IIM)",
+  "sub": "IB Primers & Role Overview",
+  "use": "IB primer",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/01%20IB%20Primers%20%26%20Role%20Overview/04%20Investment%20Banking%20Primer%20%28IIM%29.pdf"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "IIM Calcutta IB Primer",
+  "sub": "IB Primers & Role Overview",
+  "use": "IB primer",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/01%20IB%20Primers%20%26%20Role%20Overview/05%20IIM%20Calcutta%20IB%20Primer.pdf"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "Vault Guide to Investment Banking (Roles & Divisions)",
+  "sub": "IB Primers & Role Overview",
+  "use": "Roles and divisions in a bank",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/01%20IB%20Primers%20%26%20Role%20Overview/06%20Vault%20Guide%20to%20Investment%20Banking%20%28Roles%20%26%20Divisions%29.pdf"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "M&A 101 (PEVC Society)",
+  "sub": "M&A, IPO & LBO",
+  "use": "M&A basics",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/02%20M%26A%2C%20IPO%20%26%20LBO/01%20M%26A%20101%20%28PEVC%20Society%29.pdf"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "M&A and IPO",
+  "sub": "M&A, IPO & LBO",
+  "use": "M&A and IPO notes",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/02%20M%26A%2C%20IPO%20%26%20LBO/02%20M%26A%20and%20IPO.pdf"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "M&A Research",
+  "sub": "M&A, IPO & LBO",
+  "use": "M&A research notes",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/02%20M%26A%2C%20IPO%20%26%20LBO/03%20M%26A%20Research.pdf"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "NCFM Mergers & Acquisitions Module",
+  "sub": "M&A, IPO & LBO",
+  "use": "Indian M&A law and process",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/02%20M%26A%2C%20IPO%20%26%20LBO/04%20NCFM%20Mergers%20%26%20Acquisitions%20Module.pdf"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "Breaking Into Wall Street - IB Interview Guide",
+  "sub": "IB Interview Prep",
+  "use": "IB interview guide",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/03%20IB%20Interview%20Prep/01%20Breaking%20Into%20Wall%20Street%20-%20IB%20Interview%20Guide.pdf"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "BIWS - Equity Value & Enterprise Value Q&A",
+  "sub": "IB Interview Prep",
+  "use": "EV and equity value questions",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/03%20IB%20Interview%20Prep/02%20BIWS%20-%20Equity%20Value%20%26%20Enterprise%20Value%20Q%26A.pdf"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "BIWS - Valuation Q&A",
+  "sub": "IB Interview Prep",
+  "use": "Valuation questions",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/03%20IB%20Interview%20Prep/03%20BIWS%20-%20Valuation%20Q%26A.pdf"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "BIWS - DCF Q&A",
+  "sub": "IB Interview Prep",
+  "use": "DCF questions",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/03%20IB%20Interview%20Prep/04%20BIWS%20-%20DCF%20Q%26A.pdf"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "BIWS - Merger Model Q&A",
+  "sub": "IB Interview Prep",
+  "use": "Merger model questions",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/03%20IB%20Interview%20Prep/05%20BIWS%20-%20Merger%20Model%20Q%26A.pdf"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "Investment Banking Interview Questions",
+  "sub": "IB Interview Prep",
+  "use": "IB interview questions",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/03%20IB%20Interview%20Prep/06%20Investment%20Banking%20Interview%20Questions.pdf"
+ },
+ {
+  "folder": "03 Investment Banking: IB primers (India and global), M&A and IPO notes, and the BIWS question guides.",
+  "name": "Banking Industry Interview Questions",
+  "sub": "IB Interview Prep",
+  "use": "Banking industry questions",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/03%20Investment%20Banking/03%20IB%20Interview%20Prep/07%20Banking%20Industry%20Interview%20Questions.pdf"
+ },
+ {
+  "folder": "04 Private Equity, VC & Hedge Funds: PE and VC primers, the NCFM PE/VC module and the Vault guide.",
+  "name": "Beta PE & VC Primer 2025",
+  "sub": "",
+  "use": "PE and VC primer (India, 2025)",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/04%20Private%20Equity%2C%20VC%20%26%20Hedge%20Funds/01%20Beta%20PE%20%26%20VC%20Primer%202025.pdf"
+ },
+ {
+  "folder": "04 Private Equity, VC & Hedge Funds: PE and VC primers, the NCFM PE/VC module and the Vault guide.",
+  "name": "Beta PE & VC Primer 2022",
+  "sub": "",
+  "use": "PE and VC primer (2022)",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/04%20Private%20Equity%2C%20VC%20%26%20Hedge%20Funds/02%20Beta%20PE%20%26%20VC%20Primer%202022.pdf"
+ },
+ {
+  "folder": "04 Private Equity, VC & Hedge Funds: PE and VC primers, the NCFM PE/VC module and the Vault guide.",
+  "name": "Private Equity 101 (PEVC Society)",
+  "sub": "",
+  "use": "PE basics",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/04%20Private%20Equity%2C%20VC%20%26%20Hedge%20Funds/03%20Private%20Equity%20101%20%28PEVC%20Society%29.pdf"
+ },
+ {
+  "folder": "04 Private Equity, VC & Hedge Funds: PE and VC primers, the NCFM PE/VC module and the Vault guide.",
+  "name": "Venture Capital 101 (PEVC Society)",
+  "sub": "",
+  "use": "VC basics",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/04%20Private%20Equity%2C%20VC%20%26%20Hedge%20Funds/04%20Venture%20Capital%20101%20%28PEVC%20Society%29.pdf"
+ },
+ {
+  "folder": "04 Private Equity, VC & Hedge Funds: PE and VC primers, the NCFM PE/VC module and the Vault guide.",
+  "name": "NCFM Venture Capital & Private Equity Module",
+  "sub": "",
+  "use": "Indian PE/VC regulation and practice",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/04%20Private%20Equity%2C%20VC%20%26%20Hedge%20Funds/05%20NCFM%20Venture%20Capital%20%26%20Private%20Equity%20Module.pdf"
+ },
+ {
+  "folder": "04 Private Equity, VC & Hedge Funds: PE and VC primers, the NCFM PE/VC module and the Vault guide.",
+  "name": "Vault Guide to Private Equity & Hedge Funds",
+  "sub": "",
+  "use": "PE and hedge fund careers",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/04%20Private%20Equity%2C%20VC%20%26%20Hedge%20Funds/06%20Vault%20Guide%20to%20Private%20Equity%20%26%20Hedge%20Funds.pdf"
+ },
+ {
+  "folder": "05 Equity Research & Asset Management: Equity research primer and NCFM fundamental analysis.",
+  "name": "Equity Research",
+  "sub": "",
+  "use": "Equity research primer",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/05%20Equity%20Research%20%26%20Asset%20Management/01%20Equity%20Research.pdf"
+ },
+ {
+  "folder": "05 Equity Research & Asset Management: Equity research primer and NCFM fundamental analysis.",
+  "name": "NCFM Fundamental Analysis Module",
+  "sub": "",
+  "use": "Fundamental analysis",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/05%20Equity%20Research%20%26%20Asset%20Management/02%20NCFM%20Fundamental%20Analysis%20Module.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "Stock Basics Tutorial",
+  "sub": "Equity & Stock Market Basics",
+  "use": "Stock basics",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/01%20Equity%20%26%20Stock%20Market%20Basics/01%20Stock%20Basics%20Tutorial.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "FAQs on Share Trading",
+  "sub": "Equity & Stock Market Basics",
+  "use": "Share trading FAQs",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/01%20Equity%20%26%20Stock%20Market%20Basics/02%20FAQs%20on%20Share%20Trading.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "Bond Basics Tutorial",
+  "sub": "Fixed Income & Bonds",
+  "use": "Bond basics",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/02%20Fixed%20Income%20%26%20Bonds/01%20Bond%20Basics%20Tutorial.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "Corporate Bond Market",
+  "sub": "Fixed Income & Bonds",
+  "use": "Indian corporate bond market",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/02%20Fixed%20Income%20%26%20Bonds/02%20Corporate%20Bond%20Market.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "SIGFi Primer - Bond Pricing, Duration & Convexity",
+  "sub": "Fixed Income & Bonds",
+  "use": "Bond pricing, duration, convexity",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/02%20Fixed%20Income%20%26%20Bonds/03%20SIGFi%20Primer%20-%20Bond%20Pricing%2C%20Duration%20%26%20Convexity.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "Futures - NSE Guide",
+  "sub": "Derivatives - Futures, Forwards & Swaps",
+  "use": "Futures (NSE guide)",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/03%20Derivatives%20-%20Futures%2C%20Forwards%20%26%20Swaps/01%20Futures%20-%20NSE%20Guide.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "Swaps",
+  "sub": "Derivatives - Futures, Forwards & Swaps",
+  "use": "Swaps",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/03%20Derivatives%20-%20Futures%2C%20Forwards%20%26%20Swaps/02%20Swaps.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "SIGFi Primer - Forwards, Futures & Swaps",
+  "sub": "Derivatives - Futures, Forwards & Swaps",
+  "use": "Forwards, futures and swaps",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/03%20Derivatives%20-%20Futures%2C%20Forwards%20%26%20Swaps/02%20Swaps.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "NCFM Equity Derivatives - Beginner Module",
+  "sub": "Derivatives - Futures, Forwards & Swaps",
+  "use": "Equity derivatives",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/03%20Derivatives%20-%20Futures%2C%20Forwards%20%26%20Swaps/04%20NCFM%20Equity%20Derivatives%20-%20Beginner%20Module.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "NCFM Currency Derivatives - Beginner Module",
+  "sub": "Derivatives - Futures, Forwards & Swaps",
+  "use": "Currency derivatives",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/03%20Derivatives%20-%20Futures%2C%20Forwards%20%26%20Swaps/05%20NCFM%20Currency%20Derivatives%20-%20Beginner%20Module.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "NCFM Derivatives Market (Dealers) Module",
+  "sub": "Derivatives - Futures, Forwards & Swaps",
+  "use": "Derivatives dealers module",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/03%20Derivatives%20-%20Futures%2C%20Forwards%20%26%20Swaps/06%20NCFM%20Derivatives%20Market%20%28Dealers%29%20Module.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "Option Terminology",
+  "sub": "Options & Trading Strategies",
+  "use": "Option terminology",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/04%20Options%20%26%20Trading%20Strategies/01%20Option%20Terminology.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "Option FAQs",
+  "sub": "Options & Trading Strategies",
+  "use": "Option FAQs",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/04%20Options%20%26%20Trading%20Strategies/02%20Option%20FAQs.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "Black-Scholes & the Greeks",
+  "sub": "Options & Trading Strategies",
+  "use": "Black-Scholes and Greeks",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/04%20Options%20%26%20Trading%20Strategies/03%20Black-Scholes%20%26%20the%20Greeks.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "Options Trading Strategies",
+  "sub": "Options & Trading Strategies",
+  "use": "Option strategies",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/04%20Options%20%26%20Trading%20Strategies/04%20Options%20Trading%20Strategies.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "NCFM Technical Analysis",
+  "sub": "Technical Analysis",
+  "use": "Technical analysis",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/05%20Technical%20Analysis/01%20NCFM%20Technical%20Analysis.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "NCFM Financial Markets (Advanced) Module",
+  "sub": "Advanced Markets & Dealer Modules",
+  "use": "Advanced markets",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/06%20Advanced%20Markets%20%26%20Dealer%20Modules/01%20NCFM%20Financial%20Markets%20%28Advanced%29%20Module.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "NCFM Securities Markets (Advanced)",
+  "sub": "Advanced Markets & Dealer Modules",
+  "use": "Securities markets (advanced)",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/06%20Advanced%20Markets%20%26%20Dealer%20Modules/02%20NCFM%20Securities%20Markets%20%28Advanced%29.pdf"
+ },
+ {
+  "folder": "06 Markets, Trading & Derivatives: Equity, bonds, futures, swaps, options, technical analysis and dealer modules.",
+  "name": "NCFM Capital Market (Dealers) Module",
+  "sub": "Advanced Markets & Dealer Modules",
+  "use": "Capital market dealers module",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/06%20Markets%2C%20Trading%20%26%20Derivatives/06%20Advanced%20Markets%20%26%20Dealer%20Modules/03%20NCFM%20Capital%20Market%20%28Dealers%29%20Module.pdf"
+ },
+ {
+  "folder": "07 Portfolio, Wealth & Mutual Funds: Mutual funds, portfolio management and wealth management modules.",
+  "name": "SIGFi Primer - Mutual Funds & Portfolio Basics",
+  "sub": "",
+  "use": "Mutual funds and portfolio basics",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/07%20Portfolio%2C%20Wealth%20%26%20Mutual%20Funds/01%20SIGFi%20Primer%20-%20Mutual%20Funds%20%26%20Portfolio%20Basics.pdf"
+ },
+ {
+  "folder": "07 Portfolio, Wealth & Mutual Funds: Mutual funds, portfolio management and wealth management modules.",
+  "name": "NCFM Mutual Funds - Beginner Module",
+  "sub": "",
+  "use": "Mutual funds (beginner)",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/07%20Portfolio%2C%20Wealth%20%26%20Mutual%20Funds/02%20NCFM%20Mutual%20Funds%20-%20Beginner%20Module.pdf"
+ },
+ {
+  "folder": "07 Portfolio, Wealth & Mutual Funds: Mutual funds, portfolio management and wealth management modules.",
+  "name": "NCFM Investment Analysis & Portfolio Management",
+  "sub": "",
+  "use": "Investment analysis and portfolio management",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/07%20Portfolio%2C%20Wealth%20%26%20Mutual%20Funds/03%20NCFM%20Investment%20Analysis%20%26%20Portfolio%20Management.pdf"
+ },
+ {
+  "folder": "07 Portfolio, Wealth & Mutual Funds: Mutual funds, portfolio management and wealth management modules.",
+  "name": "NCFM Wealth Management Module",
+  "sub": "",
+  "use": "Wealth management",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/07%20Portfolio%2C%20Wealth%20%26%20Mutual%20Funds/04%20NCFM%20Wealth%20Management%20Module.pdf"
+ },
+ {
+  "folder": "08 Banking & Project Finance: Corporate banking primer and NCFM banking and project finance modules.",
+  "name": "Corporate Banking Primer",
+  "sub": "",
+  "use": "Corporate banking primer",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/08%20Banking%20%26%20Project%20Finance/01%20Corporate%20Banking%20Primer.pdf"
+ },
+ {
+  "folder": "08 Banking & Project Finance: Corporate banking primer and NCFM banking and project finance modules.",
+  "name": "NCFM Commercial Banking - Beginner Module",
+  "sub": "",
+  "use": "Commercial banking",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/08%20Banking%20%26%20Project%20Finance/02%20NCFM%20Commercial%20Banking%20-%20Beginner%20Module.pdf"
+ },
+ {
+  "folder": "08 Banking & Project Finance: Corporate banking primer and NCFM banking and project finance modules.",
+  "name": "NCFM Banking Sector Module",
+  "sub": "",
+  "use": "Banking sector",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/08%20Banking%20%26%20Project%20Finance/03%20NCFM%20Banking%20Sector%20Module.pdf"
+ },
+ {
+  "folder": "08 Banking & Project Finance: Corporate banking primer and NCFM banking and project finance modules.",
+  "name": "NCFM Project Finance Module",
+  "sub": "",
+  "use": "Project finance",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/08%20Banking%20%26%20Project%20Finance/04%20NCFM%20Project%20Finance%20Module.pdf"
+ },
+ {
+  "folder": "09 Interview Prep & Question Banks: Interview compendium, finance interview book, 400 questions and quant puzzles.",
+  "name": "Finance Interview Compendium 2025",
+  "sub": "",
+  "use": "Finance interview compendium (2025)",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/09%20Interview%20Prep%20%26%20Question%20Banks/01%20Finance%20Interview%20Compendium%202025.pdf"
+ },
+ {
+  "folder": "09 Interview Prep & Question Banks: Interview compendium, finance interview book, 400 questions and quant puzzles.",
+  "name": "Finance Interview Book",
+  "sub": "",
+  "use": "Finance interview book",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/09%20Interview%20Prep%20%26%20Question%20Banks/02%20Finance%20Interview%20Book.pdf"
+ },
+ {
+  "folder": "09 Interview Prep & Question Banks: Interview compendium, finance interview book, 400 questions and quant puzzles.",
+  "name": "400 Finance Interview Questions",
+  "sub": "",
+  "use": "400 finance interview questions",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/09%20Interview%20Prep%20%26%20Question%20Banks/03%20400%20Finance%20Interview%20Questions.pdf"
+ },
+ {
+  "folder": "09 Interview Prep & Question Banks: Interview compendium, finance interview book, 400 questions and quant puzzles.",
+  "name": "Heard on the Street - Quant Interview Questions",
+  "sub": "",
+  "use": "Quant and brainteaser questions",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/09%20Interview%20Prep%20%26%20Question%20Banks/04%20Heard%20on%20the%20Street%20-%20Quant%20Interview%20Questions.pdf"
+ },
+ {
+  "folder": "09 Interview Prep & Question Banks: Interview compendium, finance interview book, 400 questions and quant puzzles.",
+  "name": "IIM A Prep (Notion link)",
+  "sub": "",
+  "use": "IIM A prep notes (Notion)",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/09%20Interview%20Prep%20%26%20Question%20Banks/05%20IIM%20A%20Prep%20%28Notion%20link%29.url"
+ },
+ {
+  "folder": "10 Reference Books & Certifications: Rosenbaum & Pearl, WSP Red Book, Damodaran and certification list.",
+  "name": "Rosenbaum & Pearl - Investment Banking, Valuation, LBOs, M&A and IPOs (Wiley 2020)",
+  "sub": "",
+  "use": "Rosenbaum & Pearl, the standard IB text",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/10%20Reference%20Books%20%26%20Certifications/01%20Rosenbaum%20%26%20Pearl%20-%20Investment%20Banking%2C%20Valuation%2C%20LBOs%2C%20M%26A%20and%20IPOs%20%28Wiley%202020%29.pdf"
+ },
+ {
+  "folder": "10 Reference Books & Certifications: Rosenbaum & Pearl, WSP Red Book, Damodaran and certification list.",
+  "name": "Wall Street Prep Red Book (Edu Edition)",
+  "sub": "",
+  "use": "WSP Red Book of interview questions",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/10%20Reference%20Books%20%26%20Certifications/02%20Wall%20Street%20Prep%20Red%20Book%20%28Edu%20Edition%29.pdf"
+ },
+ {
+  "folder": "10 Reference Books & Certifications: Rosenbaum & Pearl, WSP Red Book, Damodaran and certification list.",
+  "name": "Business Valuation (Book)",
+  "sub": "",
+  "use": "Business valuation",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/10%20Reference%20Books%20%26%20Certifications/04%20Business%20Valuation%20%28Book%29.pdf"
+ },
+ {
+  "folder": "10 Reference Books & Certifications: Rosenbaum & Pearl, WSP Red Book, Damodaran and certification list.",
+  "name": "Valuation by Damodaran",
+  "sub": "",
+  "use": "Damodaran on valuation",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/10%20Reference%20Books%20%26%20Certifications/05%20Valuation%20by%20Damodaran.pdf"
+ },
+ {
+  "folder": "10 Reference Books & Certifications: Rosenbaum & Pearl, WSP Red Book, Damodaran and certification list.",
+  "name": "Finance Certifications - Course List",
+  "sub": "",
+  "use": "Certification course list",
+  "url": "https://isbhydmoh-my.sharepoint.com/personal/anima_jain_pgp2027_isb_edu/Documents/Finance%20Interview%20Prep/10%20Reference%20Books%20%26%20Certifications/06%20Finance%20Certifications%20-%20Course%20List.url"
+ }
+]

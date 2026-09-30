@@ -1,0 +1,362 @@
+[
+ {
+  "term": "Accretion / dilution",
+  "def_": "increase or decrease in the acquirer's EPS after a deal."
+ },
+ {
+  "term": "AIF",
+  "def_": "Alternative Investment Fund, SEBI's framework for PE, VC, credit and hedge funds (Categories I, II, III)."
+ },
+ {
+  "term": "Anchor investor",
+  "def_": "QIB allotted IPO shares a day before the issue opens, with lock-ins."
+ },
+ {
+  "term": "AOP",
+  "def_": "annual operating plan; the company's budget for the coming year."
+ },
+ {
+  "term": "ARPU / ARPOB",
+  "def_": "average revenue per user; per occupied bed (hospitals)."
+ },
+ {
+  "term": "ARR",
+  "def_": "annual recurring revenue of a subscription business."
+ },
+ {
+  "term": "ASBA",
+  "def_": "application supported by blocked amount; IPO money stays in the applicant's account until allotment."
+ },
+ {
+  "term": "Book building",
+  "def_": "price discovery by collecting bids within a price band."
+ },
+ {
+  "term": "BRLM",
+  "def_": "book running lead manager; the investment bank managing a public issue."
+ },
+ {
+  "term": "Burn multiple",
+  "def_": "net cash burn ÷ net new ARR."
+ },
+ {
+  "term": "CAC",
+  "def_": "customer acquisition cost."
+ },
+ {
+  "term": "Capital employed",
+  "def_": "equity plus debt (sometimes net of cash)."
+ },
+ {
+  "term": "Carried interest",
+  "def_": "the GP's share of fund profits, usually 20% above a hurdle."
+ },
+ {
+  "term": "CCPS / CCD",
+  "def_": "compulsorily convertible preference shares / debentures."
+ },
+ {
+  "term": "CFADS",
+  "def_": "cash flow available for debt service."
+ },
+ {
+  "term": "CIM",
+  "def_": "confidential information memorandum sent to bidders in a sale."
+ },
+ {
+  "term": "Clawback",
+  "def_": "GP's obligation to return excess carry."
+ },
+ {
+  "term": "Comps",
+  "def_": "comparable companies used for relative valuation."
+ },
+ {
+  "term": "Contribution margin",
+  "def_": "price minus variable costs."
+ },
+ {
+  "term": "Control premium",
+  "def_": "premium over market price paid to acquire control."
+ },
+ {
+  "term": "Covenant",
+  "def_": "a lender's condition, such as maximum leverage."
+ },
+ {
+  "term": "CP",
+  "def_": "commercial paper; short-term unsecured debt."
+ },
+ {
+  "term": "DCF",
+  "def_": "discounted cash flow valuation."
+ },
+ {
+  "term": "Debt-like items",
+  "def_": "obligations that reduce the equity price in a deal (unpaid dues, provisions)."
+ },
+ {
+  "term": "DPI / TVPI / MOIC",
+  "def_": "distributions, total value and total multiple relative to paid-in capital."
+ },
+ {
+  "term": "DRHP / RHP",
+  "def_": "draft red herring prospectus / red herring prospectus."
+ },
+ {
+  "term": "Drag-along / tag-along",
+  "def_": "rights forcing minority holders to join a sale / letting them join one."
+ },
+ {
+  "term": "DSCR",
+  "def_": "debt service coverage ratio."
+ },
+ {
+  "term": "EBITDA / EBITDAR",
+  "def_": "earnings before interest, tax, depreciation and amortisation (and rent)."
+ },
+ {
+  "term": "ECB",
+  "def_": "external commercial borrowing by Indian companies from abroad."
+ },
+ {
+  "term": "ECM / DCM",
+  "def_": "equity / debt capital markets."
+ },
+ {
+  "term": "Earn-out",
+  "def_": "part of the price paid later if targets are met."
+ },
+ {
+  "term": "Enterprise value",
+  "def_": "value of the operating business to all capital providers."
+ },
+ {
+  "term": "Equity risk premium",
+  "def_": "expected excess return of equities over the risk-free rate."
+ },
+ {
+  "term": "Escrow",
+  "def_": "money held back to cover claims after closing."
+ },
+ {
+  "term": "FCFF / FCFE",
+  "def_": "free cash flow to the firm / to equity."
+ },
+ {
+  "term": "FPO",
+  "def_": "follow-on public offer."
+ },
+ {
+  "term": "GNPA / NNPA",
+  "def_": "gross / net non-performing assets."
+ },
+ {
+  "term": "Goodwill",
+  "def_": "price paid above the fair value of net identifiable assets."
+ },
+ {
+  "term": "GP / LP",
+  "def_": "general partner (manager) / limited partner (investor) in a fund."
+ },
+ {
+  "term": "Hurdle rate",
+  "def_": "minimum return before carry is paid, or before a project is accepted."
+ },
+ {
+  "term": "IC",
+  "def_": "investment committee."
+ },
+ {
+  "term": "Ind AS",
+  "def_": "Indian Accounting Standards, converged with IFRS."
+ },
+ {
+  "term": "IOI / NBO",
+  "def_": "indication of interest / non-binding offer."
+ },
+ {
+  "term": "IRR",
+  "def_": "discount rate at which NPV is zero."
+ },
+ {
+  "term": "J-curve",
+  "def_": "early negative, later positive cash flow profile of a fund."
+ },
+ {
+  "term": "LBO",
+  "def_": "leveraged buyout."
+ },
+ {
+  "term": "Liquidation preference",
+  "def_": "investor's right to be paid first in a sale."
+ },
+ {
+  "term": "Locked box",
+  "def_": "pricing mechanism fixing price on a past balance sheet."
+ },
+ {
+  "term": "LODR",
+  "def_": "SEBI's Listing Obligations and Disclosure Requirements."
+ },
+ {
+  "term": "LOI / term sheet",
+  "def_": "letter of intent / summary of key deal terms."
+ },
+ {
+  "term": "LTM",
+  "def_": "last twelve months."
+ },
+ {
+  "term": "MAC",
+  "def_": "material adverse change clause."
+ },
+ {
+  "term": "Mid-year convention",
+  "def_": "discounting cash flows as if received mid-year."
+ },
+ {
+  "term": "MPC",
+  "def_": "the RBI's Monetary Policy Committee."
+ },
+ {
+  "term": "NCD",
+  "def_": "non-convertible debenture."
+ },
+ {
+  "term": "NCI",
+  "def_": "non-controlling (minority) interest."
+ },
+ {
+  "term": "NIM",
+  "def_": "net interest margin of a lender."
+ },
+ {
+  "term": "NPV",
+  "def_": "net present value."
+ },
+ {
+  "term": "NRR / GRR",
+  "def_": "net / gross revenue retention."
+ },
+ {
+  "term": "NWC",
+  "def_": "net working capital."
+ },
+ {
+  "term": "OFS",
+  "def_": "offer for sale of existing shares."
+ },
+ {
+  "term": "Open offer",
+  "def_": "mandatory offer to public shareholders under the Takeover Regulations."
+ },
+ {
+  "term": "Option pool shuffle",
+  "def_": "creating the ESOP pool in the pre- money."
+ },
+ {
+  "term": "PAT / PBT",
+  "def_": "profit after / before tax."
+ },
+ {
+  "term": "PIPE",
+  "def_": "private investment in a public company."
+ },
+ {
+  "term": "PPA",
+  "def_": "purchase price allocation (or, in power, power purchase agreement)."
+ },
+ {
+  "term": "Pre-money / post-money",
+  "def_": "valuation before / after new investment."
+ },
+ {
+  "term": "Pro rata right",
+  "def_": "right to invest in future rounds to keep ownership."
+ },
+ {
+  "term": "QIB / QIP",
+  "def_": "qualified institutional buyer / placement to QIBs."
+ },
+ {
+  "term": "QoE",
+  "def_": "quality of earnings analysis."
+ },
+ {
+  "term": "Repo rate",
+  "def_": "the RBI's policy lending rate."
+ },
+ {
+  "term": "Reverse flip",
+  "def_": "moving a startup's holding company back to India."
+ },
+ {
+  "term": "Rights issue",
+  "def_": "offer of new shares to existing shareholders pro rata."
+ },
+ {
+  "term": "SAST",
+  "def_": "SEBI's Substantial Acquisition of Shares and Takeovers Regulations, 2011."
+ },
+ {
+  "term": "Scheme of arrangement",
+  "def_": "court (NCLT) approved merger, demerger or restructuring."
+ },
+ {
+  "term": "Sources and uses",
+  "def_": "table showing how a deal is funded and spent."
+ },
+ {
+  "term": "SPA / SHA",
+  "def_": "share purchase agreement / shareholders' agreement."
+ },
+ {
+  "term": "SPV",
+  "def_": "special purpose vehicle."
+ },
+ {
+  "term": "SOTP",
+  "def_": "sum-of-the-parts valuation."
+ },
+ {
+  "term": "Synergies",
+  "def_": "extra value from combining two businesses."
+ },
+ {
+  "term": "T+3",
+  "def_": "IPO listing three working days after the issue closes."
+ },
+ {
+  "term": "Teaser",
+  "def_": "short anonymous summary of a company for sale."
+ },
+ {
+  "term": "Terminal value",
+  "def_": "value of cash flows beyond the forecast period."
+ },
+ {
+  "term": "TERP",
+  "def_": "theoretical ex-rights price."
+ },
+ {
+  "term": "Treasury stock method",
+  "def_": "diluted shares from options, net of shares repurchased with exercise proceeds."
+ },
+ {
+  "term": "Unit economics",
+  "def_": "profitability of one unit (customer, order, store, bag)."
+ },
+ {
+  "term": "VDD",
+  "def_": "vendor due diligence commissioned by the seller."
+ },
+ {
+  "term": "WACC",
+  "def_": "weighted average cost of capital."
+ },
+ {
+  "term": "ZBB",
+  "def_": "zero-based budgeting."
+ }
+]
