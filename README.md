@@ -6,8 +6,8 @@ A practice-first portal built from the *Finance Placement Prep Guide* (Edition 1
 
 | Area | Contents |
 |---|---|
-| Lessons | 51 guide sections (A1.1 to B6.1): Common Core (Part A) and Investment Banking (Part B). Each is a stepped lesson with quick checks, plus a full-page view. |
-| Drills | 202 hand-written items (multiple choice, multi-select, ordering, sorting), covering all 51 pilot topics, and 29 numeric generators that make fresh problems every time and diagnose the kind of slip. |
+| Lessons | 111 guide sections across Parts A to F. Each is a stepped lesson with quick checks, plus a full-page view. |
+| Drills | 346 hand-written items (multiple choice, multi-select, ordering, sorting) covering all 112 topics, and 47 numeric generators that make fresh problems every time and diagnose the kind of slip. |
 | Question bank | 103 guide interview questions with model answers. Answer aloud against a timer, then grade yourself; grades schedule spaced review (1, 3, 7, 14, 30, 60 days). |
 | Sign-in | Phone OTP, then a one-time link to the student's PGID on the class roster. |
 | Tracking | Topic states (Not started, Read, Drilled, Proven, Mastered), weak flags, XP, levels, streaks, daily target, error log, 8-week plan with automatic exit gates, readiness checklist, mock interview rubric, opt-in leaderboard. |
@@ -73,9 +73,11 @@ select pgid, name, claimed_at from public.roster where claimed_by is not null or
 select * from public.topic_accuracy order by accuracy;
 ```
 
-## Scope of this release
+## Tracks
 
-Investment banking is the only live track; the other tracks show as coming soon. The Common Core (Part A) stays in because the IB track and the 8-week plan are built on it.
+All seven tracks are live: Investment banking, Corporate finance, Private equity, Venture capital, Consulting or deal advisory, Equity research or markets, and Corporate banking and credit. Each student picks one primary track and, optionally, one adjacent track. Their practice, focus topics, mastery map, readiness checklist and weekly plan gates follow the common core plus those tracks (`src/data/tracks.ts`).
+
+Content: 111 guide sections across Parts A to F, 346 hand-written drills covering all 112 topics, and 47 numeric generators.
 
 ## Keeping it current
 
@@ -99,6 +101,3 @@ supabase/migrations/  schema and security
 public/figs/          figures from the guide (WebP)
 ```
 
-## Phase 2
-
-Parts C to F (Corporate finance, PE, VC, adjacent roles) plug into the same structure: add lessons, map topics in the tracker, add drills. The engine, plan and tracking need no change.

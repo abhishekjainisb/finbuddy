@@ -2,9 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useStore } from '../lib/store';
 import {
-  PILOT, dayKey, addDays, streakOf, levelOf, LEVELS, stateCounts, overallAccuracy, topicState, isWeak, STATE_LABEL, STATE_ORDER, weekXp,
+  scopeTopics, readinessFor, tracksOf, dayKey, addDays, streakOf, levelOf, LEVELS, stateCounts, overallAccuracy, topicState, isWeak, STATE_LABEL, STATE_ORDER, weekXp,
 } from '../lib/state';
-import { READINESS } from '../data/plan';
 import { Bar, PageHead, StateDot, Ring } from '../components/ui';
 
 const COLORS: Record<string, string> = { new: 'var(--s-new)', read: 'var(--s-read)', drilled: 'var(--s-drilled)', proven: 'var(--s-proven)', mastered: 'var(--s-mastered)' };
@@ -14,6 +13,7 @@ export default function Progress() {
   const [params] = useSearchParams();
   const today = dayKey();
   const st = streakOf(s); const lv = levelOf(s.xp.total);
+  const SCOPE = scopeTopics(s); const READINESS = readinessFor(s);
   const counts = stateCounts(s); const acc = overallAccuracy(s);
   const [hover, setHover] = useState<string | null>(null);
   useEffect(() => { const f = params.get('focus'); if (f) setTimeout(() => document.getElementById(f)?.scrollIntoView({ behavior: 'smooth' }), 150); }, [params]);
@@ -28,9 +28,9 @@ export default function Progress() {
   }, [today]);
   const clusters = useMemo(() => {
     const m: Record<string, { ok: number; n: number; ids: string[] }> = {};
-    for (const t of PILOT) { const x = (m[t.cluster] ||= { ok: 0, n: 0, ids: [] }); x.ids.push(t.id); const r = s.topics[t.id]?.recent || []; x.ok += r.reduce((a, b) => a + b, 0); x.n += r.length; }
+    for (const t of SCOPE) { const x = (m[t.cluster] ||= { ok: 0, n: 0, ids: [] }); x.ids.push(t.id); const r = s.topics[t.id]?.recent || []; x.ok += r.reduce((a, b) => a + b, 0); x.n += r.length; }
     return Object.entries(m);
-  }, [s.topics]);
+  }, [s.topics, SCOPE]);
   const allR = [...READINESS.technicals, ...READINESS.other]; const rDone = allR.filter((r) => s.readiness[r.id]).length;
 
   return (
@@ -66,14 +66,14 @@ export default function Progress() {
 
       <div className="card" style={{ marginBottom: 16 }}>
         <div className="row" style={{ justifyContent: 'space-between' }}>
-          <div><div className="kicker">Mastery map · {PILOT.length} pilot topics</div><h3>{counts.proven + counts.mastered} proven or mastered</h3></div>
+          <div><div className="kicker">Mastery map · {SCOPE.length} topics: common core + {tracksOf(s).map((t) => t.short).join(' + ')}</div><h3>{counts.proven + counts.mastered} proven or mastered</h3></div>
           <div className="row small" style={{ gap: 12 }}>{STATE_ORDER.map((k) => <span key={k} className="row" style={{ gap: 5 }}><StateDot st={k} />{counts[k]} {STATE_LABEL[k].toLowerCase()}</span>)}</div>
         </div>
         <div style={{ display: 'flex', height: 12, borderRadius: 999, overflow: 'hidden', margin: '12px 0 16px' }}>
-          {STATE_ORDER.map((k) => <div key={k} style={{ width: `${(counts[k] / PILOT.length) * 100}%`, background: COLORS[k], transition: 'width .5s' }} />)}
+          {STATE_ORDER.map((k) => <div key={k} style={{ width: `${(counts[k] / SCOPE.length) * 100}%`, background: COLORS[k], transition: 'width .5s' }} />)}
         </div>
         <div className="heat">
-          {PILOT.map((t) => { const ts = topicState(s, t.id); return (
+          {SCOPE.map((t) => { const ts = topicState(s, t.id); return (
             <Link key={t.id} to={`/topic/${t.id}`} style={{ ['--hc' as any]: COLORS[ts], outline: isWeak(s, t.id) ? '2px solid var(--bad)' : undefined }} title={`${t.title}: ${STATE_LABEL[ts]}`}>
               <b>{t.id}</b>{t.cluster}
             </Link>

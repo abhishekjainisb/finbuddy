@@ -5,9 +5,9 @@ import { dayKey, type Profile } from '../lib/state';
 import { READING_PATHS, TRACK_FIT, ONE_PAGE } from '../data/startHere';
 import { Icon, Bar } from '../components/ui';
 
-export const TRACKS = ['Investment banking', 'Corporate finance', 'Private equity', 'Venture capital', 'Consulting or deal advisory', 'Equity research or markets'];
-// Only the IB track is live in this release; the rest are listed so students see what is coming.
-export const LIVE_TRACKS = ['Investment banking'];
+import { TRACK_DEFS } from '../data/tracks';
+export const TRACKS = TRACK_DEFS.map((t) => t.name);
+export const LIVE_TRACKS = TRACKS;
 export const TARGETS = [[30, 'Light', 'about 15 min'], [50, 'Steady', 'about 25 min'], [80, 'Serious', 'about 40 min'], [120, 'All in', 'an hour+']] as const;
 
 export default function Onboarding() {
@@ -20,7 +20,7 @@ export default function Onboarding() {
   const firms = p.firms.split(/[,\n]/).map((x) => x.trim()).filter(Boolean);
   const path = READING_PATHS.find((r) => r.who === p.background);
   const canNext = [!!linked || p.name.trim().length > 1, !!p.background, !!p.primary, true][step];
-  const finish = (to: string) => { mutate((d) => { d.profile = { ...p, name: (linked?.name || p.name).trim(), adjacent: '' }; }); nav(to); };
+  const finish = (to: string) => { mutate((d) => { d.profile = { ...p, name: (linked?.name || p.name).trim() }; }); nav(to); };
   const STEPS = ['You', 'Background', 'Track', 'Rhythm'];
 
   return (
@@ -56,25 +56,28 @@ export default function Onboarding() {
           </div>}
         </>}
         {step === 2 && <>
-          <h2 className="serif" style={{ fontSize: 24, color: 'var(--navy)' }}>Your track</h2>
+          <h2 className="serif" style={{ fontSize: 24, color: 'var(--navy)' }}>Pick one primary track</h2>
           <div className="stack" style={{ gap: 8 }}>
-            {TRACKS.map((tr) => {
-              const live = LIVE_TRACKS.includes(tr);
-              return (
-                <button key={tr} className={`opt track-opt ${p.primary === tr ? 'sel' : ''}`} disabled={!live} onClick={() => live && set('primary', tr)}>
-                  <span className="k">{p.primary === tr ? <Icon n="check" s={13} /> : live ? '' : <Icon n="lock" s={12} />}</span>
-                  <span style={{ flex: 1 }}><b>{tr}</b>{!live && <span className="small muted"> · coming soon</span>}</span>
-                </button>
-              );
-            })}
+            {TRACK_DEFS.map((tr) => (
+              <button key={tr.name} className={`opt ${p.primary === tr.name ? 'sel' : ''}`} onClick={() => setP((x) => ({ ...x, primary: tr.name, adjacent: x.adjacent === tr.name ? '' : x.adjacent }))}>
+                <span className="k">{p.primary === tr.name ? <Icon n="check" s={13} /> : ''}</span>
+                <span style={{ flex: 1 }}><b>{tr.name}</b><span className="small muted" style={{ display: 'block' }}>{tr.blurb}</span></span>
+              </button>
+            ))}
           </div>
-          <div className="small muted">This release covers Investment banking, built on the Common Core it relies on (accounting, valuation, capital markets). Other tracks open in the next phase.</div>
+          <label className="field" htmlFor="ob-adj">Adjacent track (optional)
+            <select id="ob-adj" value={p.adjacent} onChange={(e) => set('adjacent', e.target.value)}>
+              <option value="">None for now</option>
+              {TRACK_DEFS.filter((t) => t.name !== p.primary).map((t) => <option key={t.name} value={t.name}>{t.name}</option>)}
+            </select>
+          </label>
+          <div className="small muted">Most successful candidates prepare one primary track and one adjacent track that shares most of the preparation: IB with PE, PE with equity research, corporate finance with consulting. Your plan, practice and progress follow these choices; you can change them later in Profile.</div>
           <details>
             <summary className="small" style={{ cursor: 'pointer', fontWeight: 600 }}>Not sure? What you enjoy tells you more than prestige</summary>
             <div className="tablewrap" style={{ marginTop: 8 }}><table className="gt"><thead><tr><th>If you enjoy</th><th>Look at</th><th>Try this first</th></tr></thead>
               <tbody>{TRACK_FIT.map((r) => <tr key={r[1]}><td>{r[0]}</td><td><b>{r[1]}</b></td><td>{r[2]}</td></tr>)}</tbody></table></div>
           </details>
-          <label className="field" htmlFor="ob-firms">Five target banks (one per line or comma separated)
+          <label className="field" htmlFor="ob-firms">Five target firms (one per line or comma separated)
             <textarea id="ob-firms" value={p.firms} onChange={(e) => set('firms', e.target.value)} placeholder={'Kotak Investment Banking\nAxis Capital\nJM Financial\nAvendus\nGoldman Sachs'} />
           </label>
           <div className="stack small" style={{ gap: 6 }}><div className="row" style={{ flexWrap: 'nowrap' }}><div style={{ flex: 1 }}><Bar v={Math.min(firms.length, 5) / 5} good /></div><span className="tnum">{firms.length}/5</span></div><span className="muted">You can finish this in week 1; it is part of the week-1 gate.</span></div>

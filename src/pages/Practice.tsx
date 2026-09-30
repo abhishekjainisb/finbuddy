@@ -2,26 +2,30 @@ import { useMemo, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { useStore } from '../lib/store';
 import {
-  PILOT, TOPIC_BY_ID, LESSONS_BY_TOPIC, DRILLS_BY_TOPIC, QUESTIONS_BY_TOPIC, STATE_LABEL, STATE_ORDER, topicQueue, dailyQueue, topicState,
+  TRACKER, scopeTopics, tracksOf, TOPIC_BY_ID, LESSONS_BY_TOPIC, DRILLS_BY_TOPIC, QUESTIONS_BY_TOPIC, STATE_LABEL, STATE_ORDER, topicQueue, dailyQueue, topicState,
   isWeak, whatNext, openErrors, accuracy, STATIC_BY_ID, atLeast, DIAG_IDS, addXp, XP, LESSON_BY_ID, dayKey, daysBetween,
   type QItem, type TopicState,
 } from '../lib/state';
 import { GENERATORS, GEN_BY_TOPIC, TAG_LABELS } from '../drills/generators';
 import { Session, type SessionResult } from '../components/Session';
 import { Bar, Icon, PageHead, StateDot, Back, shuffled } from '../components/ui';
-import { UNITS } from './Learn';
+import { UNITS, PART_COLOR } from './Learn';
+import { TRACK_DEFS, topicInTrack } from '../data/tracks';
 
 const clusterOf = (id: string) => TOPIC_BY_ID[id]?.cluster || id;
 
 export default function Practice() {
   const { s } = useStore();
   const [tab, setTab] = useState<'topics' | 'lab' | 'mixed'>('topics');
-  const [filter, setFilter] = useState<'all' | 'weak' | 'todo' | 'core' | 'ib'>('all');
-  const topics = PILOT.filter((t) => {
+  const [filter, setFilter] = useState<'all' | 'weak' | 'todo'>('all');
+  // which set of topics: the student's own (core + their tracks), or one specific track
+  const [area, setArea] = useState<string>('mine');
+  const mine = tracksOf(s);
+  const base = area === 'mine' ? scopeTopics(s) : area === 'core' ? TRACKER.filter((t) => t.id.startsWith('CORE'))
+    : TRACKER.filter((t) => topicInTrack(t.id, TRACK_DEFS.find((d) => d.short === area) || TRACK_DEFS[0]));
+  const topics = base.filter((t) => {
     if (filter === 'weak') return isWeak(s, t.id);
     if (filter === 'todo') return !atLeast(topicState(s, t.id), 'proven');
-    if (filter === 'core') return t.id.startsWith('CORE');
-    if (filter === 'ib') return t.id.startsWith('IB');
     return true;
   });
   const clusters = [...new Set(topics.map((t) => t.cluster))];
@@ -43,8 +47,15 @@ export default function Practice() {
         {([['topics', 'By topic'], ['lab', 'Number lab'], ['mixed', 'By chapter']] as const).map(([k, l]) => <button key={k} role="tab" aria-selected={tab === k} className={tab === k ? 'on' : ''} onClick={() => setTab(k)}>{l}</button>)}
       </div>
       {tab === 'topics' && <>
-        <div className="seg" style={{ marginBottom: 14 }}>
-          {([['all', 'All'], ['todo', 'Not proven'], ['weak', 'Weak'], ['core', 'Common core'], ['ib', 'IB']] as const).map(([k, l]) => <button key={k} className={filter === k ? 'on' : ''} onClick={() => setFilter(k)}>{l}</button>)}
+        <div className="row" style={{ marginBottom: 14, gap: 8 }}>
+          <select value={area} onChange={(e) => setArea(e.target.value)} style={{ width: 'auto' }} aria-label="Which topics">
+            <option value="mine">My topics: core + {mine.map((m) => m.short).join(' + ')}</option>
+            <option value="core">Common core</option>
+            {TRACK_DEFS.map((d) => <option key={d.short} value={d.short}>{d.name}</option>)}
+          </select>
+          <div className="seg">
+            {([['all', 'All'], ['todo', 'Not proven'], ['weak', 'Weak']] as const).map(([k, l]) => <button key={k} className={filter === k ? 'on' : ''} onClick={() => setFilter(k)}>{l}</button>)}
+          </div>
         </div>
         {!topics.length && <div className="empty">Nothing here. {filter === 'weak' ? 'No weak topics right now.' : ''}</div>}
         {clusters.map((c) => (
@@ -91,10 +102,10 @@ export default function Practice() {
       </>}
       {tab === 'mixed' && (
         <div className="grid g3">
-          {UNITS.filter((u) => u.part === 'A' || u.part === 'B').map((u) => {
+          {UNITS.filter((u) => u.part === 'A' || mine.some((m) => m.units.includes(u.id))).map((u) => {
             const ts = [...new Set(u.sections.flatMap((sid) => LESSON_BY_ID[sid]?.topics || []))].filter((t) => DRILLS_BY_TOPIC[t]?.length);
             return (
-              <Link key={u.id} to={`/practice/run?topic=${ts.join(',')}&n=10&label=${encodeURIComponent(u.id + ' ' + u.title)}`} className="unitcard" style={{ ['--pc' as any]: u.part === 'A' ? 'var(--pA)' : 'var(--pB)' }}>
+              <Link key={u.id} to={`/practice/run?topic=${ts.join(',')}&n=10&label=${encodeURIComponent(u.id + ' ' + u.title)}`} className="unitcard" style={{ ['--pc' as any]: PART_COLOR[u.part] }}>
                 <div className="kicker">{u.id} · {ts.length} topics</div><h3>{u.title}</h3>
                 <div className="dots">{ts.map((t) => <i key={t} className={`st-${topicState(s, t)}`} />)}</div>
               </Link>
@@ -120,8 +131,9 @@ export function PracticeRun() {
       return { items: it.filter((x) => x.kind === 'gen' ? GENERATORS[x.id] : STATIC_BY_ID[x.id]), title: 'Error rematch' };
     }
     if (mode === 'mixed') {
-      const read = PILOT.map((t) => t.id).filter((t) => atLeast(topicState(s, t), 'read') && DRILLS_BY_TOPIC[t]?.length);
-      const pool = read.length >= 3 ? read : PILOT.filter((t) => t.priority === 1 && DRILLS_BY_TOPIC[t.id]?.length).map((t) => t.id);
+      const scope = scopeTopics(s);
+      const read = scope.map((t) => t.id).filter((t) => atLeast(topicState(s, t), 'read') && DRILLS_BY_TOPIC[t]?.length);
+      const pool = read.length >= 3 ? read : scope.filter((t) => t.priority === 1 && DRILLS_BY_TOPIC[t.id]?.length).map((t) => t.id);
       const it = shuffled(pool, seed).slice(0, 12).map((t) => topicQueue(s, t, 2)[0]).filter(Boolean);
       return { items: it, title: 'Mixed interview round' };
     }

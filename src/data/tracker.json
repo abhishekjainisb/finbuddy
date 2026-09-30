@@ -1,834 +1,898 @@
 [
- {
-  "id": "CORE-01",
-  "priority": 1,
-  "cluster": "Financial statements",
-  "title": "Income statement: revenue, COGS, gross profit, EBITDA, EBIT, PBT, net income",
-  "output": "Rebuild one public company P&L",
-  "page": 14
- },
- {
-  "id": "CORE-02",
-  "priority": 1,
-  "cluster": "Financial statements",
-  "title": "Balance sheet: assets, liabilities, equity; cash, debt, working capital",
-  "output": "Classify 20 balance-sheet lines",
-  "page": 15
- },
- {
-  "id": "CORE-03",
-  "priority": 1,
-  "cluster": "Financial statements",
-  "title": "Cash flow statement: CFO, CFI, CFF; indirect method",
-  "output": "Bridge NI to CFO",
-  "page": 16
- },
- {
-  "id": "CORE-04",
-  "priority": 1,
-  "cluster": "Financial statements",
-  "title": "Three-statement links: depreciation, capex, debt, interest, dividends",
-  "output": "Three-statement interview drills",
-  "page": 17
- },
- {
-  "id": "CORE-05",
-  "priority": 1,
-  "cluster": "Financial statements",
-  "title": "Accruals, revenue recognition, deferred revenue, receivables, payables, inventory",
-  "output": "Explain a high-growth cash shortfall",
-  "page": 19
- },
- {
-  "id": "CORE-06",
-  "priority": 1,
-  "cluster": "Financial statements",
-  "title": "Working capital: NWC, cash conversion cycle, DSO, DIO, DPO",
-  "output": "Calculate CCC and cash released",
-  "page": 20
- },
- {
-  "id": "CORE-07",
-  "priority": 1,
-  "cluster": "Financial statements",
-  "title": "D&A, impairment, goodwill, intangibles, leases and share-based pay",
-  "output": "Read annual-report accounting notes",
-  "page": 21
- },
- {
-  "id": "CORE-08",
-  "priority": 2,
-  "cluster": "Financial statements",
-  "title": "Consolidation, minority interest, associates, one- offs, deferred tax",
-  "output": "Find adjustments in one annual report",
-  "page": 22
- },
- {
-  "id": "CORE-09",
-  "priority": 2,
-  "cluster": "Financial statements",
-  "title": "Ind AS versus IFRS, audit opinion, notes, segment reporting",
-  "output": "Locate policies and segment note",
-  "page": 23
- },
- {
-  "id": "CORE-10",
-  "priority": 1,
-  "cluster": "Performance analysis",
-  "title": "Margins, growth, ROIC, ROE, ROCE, asset turns, DuPont",
-  "output": "Build KPI bridge from filings",
-  "page": 25
- },
- {
-  "id": "CORE-11",
-  "priority": 1,
-  "cluster": "Performance analysis",
-  "title": "Unit economics: contribution margin, CAC, LTV, payback, cohort retention",
-  "output": "Analyze one SaaS or consumer business",
-  "page": 27
- },
- {
-  "id": "CORE-12",
-  "priority": 1,
-  "cluster": "Performance analysis",
-  "title": "Revenue drivers: price, volume, mix, customers, ARPU; fixed/variable costs",
-  "output": "Create a revenue and margin bridge",
-  "page": 28
- },
- {
-  "id": "CORE-13",
-  "priority": 2,
-  "cluster": "Performance analysis",
-  "title": "Quality of earnings: recurring revenue, cash conversion, exceptional items",
-  "output": "Write five red flags from filings",
-  "page": 29
- },
- {
-  "id": "CORE-14",
-  "priority": 1,
-  "cluster": "Finance mathematics",
-  "title": "Time value: PV, FV, annuity, perpetuity, discounting, NPV, IRR",
-  "output": "Solve a capital-budgeting case",
-  "page": 31
- },
- {
-  "id": "CORE-15",
-  "priority": 1,
-  "cluster": "Finance mathematics",
-  "title": "Cost of capital: CAPM, beta, WACC, debt cost, taxes, capital structure",
-  "output": "Calculate WACC with assumptions",
-  "page": 33
- },
- {
-  "id": "CORE-16",
-  "priority": 2,
-  "cluster": "Finance mathematics",
-  "title": "Sensitivity, scenarios, break-even, operating leverage",
-  "output": "Build a two-variable sensitivity",
-  "page": 34
- },
- {
-  "id": "CORE-17",
-  "priority": 1,
-  "cluster": "Valuation",
-  "title": "Enterprise value versus equity value; net debt, cash, minorities, dilution",
-  "output": "Calculate EV and per-share value",
-  "page": 36
- },
- {
-  "id": "CORE-18",
-  "priority": 1,
-  "cluster": "Valuation",
-  "title": "Trading multiples: EV/EBITDA, EV/revenue, P/E, EV/EBIT; peer selection",
-  "output": "One-page public comps table",
-  "page": 37
- },
- {
-  "id": "CORE-19",
-  "priority": 1,
-  "cluster": "Valuation",
-  "title": "DCF: forecast, FCFF, WACC, terminal value, equity bridge",
-  "output": "Value one listed company",
-  "page": 39
- },
- {
-  "id": "CORE-20",
-  "priority": 2,
-  "cluster": "Valuation",
-  "title": "Precedent transactions, control premium, synergies, cyclicality",
-  "output": "Two-deal transaction comparison",
-  "page": 41
- },
- {
-  "id": "CORE-21",
-  "priority": 2,
-  "cluster": "Valuation",
-  "title": "Valuation ranges, football field, dilution and multiples pitfalls",
-  "output": "One-page valuation recommendation",
-  "page": 42
- },
- {
-  "id": "CORE-22",
-  "priority": 1,
-  "cluster": "Capital and markets",
-  "title": "Debt versus equity, primary versus secondary, dilution, cost and control",
-  "output": "Compare three funding options",
-  "page": 45
- },
- {
-  "id": "CORE-23",
-  "priority": 1,
-  "cluster": "Capital and markets",
-  "title": "IPO, FPO, rights issue, QIP, private placement, OFS, buyback",
-  "output": "Draw a decision tree for issuance",
-  "page": 45
- },
- {
-  "id": "CORE-24",
-  "priority": 2,
-  "cluster": "Capital and markets",
-  "title": "Bonds, yields, duration, credit spreads, covenants, ratings",
-  "output": "Read one bond term sheet",
-  "page": 48
- },
- {
-  "id": "CORE-25",
-  "priority": 2,
-  "cluster": "Capital and markets",
-  "title": "Dividends, repurchases, leverage, refinancing, liquidity",
-  "output": "Critique a company cash deployment",
-  "page": 49
- },
- {
-  "id": "CORE-26",
-  "priority": 1,
-  "cluster": "Markets and tools",
-  "title": "Inflation, rates, FX and their effects on valuation and financing",
-  "output": "Weekly 90-second market update",
-  "page": 51
- },
- {
-  "id": "CORE-27",
-  "priority": 1,
-  "cluster": "Markets and tools",
-  "title": "Excel: lookups, SUMIFS, pivots, sensitivity, clean model formatting",
-  "output": "Recreate a basic model from raw data",
-  "page": 52
- },
- {
-  "id": "CORE-28",
-  "priority": 1,
-  "cluster": "Markets and tools",
-  "title": "Investment and business communication: recommendation, evidence, risks",
-  "output": "Record one investment or finance pitch",
-  "page": 53
- },
- {
-  "id": "CORE-29",
-  "priority": 2,
-  "cluster": "Markets and tools",
-  "title": "Industry structure, business model, competitors, key metrics",
-  "output": "Two-page company primer",
-  "page": 53
- },
- {
-  "id": "IB-01",
-  "priority": 1,
-  "cluster": "Role and products",
-  "title": "Coverage versus product groups; M&A, ECM, DCM, leveraged finance",
-  "output": "Map two bank teams to a transaction",
-  "page": 56
- },
- {
-  "id": "IB-02",
-  "priority": 1,
-  "cluster": "M&A execution",
-  "title": "Sell-side process: mandate, teaser, NDA, CIM, buyer list, bids, diligence, SPA, close",
-  "output": "Draw sell-side process map",
-  "page": 60
- },
- {
-  "id": "IB-03",
-  "priority": 1,
-  "cluster": "M&A execution",
-  "title": "Buy-side process: screening, valuation, diligence, financing, negotiation, closing",
-  "output": "Analyze a disclosed acquisition",
-  "page": 61
- },
- {
-  "id": "IB-04",
-  "priority": 1,
-  "cluster": "M&A execution",
-  "title": "Accretion/dilution, purchase price allocation, goodwill, synergies",
-  "output": "Simple merger model",
-  "page": 62
- },
- {
-  "id": "IB-05",
-  "priority": 2,
-  "cluster": "M&A execution",
-  "title": "Deal terms: EV versus equity, cash-free debt- free, earnout, escrow, break fee",
-  "output": "Annotate deal announcement",
-  "page": 63
- },
- {
-  "id": "IB-06",
-  "priority": 2,
-  "cluster": "M&A execution",
-  "title": "Diligence workstreams: financial, legal, tax, commercial, operational",
-  "output": "Draft diligence request list",
-  "page": 64
- },
- {
-  "id": "IB-07",
-  "priority": 1,
-  "cluster": "Equity capital markets",
-  "title": "IPO process: advisors, DRHP, SEBI review, RHP, roadshow, book-building, allotment, listing",
-  "output": "Read DRHP and map timeline",
-  "page": 66
- },
- {
-  "id": "IB-08",
-  "priority": 1,
-  "cluster": "Equity capital markets",
-  "title": "Fresh issue versus OFS; pre/post-issue shares and dilution",
-  "output": "Simple cap-table exercise",
-  "page": 68
- },
- {
-  "id": "IB-09",
-  "priority": 2,
-  "cluster": "Equity capital markets",
-  "title": "FPO, rights, QIP, follow-on blocks, pricing and investor allocation",
-  "output": "Compare three hypothetical raises",
-  "page": 68
- },
- {
-  "id": "IB-10",
-  "priority": 2,
-  "cluster": "Equity capital markets",
-  "title": "Buyback and open offer basics; tender, triggers, capital allocation",
-  "output": "Read SEBI investor guide and example",
-  "page": 68
- },
- {
-  "id": "IB-11",
-  "priority": 2,
-  "cluster": "Debt capital markets",
-  "title": "Loan versus bond, rating, tenor, coupon, spread, security, covenants",
-  "output": "Summarize an issuer bond offering",
-  "page": 70
- },
- {
-  "id": "IB-12",
-  "priority": 1,
-  "cluster": "Materials and execution",
-  "title": "Pitchbook: situation, sector, strategic options, valuation, credentials",
-  "output": "Five-slide mock pitch",
-  "page": 72
- },
- {
-  "id": "IB-13",
-  "priority": 1,
-  "cluster": "Materials and execution",
-  "title": "Models: three-statement, DCF, comps, precedent deals; assumptions and checks",
-  "output": "Timed 90-minute modeling task",
-  "page": 72
- },
- {
-  "id": "IB-14",
-  "priority": 1,
-  "cluster": "Materials and execution",
-  "title": "Deal discussion: rationale, structure, valuation, advisors, risks, outcome",
-  "output": "Two-page deal brief",
-  "page": 73
- },
- {
-  "id": "IB-15",
-  "priority": 2,
-  "cluster": "Materials and execution",
-  "title": "Data room, management presentation, Q&A, workstreams, closing mechanics",
-  "output": "Create a transaction tracker",
-  "page": 64
- },
- {
-  "id": "IB-16",
-  "priority": 1,
-  "cluster": "India and firm knowledge",
-  "title": "Indian merchant bankers, full-service banks, domestic boutiques; group specialisms",
-  "output": "Profile three firms and two deals each",
-  "page": 58
- },
- {
-  "id": "IB-17",
-  "priority": 2,
-  "cluster": "India and firm knowledge",
-  "title": "SEBI ICDR, LODR and takeover framework: practical scope and current sources",
-  "output": "Use current SEBI master circular",
-  "page": 66
- },
- {
-  "id": "IB-18",
-  "priority": 1,
-  "cluster": "Operating model",
-  "title": "How the bank earns fees: advisory mandates, underwriting and financing; conflicts and mandates",
-  "output": "Bank business-model sketch",
-  "page": 56
- },
- {
-  "id": "IB-19",
-  "priority": 1,
-  "cluster": "Operating model",
-  "title": "Industry coverage versus M&A, ECM and DCM product teams; client coverage and execution",
-  "output": "Bank team map",
-  "page": 57
- },
- {
-  "id": "IB-20",
-  "priority": 1,
-  "cluster": "Operating model",
-  "title": "Analyst, associate, VP/director and MD responsibilities; review and approvals",
-  "output": "Deal staffing RACI",
-  "page": 57
- },
- {
-  "id": "IB-21",
-  "priority": 2,
-  "cluster": "Operating model",
-  "title": "Origination pipeline: sector idea, pitch, mandate, staffing, execution, closing and repeat business",
-  "output": "Client journey diagram",
-  "page": 58
- },
- {
-  "id": "IB-22",
-  "priority": 2,
-  "cluster": "Operating model",
-  "title": "Interfaces with lawyers, auditors, exchanges, regulator, investors and company management",
-  "output": "IPO and M&A stakeholder map",
-  "page": 58
- },
- {
-  "id": "CF-01",
-  "priority": 1,
-  "cluster": "Function map",
-  "title": "FP&A, finance business partnering, controllership, treasury, tax, investor relations, corp dev",
-  "output": "Map a CFO organization",
-  "page": 77
- },
- {
-  "id": "CF-02",
-  "priority": 1,
-  "cluster": "FP&A",
-  "title": "Annual operating plan, strategic plan, rolling forecast, monthly outlook",
-  "output": "One-year mini AOP",
-  "page": 80
- },
- {
-  "id": "CF-03",
-  "priority": 1,
-  "cluster": "FP&A",
-  "title": "Budget versus actual: price, volume, mix, cost and headcount variances",
-  "output": "Monthly variance commentary",
-  "page": 81
- },
- {
-  "id": "CF-04",
-  "priority": 1,
-  "cluster": "FP&A",
-  "title": "Scenario planning, sensitivity, forecast accuracy, KPI tree",
-  "output": "Base/upside/downside model",
-  "page": 82
- },
- {
-  "id": "CF-05",
-  "priority": 2,
-  "cluster": "FP&A",
-  "title": "Zero-based budgeting, incremental budgeting, cost-center ownership",
-  "output": "Budget redesign proposal",
-  "page": 82
- },
- {
-  "id": "CF-06",
-  "priority": 2,
-  "cluster": "FP&A",
-  "title": "Management reporting, dashboards, board packs, monthly business review",
-  "output": "One-page CFO pack",
-  "page": 82
- },
- {
-  "id": "CF-07",
-  "priority": 1,
-  "cluster": "Business finance",
-  "title": "Pricing, customer/channel profitability, contribution margins, product mix",
-  "output": "Product profitability case",
-  "page": 84
- },
- {
-  "id": "CF-08",
-  "priority": 1,
-  "cluster": "Business finance",
-  "title": "Make/buy, capex approval, NPV/IRR, post- investment review",
-  "output": "Capex memo with sensitivity",
-  "page": 84
- },
- {
-  "id": "CF-09",
-  "priority": 2,
-  "cluster": "Business finance",
-  "title": "Sales, supply-chain and plant finance; standard cost, absorption, inventory",
-  "output": "Manufacturing margin bridge",
-  "page": 85
- },
- {
-  "id": "CF-10",
-  "priority": 1,
-  "cluster": "Treasury",
-  "title": "Cash forecasting, liquidity buffer, working-capital management",
-  "output": "13-week cash forecast",
-  "page": 86
- },
- {
-  "id": "CF-11",
-  "priority": 2,
-  "cluster": "Treasury",
-  "title": "Debt maturity, covenant headroom, interest-rate and FX exposure, hedging basics",
-  "output": "Debt schedule and risk note",
-  "page": 87
- },
- {
-  "id": "CF-12",
-  "priority": 1,
-  "cluster": "Reporting and controls",
-  "title": "Month-end close, accruals, reconciliations, internal controls, audit",
-  "output": "Close checklist and issue memo",
-  "page": 88
- },
- {
-  "id": "CF-13",
-  "priority": 2,
-  "cluster": "Reporting and controls",
-  "title": "Ind AS/IFRS reporting: revenue, leases, financial instruments, tax, consolidation",
-  "output": "Analyze two material notes",
-  "page": 88
- },
- {
-  "id": "CF-14",
-  "priority": 2,
-  "cluster": "Reporting and controls",
-  "title": "Statutory reporting, segment results, related parties, governance",
-  "output": "Annual report readout",
-  "page": 89
- },
- {
-  "id": "CF-15",
-  "priority": 1,
-  "cluster": "Capital allocation",
-  "title": "Dividend, buyback, debt paydown, capex, M&A, hurdle rates",
-  "output": "Capital allocation recommendation",
-  "page": 90
- },
- {
-  "id": "CF-16",
-  "priority": 2,
-  "cluster": "Capital allocation",
-  "title": "Equity issuance, rights, FPO, QIP, investor relations and dilution",
-  "output": "Financing options memo",
-  "page": 90
- },
- {
-  "id": "CF-17",
-  "priority": 2,
-  "cluster": "Career variants",
-  "title": "CFO track versus FP&A versus treasury versus corporate development",
-  "output": "Role-specific interview checklist",
-  "page": 79
- },
- {
-  "id": "CF-18",
-  "priority": 1,
-  "cluster": "Operating cadence",
-  "title": "Board strategy to AOP, monthly close, forecast, business review and capital allocation",
-  "output": "CFO cycle map",
-  "page": 78
- },
- {
-  "id": "PE-01",
-  "priority": 1,
-  "cluster": "Fund and strategy",
-  "title": "Buyout versus growth equity; GP/LP, fund life, fees, carry, deployment",
-  "output": "Map fund cash flows",
-  "page": 93
- },
- {
-  "id": "PE-02",
-  "priority": 1,
-  "cluster": "Sourcing and screening",
-  "title": "Investment thesis, target universe, sector mapping, proprietary versus auction",
-  "output": "One-page sector thesis",
-  "page": 97
- },
- {
-  "id": "PE-03",
-  "priority": 1,
-  "cluster": "Commercial diligence",
-  "title": "Market size, share, growth, competition, customer concentration, retention",
-  "output": "Customer interview guide",
-  "page": 98
- },
- {
-  "id": "PE-04",
-  "priority": 1,
-  "cluster": "Financial diligence",
-  "title": "Quality of earnings, EBITDA adjustments, cash conversion, NWC peg, debt-like items",
-  "output": "QoE red-flag memo",
-  "page": 98
- },
- {
-  "id": "PE-05",
-  "priority": 1,
-  "cluster": "LBO and returns",
-  "title": "Sources and uses; purchase EV, fees, debt tranches, sponsor equity",
-  "output": "Paper LBO and sources/uses",
-  "page": 100
- },
- {
-  "id": "PE-06",
-  "priority": 1,
-  "cluster": "LBO and returns",
-  "title": "Debt schedule, cash sweep, interest, covenants, exit EV, MOIC, IRR",
-  "output": "Simple five-year LBO",
-  "page": 100
- },
- {
-  "id": "PE-07",
-  "priority": 1,
-  "cluster": "LBO and returns",
-  "title": "Entry/exit multiple, leverage, EBITDA growth and margin sensitivity",
-  "output": "LBO sensitivities",
-  "page": 101
- },
- {
-  "id": "PE-08",
-  "priority": 2,
-  "cluster": "LBO and returns",
-  "title": "Growth equity ownership, dilution, preference terms, exit waterfall",
-  "output": "Cap table and proceeds waterfall",
-  "page": 103
- },
- {
-  "id": "PE-09",
-  "priority": 1,
-  "cluster": "Execution",
-  "title": "NDA, process letter, indication, LOI, exclusivity, diligence, IC, SPA, close",
-  "output": "Investment committee timeline",
-  "page": 104
- },
- {
-  "id": "PE-10",
-  "priority": 1,
-  "cluster": "Execution",
-  "title": "Investment memo: thesis, evidence, valuation, downside, value creation, exit",
-  "output": "Two-page IC memo",
-  "page": 104
- },
- {
-  "id": "PE-11",
-  "priority": 2,
-  "cluster": "Execution",
-  "title": "Management assessment, legal/tax/operational diligence, deal structure",
-  "output": "Diligence workplan",
-  "page": 98
- },
- {
-  "id": "PE-12",
-  "priority": 1,
-  "cluster": "Ownership and exits",
-  "title": "100-day plan, pricing, costs, working capital, add-on M&A, governance",
-  "output": "Three-lever value-creation bridge",
-  "page": 105
- },
- {
-  "id": "PE-13",
-  "priority": 2,
-  "cluster": "Ownership and exits",
-  "title": "Strategic sale, sponsor-to-sponsor, IPO, continuation and secondary",
-  "output": "Exit route comparison",
-  "page": 105
- },
- {
-  "id": "PE-14",
-  "priority": 1,
-  "cluster": "Firm fit",
-  "title": "Fund size, sector, stage, control, geography, portfolio and recent exits",
-  "output": "Profile two funds and investments",
-  "page": 95
- },
- {
-  "id": "PE-15",
-  "priority": 1,
-  "cluster": "Operating model",
-  "title": "LP capital, GP management company, investment fund, portfolio company and cash distribution",
-  "output": "Fund structure diagram",
-  "page": 93
- },
- {
-  "id": "PE-16",
-  "priority": 1,
-  "cluster": "Operating model",
-  "title": "Investment team, IC, operating partners, fundraising/IR, fund finance/legal/compliance",
-  "output": "PE team and committee map",
-  "page": 95
- },
- {
-  "id": "PE-17",
-  "priority": 1,
-  "cluster": "Operating model",
-  "title": "Deal funnel and gates: sourcing, screening, preliminary IC, bid, diligence, final IC, sign and close",
-  "output": "Buyout process map",
-  "page": 97
- },
- {
-  "id": "PE-18",
-  "priority": 2,
-  "cluster": "Operating model",
-  "title": "Post-close governance: board, 100-day plan, operating KPIs, add-ons, refinancing and exit",
-  "output": "Portfolio operating cadence",
-  "page": 105
- },
- {
-  "id": "VC-01",
-  "priority": 1,
-  "cluster": "Fund and thesis",
-  "title": "Stages from pre-seed to growth; ownership, reserves, portfolio construction, power law",
-  "output": "Simple fund return exercise",
-  "page": 110
- },
- {
-  "id": "VC-02",
-  "priority": 1,
-  "cluster": "Sourcing",
-  "title": "Founder networks, referrals, accelerators, sector mapping, outbound",
-  "output": "Map 20 startups in one theme",
-  "page": 112
- },
- {
-  "id": "VC-03",
-  "priority": 1,
-  "cluster": "Market and product",
-  "title": "Problem, ICP, TAM/SAM/SOM, bottom-up sizing, substitutes, timing",
-  "output": "Bottom-up market map",
-  "page": 114
- },
- {
-  "id": "VC-04",
-  "priority": 1,
-  "cluster": "Market and product",
-  "title": "Founder-market fit, team, product insight, defensibility and competition",
-  "output": "Founder diligence questions",
-  "page": 115
- },
- {
-  "id": "VC-05",
-  "priority": 1,
-  "cluster": "Traction and economics",
-  "title": "PMF signals, activation, retention cohorts, churn, growth quality",
-  "output": "Cohort and funnel analysis",
-  "page": 115
- },
- {
-  "id": "VC-06",
-  "priority": 1,
-  "cluster": "Traction and economics",
-  "title": "SaaS ARR/NRR/CAC/payback; marketplaces GMV/take rate; consumer engagement",
-  "output": "Metric teardown of startup",
-  "page": 115
- },
- {
-  "id": "VC-07",
-  "priority": 2,
-  "cluster": "Traction and economics",
-  "title": "Burn, runway, gross margin, contribution economics, milestone financing",
-  "output": "18-month runway scenario",
-  "page": 116
- },
- {
-  "id": "VC-08",
-  "priority": 1,
-  "cluster": "Deals and ownership",
-  "title": "Pre/post-money, dilution, option pool, SAFE/convertible, priced round",
-  "output": "Cap table exercise",
-  "page": 118
- },
- {
-  "id": "VC-09",
-  "priority": 2,
-  "cluster": "Deals and ownership",
-  "title": "Liquidation preference, pro rata, anti-dilution, board and information rights",
-  "output": "Simple exit waterfall",
-  "page": 119
- },
- {
-  "id": "VC-10",
-  "priority": 1,
-  "cluster": "Diligence and memo",
-  "title": "Reference calls, product demo, customers, market, founders, risk falsification",
-  "output": "Two-page invest/pass memo",
-  "page": 116
- },
- {
-  "id": "VC-11",
-  "priority": 1,
-  "cluster": "Diligence and memo",
-  "title": "Pitch deck: purpose, problem, solution, market, business model, traction, team, ask",
-  "output": "Annotate founder deck",
-  "page": 116
- },
- {
-  "id": "VC-12",
-  "priority": 2,
-  "cluster": "Portfolio and exits",
-  "title": "Follow-on decisions, reserves, board support, strategic sale/IPO, fund attribution",
-  "output": "Follow-on recommendation",
-  "page": 120
- },
- {
-  "id": "VC-13",
-  "priority": 1,
-  "cluster": "Firm fit",
-  "title": "Stage, check size, sector, geography, partners, portfolio and thesis",
-  "output": "Firm profile and 90-second pitch",
-  "page": 112
- },
- {
-  "id": "VC-14",
-  "priority": 1,
-  "cluster": "Operating model",
-  "title": "LPs, GP, fund, partners/principals/associates, platform, portfolio and reserves",
-  "output": "VC firm structure diagram",
-  "page": 111
- },
- {
-  "id": "VC-15",
-  "priority": 1,
-  "cluster": "Operating model",
-  "title": "Deal flow: sourcing, first call, partner meeting, diligence, investment discussion, terms, closing",
-  "output": "Startup investment process map",
-  "page": 112
- },
- {
-  "id": "VC-16",
-  "priority": 1,
-  "cluster": "Operating model",
-  "title": "Partner sponsorship, investment memo, decision rights, check size and ownership target",
-  "output": "Hypothetical IC decision memo",
-  "page": 111
- },
- {
-  "id": "VC-17",
-  "priority": 2,
-  "cluster": "Operating model",
-  "title": "Portfolio support, board role, milestone reviews, follow-on reserves and exit",
-  "output": "Portfolio and follow-on timeline",
-  "page": 120
- }
+{
+"id": "CORE-01",
+"priority": 1,
+"cluster": "Financial statements",
+"title": "Income statement: revenue, COGS, gross profit, EBITDA, EBIT, PBT, net income",
+"output": "Rebuild one public company P&L",
+"page": 14
+},
+{
+"id": "CORE-02",
+"priority": 1,
+"cluster": "Financial statements",
+"title": "Balance sheet: assets, liabilities, equity; cash, debt, working capital",
+"output": "Classify 20 balance-sheet lines",
+"page": 15
+},
+{
+"id": "CORE-03",
+"priority": 1,
+"cluster": "Financial statements",
+"title": "Cash flow statement: CFO, CFI, CFF; indirect method",
+"output": "Bridge NI to CFO",
+"page": 16
+},
+{
+"id": "CORE-04",
+"priority": 1,
+"cluster": "Financial statements",
+"title": "Three-statement links: depreciation, capex, debt, interest, dividends",
+"output": "Three-statement interview drills",
+"page": 17
+},
+{
+"id": "CORE-05",
+"priority": 1,
+"cluster": "Financial statements",
+"title": "Accruals, revenue recognition, deferred revenue, receivables, payables, inventory",
+"output": "Explain a high-growth cash shortfall",
+"page": 19
+},
+{
+"id": "CORE-06",
+"priority": 1,
+"cluster": "Financial statements",
+"title": "Working capital: NWC, cash conversion cycle, DSO, DIO, DPO",
+"output": "Calculate CCC and cash released",
+"page": 20
+},
+{
+"id": "CORE-07",
+"priority": 1,
+"cluster": "Financial statements",
+"title": "D&A, impairment, goodwill, intangibles, leases and share-based pay",
+"output": "Read annual-report accounting notes",
+"page": 21
+},
+{
+"id": "CORE-08",
+"priority": 2,
+"cluster": "Financial statements",
+"title": "Consolidation, minority interest, associates, one- offs, deferred tax",
+"output": "Find adjustments in one annual report",
+"page": 22
+},
+{
+"id": "CORE-09",
+"priority": 2,
+"cluster": "Financial statements",
+"title": "Ind AS versus IFRS, audit opinion, notes, segment reporting",
+"output": "Locate policies and segment note",
+"page": 23
+},
+{
+"id": "CORE-10",
+"priority": 1,
+"cluster": "Performance analysis",
+"title": "Margins, growth, ROIC, ROE, ROCE, asset turns, DuPont",
+"output": "Build KPI bridge from filings",
+"page": 25
+},
+{
+"id": "CORE-11",
+"priority": 1,
+"cluster": "Performance analysis",
+"title": "Unit economics: contribution margin, CAC, LTV, payback, cohort retention",
+"output": "Analyze one SaaS or consumer business",
+"page": 27
+},
+{
+"id": "CORE-12",
+"priority": 1,
+"cluster": "Performance analysis",
+"title": "Revenue drivers: price, volume, mix, customers, ARPU; fixed/variable costs",
+"output": "Create a revenue and margin bridge",
+"page": 28
+},
+{
+"id": "CORE-13",
+"priority": 2,
+"cluster": "Performance analysis",
+"title": "Quality of earnings: recurring revenue, cash conversion, exceptional items",
+"output": "Write five red flags from filings",
+"page": 29
+},
+{
+"id": "CORE-14",
+"priority": 1,
+"cluster": "Finance mathematics",
+"title": "Time value: PV, FV, annuity, perpetuity, discounting, NPV, IRR",
+"output": "Solve a capital-budgeting case",
+"page": 31
+},
+{
+"id": "CORE-15",
+"priority": 1,
+"cluster": "Finance mathematics",
+"title": "Cost of capital: CAPM, beta, WACC, debt cost, taxes, capital structure",
+"output": "Calculate WACC with assumptions",
+"page": 33
+},
+{
+"id": "CORE-16",
+"priority": 2,
+"cluster": "Finance mathematics",
+"title": "Sensitivity, scenarios, break-even, operating leverage",
+"output": "Build a two-variable sensitivity",
+"page": 34
+},
+{
+"id": "CORE-17",
+"priority": 1,
+"cluster": "Valuation",
+"title": "Enterprise value versus equity value; net debt, cash, minorities, dilution",
+"output": "Calculate EV and per-share value",
+"page": 36
+},
+{
+"id": "CORE-18",
+"priority": 1,
+"cluster": "Valuation",
+"title": "Trading multiples: EV/EBITDA, EV/revenue, P/E, EV/EBIT; peer selection",
+"output": "One-page public comps table",
+"page": 37
+},
+{
+"id": "CORE-19",
+"priority": 1,
+"cluster": "Valuation",
+"title": "DCF: forecast, FCFF, WACC, terminal value, equity bridge",
+"output": "Value one listed company",
+"page": 39
+},
+{
+"id": "CORE-20",
+"priority": 2,
+"cluster": "Valuation",
+"title": "Precedent transactions, control premium, synergies, cyclicality",
+"output": "Two-deal transaction comparison",
+"page": 41
+},
+{
+"id": "CORE-21",
+"priority": 2,
+"cluster": "Valuation",
+"title": "Valuation ranges, football field, dilution and multiples pitfalls",
+"output": "One-page valuation recommendation",
+"page": 42
+},
+{
+"id": "CORE-22",
+"priority": 1,
+"cluster": "Capital and markets",
+"title": "Debt versus equity, primary versus secondary, dilution, cost and control",
+"output": "Compare three funding options",
+"page": 45
+},
+{
+"id": "CORE-23",
+"priority": 1,
+"cluster": "Capital and markets",
+"title": "IPO, FPO, rights issue, QIP, private placement, OFS, buyback",
+"output": "Draw a decision tree for issuance",
+"page": 45
+},
+{
+"id": "CORE-24",
+"priority": 2,
+"cluster": "Capital and markets",
+"title": "Bonds, yields, duration, credit spreads, covenants, ratings",
+"output": "Read one bond term sheet",
+"page": 48
+},
+{
+"id": "CORE-25",
+"priority": 2,
+"cluster": "Capital and markets",
+"title": "Dividends, repurchases, leverage, refinancing, liquidity",
+"output": "Critique a company cash deployment",
+"page": 49
+},
+{
+"id": "CORE-26",
+"priority": 1,
+"cluster": "Markets and tools",
+"title": "Inflation, rates, FX and their effects on valuation and financing",
+"output": "Weekly 90-second market update",
+"page": 51
+},
+{
+"id": "CORE-27",
+"priority": 1,
+"cluster": "Markets and tools",
+"title": "Excel: lookups, SUMIFS, pivots, sensitivity, clean model formatting",
+"output": "Recreate a basic model from raw data",
+"page": 52
+},
+{
+"id": "CORE-28",
+"priority": 1,
+"cluster": "Markets and tools",
+"title": "Investment and business communication: recommendation, evidence, risks",
+"output": "Record one investment or finance pitch",
+"page": 53
+},
+{
+"id": "CORE-29",
+"priority": 2,
+"cluster": "Markets and tools",
+"title": "Industry structure, business model, competitors, key metrics",
+"output": "Two-page company primer",
+"page": 53
+},
+{
+"id": "IB-01",
+"priority": 1,
+"cluster": "Role and products",
+"title": "Coverage versus product groups; M&A, ECM, DCM, leveraged finance",
+"output": "Map two bank teams to a transaction",
+"page": 56
+},
+{
+"id": "IB-02",
+"priority": 1,
+"cluster": "M&A execution",
+"title": "Sell-side process: mandate, teaser, NDA, CIM, buyer list, bids, diligence, SPA, close",
+"output": "Draw sell-side process map",
+"page": 60
+},
+{
+"id": "IB-03",
+"priority": 1,
+"cluster": "M&A execution",
+"title": "Buy-side process: screening, valuation, diligence, financing, negotiation, closing",
+"output": "Analyze a disclosed acquisition",
+"page": 61
+},
+{
+"id": "IB-04",
+"priority": 1,
+"cluster": "M&A execution",
+"title": "Accretion/dilution, purchase price allocation, goodwill, synergies",
+"output": "Simple merger model",
+"page": 62
+},
+{
+"id": "IB-05",
+"priority": 2,
+"cluster": "M&A execution",
+"title": "Deal terms: EV versus equity, cash-free debt- free, earnout, escrow, break fee",
+"output": "Annotate deal announcement",
+"page": 63
+},
+{
+"id": "IB-06",
+"priority": 2,
+"cluster": "M&A execution",
+"title": "Diligence workstreams: financial, legal, tax, commercial, operational",
+"output": "Draft diligence request list",
+"page": 64
+},
+{
+"id": "IB-07",
+"priority": 1,
+"cluster": "Equity capital markets",
+"title": "IPO process: advisors, DRHP, SEBI review, RHP, roadshow, book-building, allotment, listing",
+"output": "Read DRHP and map timeline",
+"page": 66
+},
+{
+"id": "IB-08",
+"priority": 1,
+"cluster": "Equity capital markets",
+"title": "Fresh issue versus OFS; pre/post-issue shares and dilution",
+"output": "Simple cap-table exercise",
+"page": 68
+},
+{
+"id": "IB-09",
+"priority": 2,
+"cluster": "Equity capital markets",
+"title": "FPO, rights, QIP, follow-on blocks, pricing and investor allocation",
+"output": "Compare three hypothetical raises",
+"page": 68
+},
+{
+"id": "IB-10",
+"priority": 2,
+"cluster": "Equity capital markets",
+"title": "Buyback and open offer basics; tender, triggers, capital allocation",
+"output": "Read SEBI investor guide and example",
+"page": 68
+},
+{
+"id": "IB-11",
+"priority": 2,
+"cluster": "Debt capital markets",
+"title": "Loan versus bond, rating, tenor, coupon, spread, security, covenants",
+"output": "Summarize an issuer bond offering",
+"page": 70
+},
+{
+"id": "IB-12",
+"priority": 1,
+"cluster": "Materials and execution",
+"title": "Pitchbook: situation, sector, strategic options, valuation, credentials",
+"output": "Five-slide mock pitch",
+"page": 72
+},
+{
+"id": "IB-13",
+"priority": 1,
+"cluster": "Materials and execution",
+"title": "Models: three-statement, DCF, comps, precedent deals; assumptions and checks",
+"output": "Timed 90-minute modeling task",
+"page": 72
+},
+{
+"id": "IB-14",
+"priority": 1,
+"cluster": "Materials and execution",
+"title": "Deal discussion: rationale, structure, valuation, advisors, risks, outcome",
+"output": "Two-page deal brief",
+"page": 73
+},
+{
+"id": "IB-15",
+"priority": 2,
+"cluster": "Materials and execution",
+"title": "Data room, management presentation, Q&A, workstreams, closing mechanics",
+"output": "Create a transaction tracker",
+"page": 64
+},
+{
+"id": "IB-16",
+"priority": 1,
+"cluster": "India and firm knowledge",
+"title": "Indian merchant bankers, full-service banks, domestic boutiques; group specialisms",
+"output": "Profile three firms and two deals each",
+"page": 58
+},
+{
+"id": "IB-17",
+"priority": 2,
+"cluster": "India and firm knowledge",
+"title": "SEBI ICDR, LODR and takeover framework: practical scope and current sources",
+"output": "Use current SEBI master circular",
+"page": 66
+},
+{
+"id": "IB-18",
+"priority": 1,
+"cluster": "Operating model",
+"title": "How the bank earns fees: advisory mandates, underwriting and financing; conflicts and mandates",
+"output": "Bank business-model sketch",
+"page": 56
+},
+{
+"id": "IB-19",
+"priority": 1,
+"cluster": "Operating model",
+"title": "Industry coverage versus M&A, ECM and DCM product teams; client coverage and execution",
+"output": "Bank team map",
+"page": 57
+},
+{
+"id": "IB-20",
+"priority": 1,
+"cluster": "Operating model",
+"title": "Analyst, associate, VP/director and MD responsibilities; review and approvals",
+"output": "Deal staffing RACI",
+"page": 57
+},
+{
+"id": "IB-21",
+"priority": 2,
+"cluster": "Operating model",
+"title": "Origination pipeline: sector idea, pitch, mandate, staffing, execution, closing and repeat business",
+"output": "Client journey diagram",
+"page": 58
+},
+{
+"id": "IB-22",
+"priority": 2,
+"cluster": "Operating model",
+"title": "Interfaces with lawyers, auditors, exchanges, regulator, investors and company management",
+"output": "IPO and M&A stakeholder map",
+"page": 58
+},
+{
+"id": "CF-01",
+"priority": 1,
+"cluster": "Function map",
+"title": "FP&A, finance business partnering, controllership, treasury, tax, investor relations, corp dev",
+"output": "Map a CFO organization",
+"page": 77
+},
+{
+"id": "CF-02",
+"priority": 1,
+"cluster": "FP&A",
+"title": "Annual operating plan, strategic plan, rolling forecast, monthly outlook",
+"output": "One-year mini AOP",
+"page": 80
+},
+{
+"id": "CF-03",
+"priority": 1,
+"cluster": "FP&A",
+"title": "Budget versus actual: price, volume, mix, cost and headcount variances",
+"output": "Monthly variance commentary",
+"page": 81
+},
+{
+"id": "CF-04",
+"priority": 1,
+"cluster": "FP&A",
+"title": "Scenario planning, sensitivity, forecast accuracy, KPI tree",
+"output": "Base/upside/downside model",
+"page": 82
+},
+{
+"id": "CF-05",
+"priority": 2,
+"cluster": "FP&A",
+"title": "Zero-based budgeting, incremental budgeting, cost-center ownership",
+"output": "Budget redesign proposal",
+"page": 82
+},
+{
+"id": "CF-06",
+"priority": 2,
+"cluster": "FP&A",
+"title": "Management reporting, dashboards, board packs, monthly business review",
+"output": "One-page CFO pack",
+"page": 82
+},
+{
+"id": "CF-07",
+"priority": 1,
+"cluster": "Business finance",
+"title": "Pricing, customer/channel profitability, contribution margins, product mix",
+"output": "Product profitability case",
+"page": 84
+},
+{
+"id": "CF-08",
+"priority": 1,
+"cluster": "Business finance",
+"title": "Make/buy, capex approval, NPV/IRR, post- investment review",
+"output": "Capex memo with sensitivity",
+"page": 84
+},
+{
+"id": "CF-09",
+"priority": 2,
+"cluster": "Business finance",
+"title": "Sales, supply-chain and plant finance; standard cost, absorption, inventory",
+"output": "Manufacturing margin bridge",
+"page": 85
+},
+{
+"id": "CF-10",
+"priority": 1,
+"cluster": "Treasury",
+"title": "Cash forecasting, liquidity buffer, working-capital management",
+"output": "13-week cash forecast",
+"page": 86
+},
+{
+"id": "CF-11",
+"priority": 2,
+"cluster": "Treasury",
+"title": "Debt maturity, covenant headroom, interest-rate and FX exposure, hedging basics",
+"output": "Debt schedule and risk note",
+"page": 87
+},
+{
+"id": "CF-12",
+"priority": 1,
+"cluster": "Reporting and controls",
+"title": "Month-end close, accruals, reconciliations, internal controls, audit",
+"output": "Close checklist and issue memo",
+"page": 88
+},
+{
+"id": "CF-13",
+"priority": 2,
+"cluster": "Reporting and controls",
+"title": "Ind AS/IFRS reporting: revenue, leases, financial instruments, tax, consolidation",
+"output": "Analyze two material notes",
+"page": 88
+},
+{
+"id": "CF-14",
+"priority": 2,
+"cluster": "Reporting and controls",
+"title": "Statutory reporting, segment results, related parties, governance",
+"output": "Annual report readout",
+"page": 89
+},
+{
+"id": "CF-15",
+"priority": 1,
+"cluster": "Capital allocation",
+"title": "Dividend, buyback, debt paydown, capex, M&A, hurdle rates",
+"output": "Capital allocation recommendation",
+"page": 90
+},
+{
+"id": "CF-16",
+"priority": 2,
+"cluster": "Capital allocation",
+"title": "Equity issuance, rights, FPO, QIP, investor relations and dilution",
+"output": "Financing options memo",
+"page": 90
+},
+{
+"id": "CF-17",
+"priority": 2,
+"cluster": "Career variants",
+"title": "CFO track versus FP&A versus treasury versus corporate development",
+"output": "Role-specific interview checklist",
+"page": 79
+},
+{
+"id": "CF-18",
+"priority": 1,
+"cluster": "Operating cadence",
+"title": "Board strategy to AOP, monthly close, forecast, business review and capital allocation",
+"output": "CFO cycle map",
+"page": 78
+},
+{
+"id": "PE-01",
+"priority": 1,
+"cluster": "Fund and strategy",
+"title": "Buyout versus growth equity; GP/LP, fund life, fees, carry, deployment",
+"output": "Map fund cash flows",
+"page": 93
+},
+{
+"id": "PE-02",
+"priority": 1,
+"cluster": "Sourcing and screening",
+"title": "Investment thesis, target universe, sector mapping, proprietary versus auction",
+"output": "One-page sector thesis",
+"page": 97
+},
+{
+"id": "PE-03",
+"priority": 1,
+"cluster": "Commercial diligence",
+"title": "Market size, share, growth, competition, customer concentration, retention",
+"output": "Customer interview guide",
+"page": 98
+},
+{
+"id": "PE-04",
+"priority": 1,
+"cluster": "Financial diligence",
+"title": "Quality of earnings, EBITDA adjustments, cash conversion, NWC peg, debt-like items",
+"output": "QoE red-flag memo",
+"page": 98
+},
+{
+"id": "PE-05",
+"priority": 1,
+"cluster": "LBO and returns",
+"title": "Sources and uses; purchase EV, fees, debt tranches, sponsor equity",
+"output": "Paper LBO and sources/uses",
+"page": 100
+},
+{
+"id": "PE-06",
+"priority": 1,
+"cluster": "LBO and returns",
+"title": "Debt schedule, cash sweep, interest, covenants, exit EV, MOIC, IRR",
+"output": "Simple five-year LBO",
+"page": 100
+},
+{
+"id": "PE-07",
+"priority": 1,
+"cluster": "LBO and returns",
+"title": "Entry/exit multiple, leverage, EBITDA growth and margin sensitivity",
+"output": "LBO sensitivities",
+"page": 101
+},
+{
+"id": "PE-08",
+"priority": 2,
+"cluster": "LBO and returns",
+"title": "Growth equity ownership, dilution, preference terms, exit waterfall",
+"output": "Cap table and proceeds waterfall",
+"page": 103
+},
+{
+"id": "PE-09",
+"priority": 1,
+"cluster": "Execution",
+"title": "NDA, process letter, indication, LOI, exclusivity, diligence, IC, SPA, close",
+"output": "Investment committee timeline",
+"page": 104
+},
+{
+"id": "PE-10",
+"priority": 1,
+"cluster": "Execution",
+"title": "Investment memo: thesis, evidence, valuation, downside, value creation, exit",
+"output": "Two-page IC memo",
+"page": 104
+},
+{
+"id": "PE-11",
+"priority": 2,
+"cluster": "Execution",
+"title": "Management assessment, legal/tax/operational diligence, deal structure",
+"output": "Diligence workplan",
+"page": 98
+},
+{
+"id": "PE-12",
+"priority": 1,
+"cluster": "Ownership and exits",
+"title": "100-day plan, pricing, costs, working capital, add-on M&A, governance",
+"output": "Three-lever value-creation bridge",
+"page": 105
+},
+{
+"id": "PE-13",
+"priority": 2,
+"cluster": "Ownership and exits",
+"title": "Strategic sale, sponsor-to-sponsor, IPO, continuation and secondary",
+"output": "Exit route comparison",
+"page": 105
+},
+{
+"id": "PE-14",
+"priority": 1,
+"cluster": "Firm fit",
+"title": "Fund size, sector, stage, control, geography, portfolio and recent exits",
+"output": "Profile two funds and investments",
+"page": 95
+},
+{
+"id": "PE-15",
+"priority": 1,
+"cluster": "Operating model",
+"title": "LP capital, GP management company, investment fund, portfolio company and cash distribution",
+"output": "Fund structure diagram",
+"page": 93
+},
+{
+"id": "PE-16",
+"priority": 1,
+"cluster": "Operating model",
+"title": "Investment team, IC, operating partners, fundraising/IR, fund finance/legal/compliance",
+"output": "PE team and committee map",
+"page": 95
+},
+{
+"id": "PE-17",
+"priority": 1,
+"cluster": "Operating model",
+"title": "Deal funnel and gates: sourcing, screening, preliminary IC, bid, diligence, final IC, sign and close",
+"output": "Buyout process map",
+"page": 97
+},
+{
+"id": "PE-18",
+"priority": 2,
+"cluster": "Operating model",
+"title": "Post-close governance: board, 100-day plan, operating KPIs, add-ons, refinancing and exit",
+"output": "Portfolio operating cadence",
+"page": 105
+},
+{
+"id": "VC-01",
+"priority": 1,
+"cluster": "Fund and thesis",
+"title": "Stages from pre-seed to growth; ownership, reserves, portfolio construction, power law",
+"output": "Simple fund return exercise",
+"page": 110
+},
+{
+"id": "VC-02",
+"priority": 1,
+"cluster": "Sourcing",
+"title": "Founder networks, referrals, accelerators, sector mapping, outbound",
+"output": "Map 20 startups in one theme",
+"page": 112
+},
+{
+"id": "VC-03",
+"priority": 1,
+"cluster": "Market and product",
+"title": "Problem, ICP, TAM/SAM/SOM, bottom-up sizing, substitutes, timing",
+"output": "Bottom-up market map",
+"page": 114
+},
+{
+"id": "VC-04",
+"priority": 1,
+"cluster": "Market and product",
+"title": "Founder-market fit, team, product insight, defensibility and competition",
+"output": "Founder diligence questions",
+"page": 115
+},
+{
+"id": "VC-05",
+"priority": 1,
+"cluster": "Traction and economics",
+"title": "PMF signals, activation, retention cohorts, churn, growth quality",
+"output": "Cohort and funnel analysis",
+"page": 115
+},
+{
+"id": "VC-06",
+"priority": 1,
+"cluster": "Traction and economics",
+"title": "SaaS ARR/NRR/CAC/payback; marketplaces GMV/take rate; consumer engagement",
+"output": "Metric teardown of startup",
+"page": 115
+},
+{
+"id": "VC-07",
+"priority": 2,
+"cluster": "Traction and economics",
+"title": "Burn, runway, gross margin, contribution economics, milestone financing",
+"output": "18-month runway scenario",
+"page": 116
+},
+{
+"id": "VC-08",
+"priority": 1,
+"cluster": "Deals and ownership",
+"title": "Pre/post-money, dilution, option pool, SAFE/convertible, priced round",
+"output": "Cap table exercise",
+"page": 118
+},
+{
+"id": "VC-09",
+"priority": 2,
+"cluster": "Deals and ownership",
+"title": "Liquidation preference, pro rata, anti-dilution, board and information rights",
+"output": "Simple exit waterfall",
+"page": 119
+},
+{
+"id": "VC-10",
+"priority": 1,
+"cluster": "Diligence and memo",
+"title": "Reference calls, product demo, customers, market, founders, risk falsification",
+"output": "Two-page invest/pass memo",
+"page": 116
+},
+{
+"id": "VC-11",
+"priority": 1,
+"cluster": "Diligence and memo",
+"title": "Pitch deck: purpose, problem, solution, market, business model, traction, team, ask",
+"output": "Annotate founder deck",
+"page": 116
+},
+{
+"id": "VC-12",
+"priority": 2,
+"cluster": "Portfolio and exits",
+"title": "Follow-on decisions, reserves, board support, strategic sale/IPO, fund attribution",
+"output": "Follow-on recommendation",
+"page": 120
+},
+{
+"id": "VC-13",
+"priority": 1,
+"cluster": "Firm fit",
+"title": "Stage, check size, sector, geography, partners, portfolio and thesis",
+"output": "Firm profile and 90-second pitch",
+"page": 112
+},
+{
+"id": "VC-14",
+"priority": 1,
+"cluster": "Operating model",
+"title": "LPs, GP, fund, partners/principals/associates, platform, portfolio and reserves",
+"output": "VC firm structure diagram",
+"page": 111
+},
+{
+"id": "VC-15",
+"priority": 1,
+"cluster": "Operating model",
+"title": "Deal flow: sourcing, first call, partner meeting, diligence, investment discussion, terms, closing",
+"output": "Startup investment process map",
+"page": 112
+},
+{
+"id": "VC-16",
+"priority": 1,
+"cluster": "Operating model",
+"title": "Partner sponsorship, investment memo, decision rights, check size and ownership target",
+"output": "Hypothetical IC decision memo",
+"page": 111
+},
+{
+"id": "VC-17",
+"priority": 2,
+"cluster": "Operating model",
+"title": "Portfolio support, board role, milestone reviews, follow-on reserves and exit",
+"output": "Portfolio and follow-on timeline",
+"page": 120
+},
+{
+"id": "ADJ-01",
+"priority": 1,
+"cluster": "Consulting and deal advisory",
+"title": "Where finance meets consulting: PE practices, Big 4 transaction services, valuation, restructuring",
+"output": "Map five target firms by practice and what their interviews test",
+"page": 124
+},
+{
+"id": "ADJ-02",
+"priority": 1,
+"cluster": "Consulting and deal advisory",
+"title": "Case interviews: MECE structures, profitability, market entry, PE diligence cases and guesstimates",
+"output": "Solve one PE diligence case and one guesstimate against a timer",
+"page": 125
+},
+{
+"id": "ADJ-03",
+"priority": 1,
+"cluster": "Equity research and asset management",
+"title": "Sell-side versus buy-side, the initiation report and the variant view",
+"output": "A one-page stock pitch with a variant view and a catalyst",
+"page": 126
+},
+{
+"id": "ADJ-04",
+"priority": 2,
+"cluster": "Equity research and asset management",
+"title": "Mutual fund and portfolio basics: NAV, SEBI categories, flows, Sharpe, Treynor, alpha",
+"output": "Compare two funds on risk-adjusted returns",
+"page": 127
+},
+{
+"id": "ADJ-05",
+"priority": 1,
+"cluster": "Markets and treasury",
+"title": "Markets interviews: macro views, yield curves, duration, credit spreads, quick maths",
+"output": "A four-week markets journal with one trade a day",
+"page": 128
+},
+{
+"id": "ADJ-06",
+"priority": 1,
+"cluster": "Markets and treasury",
+"title": "Derivatives: forwards, currency forwards, put-call parity, option payoffs, the Greeks, swaps",
+"output": "Price a forward and check put-call parity by hand",
+"page": 128
+},
+{
+"id": "ADJ-07",
+"priority": 1,
+"cluster": "Corporate banking and credit",
+"title": "Credit analysis: the five Cs, DSCR, coverage, TOL/TNW, SMA and NPA classification",
+"output": "Assess one company's credit from its financials and propose a loan",
+"page": 130
+},
+{
+"id": "ADJ-08",
+"priority": 2,
+"cluster": "Corporate banking and credit",
+"title": "Project finance: SPV structure, contractual risk allocation, sizing debt with a DSCR",
+"output": "Size the debt for a project with a DSCR and an annuity factor",
+"page": 131
+}
 ]

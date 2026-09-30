@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import unitsJson from '../data/units.json';
 import { useStore } from '../lib/store';
-import { LESSON_BY_ID, TOPIC_BY_ID, topicState, isWeak, STATE_LABEL, QUESTIONS_BY_TOPIC, DRILLS_BY_TOPIC } from '../lib/state';
+import { tracksOf, LESSON_BY_ID, TOPIC_BY_ID, topicState, isWeak, STATE_LABEL, QUESTIONS_BY_TOPIC, DRILLS_BY_TOPIC } from '../lib/state';
 import { GEN_BY_TOPIC } from '../drills/generators';
 import { PARTS } from '../data/startHere';
 import { Icon, Bar, PageHead, StateDot, Inline, Back } from '../components/ui';
@@ -30,6 +30,7 @@ export default function Learn() {
               <span className="chip" style={{ background: PART_COLOR[part.id], color: '#fff', borderColor: 'transparent' }}>Part {part.id}</span>
               <h2 className="serif" style={{ fontSize: 22 }}>{part.name}</h2>
               {!part.live && <span className="chip"><Icon n="lock" s={12} /> Phase 2</span>}
+              {tracksOf(s).some((tr) => tr.units.some((u) => u.startsWith(part.id))) && <span className="chip p1">Your track</span>}
             </div>
             {part.live ? (
               <div className="grid g3">

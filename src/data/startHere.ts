@@ -5,10 +5,10 @@ export const INTRO = 'Finance interviews reward people who can explain a concept
 export const PARTS = [
   { id: 'A', name: 'Common core', blurb: 'Statements, ratios, TVM, WACC, DCF, multiples, capital markets, Excel.', live: true },
   { id: 'B', name: 'Investment banking', blurb: 'M&A, IPOs and ECM, DCM, pitchbooks, models, Indian bank landscape.', live: true },
-  { id: 'C', name: 'Corporate finance', blurb: 'FP&A, AOP, variance, treasury, controllership, Ind AS, capital allocation.', live: false },
-  { id: 'D', name: 'Private equity', blurb: 'Fund economics, diligence, LBO, IC memo, value creation, exits.', live: false },
-  { id: 'E', name: 'Venture capital', blurb: 'Power law, market sizing, metrics, cap tables, term sheets, memos.', live: false },
-  { id: 'F', name: 'Adjacent roles', blurb: 'Consulting and advisory, equity research, markets, banking and credit.', live: false },
+  { id: 'C', name: 'Corporate finance', blurb: 'FP&A, AOP, variance, treasury, controllership, Ind AS, capital allocation.', live: true },
+  { id: 'D', name: 'Private equity', blurb: 'Fund economics, diligence, LBO, IC memo, value creation, exits.', live: true },
+  { id: 'E', name: 'Venture capital', blurb: 'Power law, market sizing, metrics, cap tables, term sheets, memos.', live: true },
+  { id: 'F', name: 'Adjacent roles', blurb: 'Consulting and advisory, equity research, markets, banking and credit.', live: true },
 ];
 
 export const READING_PATHS = [

@@ -25,13 +25,12 @@ export const WEEKS: Week[] = [
     n: 1, goal: 'Diagnose and set targets',
     common: '20-question diagnostic from the core question bank; A1 statements; read one annual report; choose primary and adjacent track; five target firms each.',
     ib: 'Map coverage and product groups; shortlist banks (B1).',
-    chapters: ['A1', 'B1'],
+    chapters: ['A1'],
     exit: 'Diagnostic score recorded; target list; 90-second story draft.',
     checks: [
       { kind: 'diagnostic' },
       { kind: 'targets' },
       { kind: 'note', id: 'story90', label: '90-second story draft', placeholder: 'Where you come from, what pulled you to finance, what you did about it, why this role, why this firm.' },
-      { kind: 'topics', ids: ['IB-01', 'IB-16', 'IB-18', 'IB-19', 'IB-20'], state: 'read' },
     ],
   },
   {
@@ -64,10 +63,9 @@ export const WEEKS: Week[] = [
     n: 4, goal: 'Track process and first mock',
     common: 'Track chapters on process.',
     ib: 'IPO and DRHP process map; sell-side process (B2, B3).',
-    chapters: ['B2', 'B3'],
+    chapters: [],
     exit: 'First track mock with written feedback.',
     checks: [
-      { kind: 'topics', ids: ['IB-02', 'IB-07', 'IB-08'], state: 'drilled' },
       { kind: 'mocks', min: 1, fromWeek: 4 },
     ],
   },
@@ -75,23 +73,20 @@ export const WEEKS: Week[] = [
     n: 5, goal: 'Track technical depth',
     common: 'Track technical chapters.',
     ib: 'Merger model and five-slide mock pitch (B2, B5).',
-    chapters: ['B2', 'B5'],
+    chapters: [],
     exit: 'One complete timed case or model.',
     checks: [
-      { kind: 'topics', ids: ['IB-04'], state: 'proven' },
-      { kind: 'manual', id: 'timedmodel', label: 'Timed case or model completed', hint: 'A 60 to 180 minute modelling test, or a merger model. Link it.' },
-      { kind: 'manual', id: 'fiveslide', label: 'Five-slide mock pitch built', hint: 'Situation, rationale, valuation, buyer universe, process.' },
+      { kind: 'manual', id: 'timedmodel', label: 'Timed case or model completed', hint: 'A 60 to 180 minute modelling test, case or model for your track. Link it.' },
     ],
   },
   {
     n: 6, goal: 'Judgement: firms, deals, markets',
     common: 'Two target firms in depth; one recent deal each; the weekly market update.',
     ib: 'Two deal briefs; desk fit.',
-    chapters: ['B5', 'A6'],
+    chapters: ['A6'],
     exit: 'Two-page role-specific recommendation (pitch, IC memo, deal brief or CFO pack).',
     checks: [
-      { kind: 'topics', ids: ['IB-14', 'CORE-26'], state: 'drilled' },
-      { kind: 'manual', id: 'dealbriefs', label: 'Two deal briefs written', hint: 'Facts, rationale, valuation, structure, market reaction, your view.' },
+      { kind: 'topics', ids: ['CORE-26'], state: 'drilled' },
       { kind: 'manual', id: 'mktupdate', label: 'Weekly 90-second market update recorded', hint: 'Global event, India macro number, one deal, one sector.' },
     ],
   },
@@ -99,7 +94,7 @@ export const WEEKS: Week[] = [
     n: 7, goal: 'Repetitions',
     common: 'G-part mocks: technical, pitch and fit; question bank sweeps.',
     ib: 'Technical and deal mock.',
-    chapters: ['B6'],
+    chapters: [],
     exit: 'Two mocks; error log reviewed; revised answers.',
     checks: [
       { kind: 'mocks', min: 2, fromWeek: 7 },
@@ -123,8 +118,8 @@ export const WEEKS: Week[] = [
 export const RHYTHM = [
   { day: 'Monday', focus: 'Core concept', example: 'WACC and beta: read A3, do the worked example without looking' },
   { day: 'Tuesday', focus: 'Core exercise', example: 'Build the WACC for your pitch company' },
-  { day: 'Wednesday', focus: 'Role topic', example: 'IB: the sell-side process' },
-  { day: 'Thursday', focus: 'Role case or model', example: 'IB: comps table' },
+  { day: 'Wednesday', focus: 'Role topic', example: 'A process chapter from your track: sell-side process, PE deal funnel, the close cycle, the VC investment process' },
+  { day: 'Thursday', focus: 'Role case or model', example: 'A case or model from your track: comps, paper LBO, variance bridge, cap table, credit ratios' },
   { day: 'Friday', focus: 'Read one filing or deal', example: "A DRHP's industry section, or a recent acquisition announcement" },
   { day: 'Weekend', focus: 'Mock, feedback, error log, market update', example: '45-minute mock with a peer; update the error log; 90-second market update' },
 ];
@@ -143,7 +138,6 @@ export const READINESS = {
     { id: 'r3', text: 'Bridge equity value and enterprise value', topic: 'CORE-17' },
     { id: 'r4', text: 'Build a DCF on paper; defend the terminal value', topic: 'CORE-19' },
     { id: 'r5', text: 'Say when comparables beat a DCF, and vice versa', topic: 'CORE-21' },
-    { id: 'r6', text: 'Accretion/dilution and the IPO process (IB)', topic: 'IB-04' },
   ],
   other: [
     { id: 'o1', text: 'Rebuilt at least one sample model from scratch' },

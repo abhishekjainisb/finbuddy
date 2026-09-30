@@ -46,7 +46,7 @@ export default function Plan() {
           </div>
           <div className="prose small" style={{ marginTop: 12 }}>
             <p><b>Common core:</b> {ws.week.common}</p>
-            <p><b>Investment banking:</b> {ws.week.ib}</p>
+            <p><b>{ws.week.track.name}:</b> {ws.week.trackText}</p>
             <p><b>Exit criteria:</b> {ws.week.exit}</p>
           </div>
           <div className="row small" style={{ gap: 6, marginBottom: 6 }}>

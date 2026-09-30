@@ -48,6 +48,11 @@ export const TAG_LABELS: Record<string, string> = {
   premium_base: 'Measured the premium on the wrong base',
   bond_direction: 'Price and yield moved the same way',
   dol_mix: 'Confused operating and financial leverage',
+  hurdle_math: 'Skipped the preferred return or the GP catch-up',
+  moic_irr: 'Treated IRR as MOIC divided by years',
+  pool_shuffle: 'Put the option pool in the post-money instead of the pre-money',
+  pref_type: 'Mixed up participating and non-participating preference',
+  mix_price: 'Measured the price effect on budget volumes',
 };
 
 export const GENERATORS: Record<string, { topic: string; title: string; gen: Gen }> = {
@@ -57,7 +62,7 @@ export const GENERATORS: Record<string, { topic: string; title: string; gen: Gen
       const X = pick(r, [10, 20, 25, 40, 50, 80]); const t = pick(r, [0.2, 0.25, 0.3]);
       const dNI = -X * (1 - t), dCash = X * t;
       return {
-        q: `Depreciation rises by Rs. ${X}. The tax rate is ${t * 100}% and the extra depreciation is tax-deductible. Walk it through the statements.`,
+        q: `Depreciation rises by Rs. ${X}. The tax rate is ${fmt(t * 100, 2)}% and the extra depreciation is tax-deductible. Walk it through the statements.`,
         fields: [
           { key: 'ni', label: 'Change in net income', answer: dNI },
           { key: 'cfo', label: 'Change in cash from operations', answer: dCash },
@@ -132,14 +137,14 @@ export const GENERATORS: Record<string, { topic: string; title: string; gen: Gen
       const rent = pick(r, [10, 20, 30, 40, 50]), rate = pick(r, [0.08, 0.09, 0.1]), n = pick(r, [5, 8, 10]);
       const af = (1 - (1 + rate) ** -n) / rate, L = rent * af, dep = L / n, int1 = L * rate;
       return {
-        q: `A retailer signs a ${n}-year store lease at Rs. ${rent} crore a year; the incremental borrowing rate is ${rate * 100}%. Compute the opening lease liability, year-1 depreciation and interest, and the change in EBITDA.`,
+        q: `A retailer signs a ${n}-year store lease at Rs. ${rent} crore a year; the incremental borrowing rate is ${fmt(rate * 100, 2)}%. Compute the opening lease liability, year-1 depreciation and interest, and the change in EBITDA.`,
         fields: [
           { key: 'L', label: 'Lease liability at start (Rs. crore)', answer: round(L, 1), tol: 0.3 },
           { key: 'dep', label: 'Year-1 depreciation', answer: round(dep, 1), tol: 0.2 },
           { key: 'int', label: 'Year-1 interest', answer: round(int1, 1), tol: 0.2 },
           { key: 'ebitda', label: 'Change in EBITDA', answer: rent },
         ],
-        why: `Liability = ${rent} × annuity factor (${rate * 100}%, ${n} years) = ${rent} × ${fmt(af, 3)} = ${fmt(L)}. Depreciation = ${fmt(L)} ÷ ${n} = ${fmt(dep)}; interest = ${fmt(L)} × ${rate * 100}% = ${fmt(int1)}. Total charge ${fmt(dep + int1)} versus rent ${rent}: front-loaded. EBITDA rises by the rent of ${rent}.`,
+        why: `Liability = ${rent} × annuity factor (${fmt(rate * 100, 2)}%, ${n} years) = ${rent} × ${fmt(af, 3)} = ${fmt(L)}. Depreciation = ${fmt(L)} ÷ ${n} = ${fmt(dep)}; interest = ${fmt(L)} × ${fmt(rate * 100, 2)}% = ${fmt(int1)}. Total charge ${fmt(dep + int1)} versus rent ${rent}: front-loaded. EBITDA rises by the rent of ${rent}.`,
         diagnose: (v) => near(v.L, rent * n, 0.5) ? 'discounting' : null,
       };
     },
@@ -149,7 +154,7 @@ export const GENERATORS: Record<string, { topic: string; title: string; gen: Gen
     gen: (r) => {
       const own = pick(r, [0.6, 0.7, 0.75, 0.8, 0.9]), pat = int(r, 20, 120, 5);
       return {
-        q: `A parent owns ${own * 100}% of a subsidiary that earns PAT of Rs. ${pat} crore and is fully consolidated. How much PAT is attributable to non-controlling interests?`,
+        q: `A parent owns ${fmt(own * 100, 2)}% of a subsidiary that earns PAT of Rs. ${pat} crore and is fully consolidated. How much PAT is attributable to non-controlling interests?`,
         fields: [{ key: 'n', label: 'NCI share of PAT (Rs. crore)', answer: round(pat * (1 - own), 1), tol: 0.1 }],
         why: `The parent consolidates 100% of the subsidiary's PAT, then deducts the ${round((1 - own) * 100, 0)}% attributable to NCI: ${pat} × ${fmt(1 - own, 2)} = ${fmt(pat * (1 - own))}. EPS and P/E use the attributable figure; EV/EBITDA uses consolidated EBITDA with NCI added to EV.`,
         diagnose: (v) => near(v.n, pat * own) ? 'concept' : null,
@@ -180,14 +185,14 @@ export const GENERATORS: Record<string, { topic: string; title: string; gen: Gen
       const price = pick(r, [2000, 3000, 5000, 8000]), gm = pick(r, [0.7, 0.75, 0.8, 0.85]), cac = pick(r, [40000, 60000, 90000, 120000]), churn = pick(r, [0.015, 0.02, 0.025, 0.03]);
       const gp = price * gm, pay = cac / gp, ltv = gp / churn;
       return {
-        q: `A startup charges Rs. ${fmt(price, 0)} a month at a ${gm * 100}% gross margin. CAC is Rs. ${fmt(cac, 0)} and monthly churn is ${churn * 100}%. Compute monthly gross profit per customer, simple CAC payback, LTV and LTV/CAC.`,
+        q: `A startup charges Rs. ${fmt(price, 0)} a month at a ${fmt(gm * 100, 2)}% gross margin. CAC is Rs. ${fmt(cac, 0)} and monthly churn is ${fmt(churn * 100, 2)}%. Compute monthly gross profit per customer, simple CAC payback, LTV and LTV/CAC.`,
         fields: [
           { key: 'gp', label: 'Monthly gross profit (Rs.)', answer: gp },
           { key: 'pb', label: 'CAC payback (months)', answer: round(pay, 1), tol: 0.2 },
           { key: 'ltv', label: 'LTV (Rs.)', answer: Math.round(ltv), tol: 50 },
           { key: 'x', label: 'LTV / CAC (x)', answer: round(ltv / cac, 2), tol: 0.03 },
         ],
-        why: `Gross profit = ${fmt(price, 0)} × ${gm * 100}% = ${fmt(gp, 0)}. Payback = ${fmt(cac, 0)} ÷ ${fmt(gp, 0)} = ${fmt(pay)} months. LTV = ${fmt(gp, 0)} ÷ ${churn * 100}% = ${fmt(ltv, 0)}. LTV/CAC = ${fmt(ltv / cac, 2)}x; below 3x means cut churn or CAC before scaling spend.`,
+        why: `Gross profit = ${fmt(price, 0)} × ${fmt(gm * 100, 2)}% = ${fmt(gp, 0)}. Payback = ${fmt(cac, 0)} ÷ ${fmt(gp, 0)} = ${fmt(pay)} months. LTV = ${fmt(gp, 0)} ÷ ${fmt(churn * 100, 2)}% = ${fmt(ltv, 0)}. LTV/CAC = ${fmt(ltv / cac, 2)}x; below 3x means cut churn or CAC before scaling spend.`,
         diagnose: (v) => near(v.ltv, price / churn, 100) ? 'ltv_on_revenue' : null,
       };
     },
@@ -199,12 +204,12 @@ export const GENERATORS: Record<string, { topic: string; title: string; gen: Gen
       if (kind === 'fv') {
         const pv = pick(r, [1, 2, 5]), rate = pick(r, [0.08, 0.1, 0.12]), n = pick(r, [5, 10]);
         const fv = pv * (1 + rate) ** n;
-        return { q: `Rs. ${pv} lakh compounds at ${rate * 100}% a year for ${n} years. What does it grow to (Rs. lakh, 2 decimals)?`, fields: [{ key: 'a', label: 'Future value (Rs. lakh)', answer: round(fv, 2), tol: 0.02 }], why: `FV = PV × (1 + r)^n = ${pv} × ${1 + rate}^${n} = ${fmt(fv, 2)}. Rule of 72: doubling takes about ${fmt(72 / (rate * 100), 1)} years.`, diagnose: (v) => near(v.a, pv * (1 + rate * n), 0.05) ? 'discounting' : null };
+        return { q: `Rs. ${pv} lakh compounds at ${fmt(rate * 100, 2)}% a year for ${n} years. What does it grow to (Rs. lakh, 2 decimals)?`, fields: [{ key: 'a', label: 'Future value (Rs. lakh)', answer: round(fv, 2), tol: 0.02 }], why: `FV = PV × (1 + r)^n = ${pv} × ${fmt(1 + rate, 4)}^${n} = ${fmt(fv, 2)}. Rule of 72: doubling takes about ${fmt(72 / (rate * 100), 1)} years.`, diagnose: (v) => near(v.a, pv * (1 + rate * n), 0.05) ? 'discounting' : null };
       }
       if (kind === 'perp') {
         const c = pick(r, [50, 100, 200]), k = pick(r, [0.08, 0.1, 0.12]), g = pick(r, [0.03, 0.04, 0.05]);
         const v1 = c * (1 + g) / (k - g);
-        return { q: `A payment of Rs. ${c} a year has just been paid and will grow at ${g * 100}% forever. The discount rate is ${k * 100}%. What is it worth today?`, fields: [{ key: 'a', label: 'Value (Rs.)', answer: round(v1, 0), tol: 1.5 }], why: `The next payment is C₁ = ${c} × ${1 + g} = ${fmt(c * (1 + g))}. PV = C₁ ÷ (r − g) = ${fmt(c * (1 + g))} ÷ ${fmt((k - g) * 100)}% = ${fmt(v1, 0)}.`, diagnose: (v) => near(v.a, c / (k - g), 2) ? 'discounting' : null };
+        return { q: `A payment of Rs. ${c} a year has just been paid and will grow at ${fmt(g * 100, 2)}% forever. The discount rate is ${fmt(k * 100, 2)}%. What is it worth today?`, fields: [{ key: 'a', label: 'Value (Rs.)', answer: round(v1, 0), tol: 1.5 }], why: `The next payment is C₁ = ${c} × ${fmt(1 + g, 4)} = ${fmt(c * (1 + g))}. PV = C₁ ÷ (r − g) = ${fmt(c * (1 + g))} ÷ ${fmt((k - g) * 100)}% = ${fmt(v1, 0)}.`, diagnose: (v) => near(v.a, c / (k - g), 2) ? 'discounting' : null };
       }
       if (kind === 'cagr') {
         const a = pick(r, [400, 500, 800]), m = pick(r, [1.5, 1.6, 2, 2.5]), n = pick(r, [3, 4, 5]);
@@ -214,11 +219,11 @@ export const GENERATORS: Record<string, { topic: string; title: string; gen: Gen
       if (kind === 'real') {
         const nom = pick(r, [0.1, 0.12, 0.14]), inf = pick(r, [0.04, 0.05, 0.06]);
         const re = ((1 + nom) / (1 + inf) - 1) * 100;
-        return { q: `Nominal return ${nom * 100}%, inflation ${inf * 100}%. What is the real return (%, 2 decimals)?`, fields: [{ key: 'a', label: 'Real return %', answer: round(re, 2), tol: 0.02 }], why: `Real = (1 + nominal) ÷ (1 + inflation) − 1 = ${1 + nom} ÷ ${1 + inf} − 1 = ${fmt(re, 2)}%. Discount nominal cash flows at nominal rates and real at real.` };
+        return { q: `Nominal return ${fmt(nom * 100, 2)}%, inflation ${fmt(inf * 100, 2)}%. What is the real return (%, 2 decimals)?`, fields: [{ key: 'a', label: 'Real return %', answer: round(re, 2), tol: 0.02 }], why: `Real = (1 + nominal) ÷ (1 + inflation) − 1 = ${fmt(1 + nom, 4)} ÷ ${fmt(1 + inf, 4)} − 1 = ${fmt(re, 2)}%. Discount nominal cash flows at nominal rates and real at real.` };
       }
       const k = pick(r, [0.09, 0.12, 0.18]), m = pick(r, [4, 12]);
       const ear = ((1 + k / m) ** m - 1) * 100;
-      return { q: `A rate of ${k * 100}% a year is compounded ${m === 12 ? 'monthly' : 'quarterly'}. What is the effective annual rate (%, 2 decimals)?`, fields: [{ key: 'a', label: 'Effective annual rate %', answer: round(ear, 2), tol: 0.02 }], why: `EAR = (1 + ${k * 100}% ÷ ${m})^${m} − 1 = ${fmt(ear, 2)}%. Convert before comparing: FDs quote quarterly compounding, bonds semi-annual.`, diagnose: (v) => near(v.a, k * 100, 0.01) ? 'rate_units' : null };
+      return { q: `A rate of ${fmt(k * 100, 2)}% a year is compounded ${m === 12 ? 'monthly' : 'quarterly'}. What is the effective annual rate (%, 2 decimals)?`, fields: [{ key: 'a', label: 'Effective annual rate %', answer: round(ear, 2), tol: 0.02 }], why: `EAR = (1 + ${fmt(k * 100, 2)}% ÷ ${m})^${m} − 1 = ${fmt(ear, 2)}%. Convert before comparing: FDs quote quarterly compounding, bonds semi-annual.`, diagnose: (v) => near(v.a, k * 100, 0.01) ? 'rate_units' : null };
     },
   },
   npv: {
@@ -229,12 +234,12 @@ export const GENERATORS: Record<string, { topic: string; title: string; gen: Gen
       const npv = -cap + cfs.reduce((s, c, i) => s + c / (1 + k) ** (i + 1), 0);
       const pb = (() => { let c = -cap; for (let i = 0; i < cfs.length; i++) { if (c + cfs[i] >= 0) return i + (-c) / cfs[i]; c += cfs[i]; } return NaN; })();
       return {
-        q: `A project costs Rs. ${cap} crore today and returns ${cfs.join(', ')} over years 1 to 5. The cost of capital is ${k * 100}%. What is the NPV, and the simple payback in years?`,
+        q: `A project costs Rs. ${cap} crore today and returns ${cfs.join(', ')} over years 1 to 5. The cost of capital is ${fmt(k * 100, 2)}%. What is the NPV, and the simple payback in years?`,
         fields: [
           { key: 'npv', label: 'NPV (Rs. crore)', answer: round(npv, 1), tol: 0.3 },
           ...(isNaN(pb) ? [] : [{ key: 'pb', label: 'Payback (years)', answer: round(pb, 2), tol: 0.05 }]),
         ],
-        why: `NPV = −${cap} + ${cfs.map((c, i) => `${c} ÷ ${1 + k}^${i + 1}`).join(' + ')} = ${fmt(npv)}. Accept if NPV > 0. Payback ignores time value and cash after payback.`,
+        why: `NPV = −${cap} + ${cfs.map((c, i) => `${c} ÷ ${fmt(1 + k, 4)}^${i + 1}`).join(' + ')} = ${fmt(npv)}. Accept if NPV > 0. Payback ignores time value and cash after payback.`,
         diagnose: (v) => near(v.npv, -cap + cfs.reduce((s, c) => s + c, 0), 1) ? 'discounting' : null,
       };
     },
@@ -245,7 +250,7 @@ export const GENERATORS: Record<string, { topic: string; title: string; gen: Gen
       const rf = pick(r, [7.0, 7.1, 7.2]), beta = pick(r, [0.7, 0.8, 0.9, 1.1, 1.2]), erp = pick(r, [6.5, 7.0, 7.5]), kd = pick(r, [8.0, 8.5, 9.0, 9.5]), t = 0.25, wd = pick(r, [0.1, 0.2, 0.3]);
       const ke = rf + beta * erp, w = (1 - wd) * ke + wd * kd * (1 - t);
       return {
-        q: `Rf ${rf}%, beta ${beta}, ERP ${erp}%. Pre-tax cost of new debt ${kd}%, tax 25%. Target weights: ${(1 - wd) * 100}% equity, ${wd * 100}% debt. Compute Ke and WACC (%, 2 decimals).`,
+        q: `Rf ${rf}%, beta ${beta}, ERP ${erp}%. Pre-tax cost of new debt ${kd}%, tax 25%. Target weights: ${(1 - wd) * 100}% equity, ${fmt(wd * 100, 2)}% debt. Compute Ke and WACC (%, 2 decimals).`,
         fields: [
           { key: 'ke', label: 'Cost of equity %', answer: round(ke, 2), tol: 0.02 },
           { key: 'w', label: 'WACC %', answer: round(w, 2), tol: 0.02 },
@@ -279,7 +284,7 @@ export const GENERATORS: Record<string, { topic: string; title: string; gen: Gen
       do { fixed = pick(r, [200, 300, 400]); cm = pick(r, [0.3, 0.4, 0.5]); revv = pick(r, [1000, 1200, 1500]); } while (revv * cm - fixed < revv * cm * 0.2);
       const be = fixed / cm, contrib = revv * cm, ebit = contrib - fixed, dol = contrib / ebit;
       return {
-        q: `Fixed costs Rs. ${fixed} crore, contribution margin ${cm * 100}%. What revenue breaks even? At revenue of Rs. ${revv} crore, what is the degree of operating leverage?`,
+        q: `Fixed costs Rs. ${fixed} crore, contribution margin ${fmt(cm * 100, 2)}%. What revenue breaks even? At revenue of Rs. ${revv} crore, what is the degree of operating leverage?`,
         fields: [
           { key: 'be', label: 'Break-even revenue (Rs. crore)', answer: round(be, 0), tol: 1 },
           { key: 'dol', label: 'DOL at that revenue (x)', answer: round(dol, 2), tol: 0.02 },
@@ -339,13 +344,13 @@ export const GENERATORS: Record<string, { topic: string; title: string; gen: Gen
       const nopat = int(r, 300, 800, 10), g = pick(r, [0.05, 0.06, 0.07]), ronic = pick(r, [0.2, 0.25, 0.3]), w = pick(r, [0.11, 0.12, 0.13]);
       const reinv = g / ronic, f1 = nopat * (1 + g) * (1 - reinv), tv = f1 / (w - g);
       return {
-        q: `Final-year NOPAT is Rs. ${nopat} crore. Long-term growth ${g * 100}%, return on new capital ${ronic * 100}%, WACC ${w * 100}%. Compute the reinvestment rate, FCFF in year n+1 and the terminal value.`,
+        q: `Final-year NOPAT is Rs. ${nopat} crore. Long-term growth ${fmt(g * 100, 2)}%, return on new capital ${fmt(ronic * 100, 2)}%, WACC ${fmt(w * 100, 2)}%. Compute the reinvestment rate, FCFF in year n+1 and the terminal value.`,
         fields: [
           { key: 'ri', label: 'Reinvestment rate %', answer: round(reinv * 100, 1), tol: 0.2 },
           { key: 'f', label: 'FCFF n+1 (Rs. crore)', answer: round(f1, 0), tol: 2 },
           { key: 'tv', label: 'Terminal value (Rs. crore)', answer: round(tv, 0), tol: Math.max(10, tv * 0.005) },
         ],
-        why: `Reinvestment = g ÷ RONIC = ${g * 100}% ÷ ${ronic * 100}% = ${fmt(reinv * 100)}%. FCFF n+1 = ${nopat} × ${1 + g} × (1 − ${fmt(reinv, 3)}) = ${fmt(f1, 0)}. TV = ${fmt(f1, 0)} ÷ (${w * 100}% − ${g * 100}%) = ${fmt(tv, 0)}.`,
+        why: `Reinvestment = g ÷ RONIC = ${fmt(g * 100, 2)}% ÷ ${fmt(ronic * 100, 2)}% = ${fmt(reinv * 100)}%. FCFF n+1 = ${nopat} × ${fmt(1 + g, 4)} × (1 − ${fmt(reinv, 3)}) = ${fmt(f1, 0)}. TV = ${fmt(f1, 0)} ÷ (${fmt(w * 100, 2)}% − ${fmt(g * 100, 2)}%) = ${fmt(tv, 0)}.`,
         diagnose: (v) => near(v.tv, nopat * (1 + g) / (w - g), 20) ? 'reinvestment_ignored' : null,
       };
     },
@@ -400,12 +405,12 @@ export const GENERATORS: Record<string, { topic: string; title: string; gen: Gen
       const ni = int(r, 200, 500, 10), sh = pick(r, [50, 100]), price = pick(r, [150, 200, 300]), spend = pick(r, [300, 500, 800]), yld = pick(r, [0.06, 0.07]), t = 0.25;
       const bought = spend / price, lost = spend * yld * (1 - t), eps0 = ni / sh, eps1 = (ni - lost) / (sh - bought);
       return {
-        q: `Net income Rs. ${ni} crore, ${sh} crore shares at Rs. ${price}. The company spends Rs. ${spend} crore of cash earning ${yld * 100}% pre-tax on a buyback (tax 25%). What is EPS after the buyback, and the change?`,
+        q: `Net income Rs. ${ni} crore, ${sh} crore shares at Rs. ${price}. The company spends Rs. ${spend} crore of cash earning ${fmt(yld * 100, 2)}% pre-tax on a buyback (tax 25%). What is EPS after the buyback, and the change?`,
         fields: [
           { key: 'e', label: 'New EPS (Rs.)', answer: round(eps1, 2), tol: 0.02 },
           { key: 'c', label: 'Change in EPS %', answer: round((eps1 / eps0 - 1) * 100, 1), tol: 0.2 },
         ],
-        why: `Shares bought = ${spend} ÷ ${price} = ${fmt(bought, 2)} crore. Lost after-tax interest = ${spend} × ${yld * 100}% × 0.75 = ${fmt(lost, 2)}. EPS = (${ni} − ${fmt(lost, 2)}) ÷ (${sh} − ${fmt(bought, 2)}) = ${fmt(eps1, 2)} versus ${fmt(eps0, 2)}. EPS rises when the earnings yield on the shares exceeds the after-tax yield on cash; value rises only if the price is below intrinsic value.`,
+        why: `Shares bought = ${spend} ÷ ${price} = ${fmt(bought, 2)} crore. Lost after-tax interest = ${spend} × ${fmt(yld * 100, 2)}% × 0.75 = ${fmt(lost, 2)}. EPS = (${ni} − ${fmt(lost, 2)}) ÷ (${sh} − ${fmt(bought, 2)}) = ${fmt(eps1, 2)} versus ${fmt(eps0, 2)}. EPS rises when the earnings yield on the shares exceeds the after-tax yield on cash; value rises only if the price is below intrinsic value.`,
         diagnose: (v) => near(v.e, ni / (sh - bought), 0.02) ? 'forgot_tax' : null,
       };
     },
@@ -444,12 +449,12 @@ export const GENERATORS: Record<string, { topic: string; title: string; gen: Gen
       const price = ni / sh * pe, pay = tni * tpe, newsh = pay * stock / price, intr = pay * (1 - stock) * kd * (1 - t);
       const eps0 = ni / sh, eps1 = (ni + tni - intr) / (sh + newsh), acc = (eps1 / eps0 - 1) * 100;
       return {
-        q: `Acquirer: net income Rs. ${ni} crore, ${sh} crore shares, trades at ${pe}x P/E. It buys a target earning Rs. ${tni} crore at ${tpe}x, paying ${stock * 100}% in stock and the rest with new debt at ${kd * 100}% (tax 25%). No synergies. Compute pro forma EPS and accretion (+) or dilution (−) in %.`,
+        q: `Acquirer: net income Rs. ${ni} crore, ${sh} crore shares, trades at ${pe}x P/E. It buys a target earning Rs. ${tni} crore at ${tpe}x, paying ${fmt(stock * 100, 2)}% in stock and the rest with new debt at ${fmt(kd * 100, 2)}% (tax 25%). No synergies. Compute pro forma EPS and accretion (+) or dilution (−) in %.`,
         fields: [
           { key: 'eps', label: 'Pro forma EPS (Rs.)', answer: round(eps1, 2), tol: 0.02 },
           { key: 'a', label: 'Accretion / dilution %', answer: round(acc, 1), tol: 0.2 },
         ],
-        why: `Share price = ${fmt(eps0, 2)} × ${pe} = ${fmt(price, 2)}. Price paid = ${tni} × ${tpe} = ${fmt(pay, 0)}. New shares = ${fmt(pay * stock, 0)} ÷ ${fmt(price, 2)} = ${fmt(newsh, 2)}. After-tax interest = ${fmt(pay * (1 - stock), 0)} × ${kd * 100}% × 0.75 = ${fmt(intr, 2)}. EPS = (${ni} + ${tni} − ${fmt(intr, 2)}) ÷ ${fmt(sh + newsh, 2)} = ${fmt(eps1, 2)} versus ${fmt(eps0, 2)}: ${acc >= 0 ? 'accretive' : 'dilutive'} by ${fmt(Math.abs(acc))}%.`,
+        why: `Share price = ${fmt(eps0, 2)} × ${pe} = ${fmt(price, 2)}. Price paid = ${tni} × ${tpe} = ${fmt(pay, 0)}. New shares = ${fmt(pay * stock, 0)} ÷ ${fmt(price, 2)} = ${fmt(newsh, 2)}. After-tax interest = ${fmt(pay * (1 - stock), 0)} × ${fmt(kd * 100, 2)}% × 0.75 = ${fmt(intr, 2)}. EPS = (${ni} + ${tni} − ${fmt(intr, 2)}) ÷ ${fmt(sh + newsh, 2)} = ${fmt(eps1, 2)} versus ${fmt(eps0, 2)}: ${acc >= 0 ? 'accretive' : 'dilutive'} by ${fmt(Math.abs(acc))}%.`,
         diagnose: (v) => v.a !== undefined && Math.sign(v.a) !== Math.sign(acc) && Math.abs(acc) > 0.3 ? 'accretion_sign' : near(v.eps, (ni + tni - pay * (1 - stock) * kd) / (sh + newsh), 0.02) ? 'forgot_tax' : null,
       };
     },
@@ -476,7 +481,7 @@ export const GENERATORS: Record<string, { topic: string; title: string; gen: Gen
       const pre = pick(r, [10, 20]), prom = pick(r, [0.6, 0.7, 0.75]), price = pick(r, [250, 500, 800]), fresh = pick(r, [500, 1000, 1500]), ofs = pick(r, [0.5, 1, 1.5]);
       const newsh = fresh / price, post = pre + newsh, fund = pre * (1 - prom) - ofs;
       return {
-        q: `Pre-IPO: ${pre} crore shares, promoter ${prom * 100}%, a PE fund the rest. IPO at Rs. ${price}: fresh issue of Rs. ${fresh} crore plus an OFS of ${ofs} crore shares by the fund. Compute post-issue shares and the promoter and fund stakes (%).`,
+        q: `Pre-IPO: ${pre} crore shares, promoter ${fmt(prom * 100, 2)}%, a PE fund the rest. IPO at Rs. ${price}: fresh issue of Rs. ${fresh} crore plus an OFS of ${ofs} crore shares by the fund. Compute post-issue shares and the promoter and fund stakes (%).`,
         fields: [
           { key: 's', label: 'Post-issue shares (crore)', answer: round(post, 2), tol: 0.01 },
           { key: 'p', label: 'Promoter stake %', answer: round(pre * prom / post * 100, 1), tol: 0.1 },
@@ -516,6 +521,311 @@ export const GENERATORS: Record<string, { topic: string; title: string; gen: Gen
           { key: 'h', label: 'EBITDA headroom %', answer: round((1 - emin / e) * 100, 1), tol: 0.3 },
         ],
         why: `Leverage = ${nd} ÷ ${e} = ${fmt(lev, 2)}x. Breach EBITDA = ${nd} ÷ ${cov} = ${fmt(emin)}; headroom = 1 − ${fmt(emin)} ÷ ${e} = ${fmt((1 - emin / e) * 100)}%. Lenders focus on the downside: cash flow coverage, security and covenants.`,
+      };
+    },
+  },
+  // ---------- Corporate finance
+  pvm: {
+    topic: 'CF-03', title: 'Price, volume and mix variance',
+    gen: (r) => {
+      const bA = int(r, 50, 70, 5), bB = 100 - bA, pA = pick(r, [100, 120]), pB = pick(r, [50, 60, 70]);
+      const aA = bA + int(r, -12, 6, 2), aB = bB + int(r, -4, 16, 2), qA = pA + int(r, -4, 6, 2), qB = pB + int(r, -4, 4, 2);
+      const bTot = bA + bB, aTot = aA + aB, bRev = bA * pA + bB * pB, avg = bRev / bTot;
+      const vol = (aTot - bTot) * avg / 100;
+      const mix = ((aA - aTot * bA / bTot) * pA + (aB - aTot * bB / bTot) * pB) / 100;
+      const price = ((qA - pA) * aA + (qB - pB) * aB) / 100;
+      const wrongPrice = ((qA - pA) * bA + (qB - pB) * bB) / 100;
+      return {
+        q: `Budget: premium pack ${bA} lakh units at Rs. ${pA}, value pack ${bB} lakh at Rs. ${pB}. Actual: premium ${aA} lakh at Rs. ${qA}, value ${aB} lakh at Rs. ${qB}. Split the revenue variance into volume, mix and price (Rs. crore; negative is adverse).`,
+        fields: [
+          { key: 'v', label: 'Volume variance', answer: round(vol, 2), unit: 'Rs. crore', tol: 0.05 },
+          { key: 'm', label: 'Mix variance', answer: round(mix, 2), unit: 'Rs. crore', tol: 0.05 },
+          { key: 'p', label: 'Price variance', answer: round(price, 2), unit: 'Rs. crore', tol: 0.05 },
+        ],
+        why: `Budget revenue ${fmt(bRev / 100, 2)} crore, average price Rs. ${fmt(avg, 2)}. Volume = (${aTot} − ${bTot}) lakh × ${fmt(avg, 2)} = ${fmt(vol, 2)}. Mix = Σ (actual units − actual total × budget mix) × budget price = ${fmt(mix, 2)}. Price = Σ (actual − budget price) × actual units = ${fmt(price, 2)}. Together they explain the whole gap of ${fmt((aA * qA + aB * qB - bRev) / 100, 2)} crore.`,
+        diagnose: (v) => near(v.p, wrongPrice, 0.05) ? 'mix_price' : null,
+      };
+    },
+  },
+  price_break: {
+    topic: 'CF-07', title: 'Break-even volume after a price change',
+    gen: (r) => {
+      const cm = pick(r, [30, 35, 40, 45, 50]), ch = pick(r, [3, 5, 8, 10]), up = r() < 0.5;
+      const ans = up ? ch / (cm + ch) * 100 : ch / (cm - ch) * 100;
+      return {
+        q: up ? `A product earns a ${cm}% contribution margin. If you raise its price by ${ch}%, how much volume (%) can you lose before total contribution falls?`
+          : `A product earns a ${cm}% contribution margin. If you cut its price by ${ch}%, how much extra volume (%) do you need just to keep total contribution flat?`,
+        fields: [{ key: 'x', label: up ? 'Maximum volume loss' : 'Extra volume needed', answer: round(ans, 1), unit: '%', tol: 0.2 }],
+        why: up ? `Break-even loss = price change ÷ (margin + change) = ${ch} ÷ ${cm + ch} = ${fmt(ans)}%. Fixed costs do not move with the price decision, so compare contribution.`
+          : `Needed gain = price cut ÷ (margin − cut) = ${ch} ÷ ${cm - ch} = ${fmt(ans)}%. Price cuts need far more volume than people expect.`,
+        diagnose: (v) => near(v.x, ch / cm * 100, 0.2) ? 'concept' : null,
+      };
+    },
+  },
+  capex: {
+    topic: 'CF-08', title: 'Capex case: NPV and payback',
+    gen: (r) => {
+      const cost = pick(r, [80, 100, 120, 150]), c1 = int(r, 18, 30), c2 = c1 + int(r, 4, 8), c3 = c2 + int(r, 4, 8), c4 = c3 + int(r, 0, 4), k = pick(r, [0.1, 0.12, 0.14]);
+      const cf = [c1, c2, c3, c4, c4, c4, c4];
+      let npv = -cost; cf.forEach((c, i) => { npv += c / (1 + k) ** (i + 1); });
+      let cum = 0, pb = 0; for (let i = 0; i < cf.length; i++) { if (cum + cf[i] >= cost) { pb = i + (cost - cum) / cf[i]; break; } cum += cf[i]; }
+      const undisc = cf.reduce((a, b) => a + b, 0) - cost;
+      return {
+        q: `A Rs. ${cost} crore production line generates cash flows of ${c1}, ${c2} and ${c3} in years 1 to 3, then ${c4} a year in years 4 to 7. The hurdle rate is ${fmt(k * 100, 2)}%. Compute the NPV and the simple payback.`,
+        fields: [
+          { key: 'n', label: 'NPV', answer: round(npv, 1), unit: 'Rs. crore', tol: 0.5 },
+          { key: 'p', label: 'Payback', answer: round(pb, 2), unit: 'years', tol: 0.05 },
+        ],
+        why: `NPV = −${cost} + Σ CFt ÷ ${fmt(1 + k, 2)}^t = ${fmt(npv)}. Payback: cumulative cash reaches ${cost} during year ${Math.floor(pb) + 1}, at ${fmt(pb, 2)} years. Then test the key driver (usually volume) and add a trigger for a phased build.`,
+        diagnose: (v) => near(v.n, undisc, 1) ? 'discounting' : null,
+      };
+    },
+  },
+  dist_credit: {
+    topic: 'CF-10', title: 'Should we extend distributor credit?',
+    gen: (r) => {
+      const S = pick(r, [80, 120, 150, 200]), cm = pick(r, [0.2, 0.25, 0.3]), d1 = pick(r, [30, 45]), d2 = pick(r, [60, 75, 90]), g = pick(r, [0.05, 0.08, 0.1, 0.15]), k = pick(r, [0.09, 0.1, 0.12]);
+      const rec1 = S * d1 / 365, rec2 = S * (1 + g) * d2 / 365, extra = rec2 - rec1, carry = extra * k, contrib = S * g * cm;
+      return {
+        q: `A distributor buys Rs. ${S} crore a year from you at a ${fmt(cm * 100, 2)}% contribution margin. It wants credit extended from ${d1} to ${d2} days and promises ${fmt(g * 100, 2)}% more volume. Your cost of funds is ${fmt(k * 100, 2)}%. Compute the extra receivables, their annual carrying cost, and the extra contribution.`,
+        fields: [
+          { key: 'x', label: 'Extra receivables', answer: round(extra, 1), unit: 'Rs. crore', tol: 0.15 },
+          { key: 'c', label: 'Annual carrying cost', answer: round(carry, 2), unit: 'Rs. crore', tol: 0.05 },
+          { key: 'b', label: 'Extra contribution', answer: round(contrib, 2), unit: 'Rs. crore', tol: 0.05 },
+        ],
+        why: `Receivables go from ${S} × ${d1} ÷ 365 = ${fmt(rec1)} to ${fmt(S * (1 + g))} × ${d2} ÷ 365 = ${fmt(rec2)}, up ${fmt(extra)}. At ${fmt(k * 100, 2)}% that costs ${fmt(carry, 2)} a year, against ${fmt(contrib, 2)} of extra contribution if the volume is truly incremental. Recommend conditionally: link days to volume, add security, and consider precedent with other distributors.`,
+        diagnose: (v) => near(v.x, S * (d2 - d1) / 365, 0.15) ? 'wc_sign' : null,
+      };
+    },
+  },
+  fwd_hedge: {
+    topic: 'CF-11', title: 'Hedging an import payable',
+    gen: (r) => {
+      const usd = pick(r, [5, 10, 20]), m = pick(r, [3, 6]), S = pick(r, [94, 95, 96, 97]), ri = pick(r, [0.06, 0.065, 0.07]), ru = pick(r, [0.04, 0.045, 0.05]);
+      const T = m / 12, F = S * (1 + ri * T) / (1 + ru * T), cost = usd * F / 10, bad = S * (1 + ru * T) / (1 + ri * T);
+      return {
+        q: `An importer owes US$${usd} million in ${m} months. Spot is Rs. ${S.toFixed(2)}; rupee and dollar interest rates are ${fmt(ri * 100)}% and ${fmt(ru * 100)}% a year. What is the forward rate, and what rupee cost does buying forward lock in?`,
+        fields: [
+          { key: 'f', label: 'Forward rate', answer: round(F, 2), unit: 'Rs. per US$', tol: 0.02 },
+          { key: 'c', label: 'Locked rupee cost', answer: round(cost, 2), unit: 'Rs. crore', tol: 0.03 },
+        ],
+        why: `F = ${S} × (1 + ${ri} × ${fmt(T, 3)}) ÷ (1 + ${ru} × ${fmt(T, 3)}) = ${fmt(F, 2)}. US$${usd} million × ${fmt(F, 2)} = Rs. ${fmt(cost, 2)} crore. The premium reflects the interest differential, not a forecast; an option costs a premium but keeps the upside if the rupee strengthens.`,
+        diagnose: (v) => near(v.f, bad, 0.02) ? 'rate_units' : null,
+      };
+    },
+  },
+
+  // ---------- Private equity
+  waterfall: {
+    topic: 'PE-01', title: 'Distribution waterfall with catch-up',
+    gen: (r) => {
+      let C = 0, mult = 0, n = 0, pref = 0;
+      do { C = pick(r, [500, 1000, 2000]); mult = pick(r, [2, 2.2, 2.4, 2.6]); n = pick(r, [5, 6, 7]); pref = C * (1.08 ** n - 1); } while (C * mult - C - pref < pref / 4);
+      const D = C * mult, profit = D - C, carry = 0.2 * profit, lp = D - carry, noCatch = 0.2 * (profit - pref);
+      return {
+        q: `A Rs. ${fmt(C, 0)} crore fund returns Rs. ${fmt(D, 0)} crore after ${n} years. European waterfall: 8% compounding hurdle, full GP catch-up, 20% carry. How much preferred return do LPs get, and how does the Rs. ${fmt(D, 0)} crore split?`,
+        fields: [
+          { key: 'p', label: 'Preferred return to LPs', answer: Math.round(pref), unit: 'Rs. crore', tol: 3 },
+          { key: 'g', label: 'GP carry in total', answer: Math.round(carry), unit: 'Rs. crore', tol: 3 },
+          { key: 'l', label: 'LPs receive in total', answer: Math.round(lp), unit: 'Rs. crore', tol: 3 },
+        ],
+        why: `Return of capital ${fmt(C, 0)}; preferred return ${fmt(C, 0)} × (1.08^${n} − 1) = ${fmt(pref, 0)}; catch-up ${fmt(pref / 4, 0)} to the GP; the rest splits 80/20. With a full catch-up the GP ends with exactly 20% of the ${fmt(profit, 0)} profit: ${fmt(carry, 0)}. LPs get ${fmt(lp, 0)}.`,
+        diagnose: (v) => near(v.g, noCatch, 3) ? 'hurdle_math' : null,
+      };
+    },
+  },
+  sources_uses: {
+    topic: 'PE-05', title: 'Sources and uses',
+    gen: (r) => {
+      const E = pick(r, [60, 80, 100, 120, 150]), m = pick(r, [8, 9, 10, 11, 12]), fp = pick(r, [0.015, 0.02, 0.025]), dx = pick(r, [3, 3.5, 4, 4.5, 5]);
+      const EV = E * m, fees = EV * fp, debt = E * dx, eq = EV + fees - debt;
+      return {
+        q: `A sponsor buys a business with EBITDA of Rs. ${E} crore at ${m}x. Fees are ${fmt(fp * 100)}% of EV. Lenders provide ${dx}x EBITDA of debt. Compute the purchase EV, the debt, the sponsor equity, and equity as a share of total sources.`,
+        fields: [
+          { key: 'ev', label: 'Purchase EV', answer: EV, unit: 'Rs. crore', tol: 1 },
+          { key: 'd', label: 'Debt', answer: debt, unit: 'Rs. crore', tol: 1 },
+          { key: 'e', label: 'Sponsor equity', answer: round(eq, 1), unit: 'Rs. crore', tol: 1 },
+          { key: 's', label: 'Equity share of sources', answer: round(eq / (EV + fees) * 100, 1), unit: '%', tol: 0.3 },
+        ],
+        why: `Uses = EV ${EV} + fees ${fmt(fees)} = ${fmt(EV + fees)}. Sources: debt ${fmt(debt)} and the plug, sponsor equity = ${fmt(eq)} (${fmt(eq / (EV + fees) * 100)}%). Equity = EV + fees − debt.`,
+        diagnose: (v) => near(v.e, EV - debt, 1) ? 'concept' : null,
+      };
+    },
+  },
+  lbo: {
+    topic: 'PE-06', title: 'Paper LBO in five minutes',
+    gen: (r) => {
+      const E = pick(r, [80, 100, 120]), m = pick(r, [8, 9, 10]), fees = pick(r, [10, 15, 20]), dx = pick(r, [4, 4.5, 5]), g = pick(r, [0.08, 0.1, 0.12, 0.15]), xm = m - pick(r, [0, 0, 1]), paid = pick(r, [0.4, 0.5, 0.6]);
+      const n = 5, EV = E * m, debt = E * dx, eq0 = EV + fees - debt, E5 = E * (1 + g) ** n, debt5 = debt * (1 - paid), eq5 = E5 * xm - debt5, moic = eq5 / eq0, irr = (moic ** (1 / n) - 1) * 100;
+      return {
+        q: `EBITDA Rs. ${E} crore, bought at ${m}x with Rs. ${fees} crore of fees and ${dx}x debt. EBITDA grows ${fmt(g * 100, 2)}% a year for 5 years; free cash flow repays ${fmt(paid * 100, 2)}% of the entry debt. Exit at ${xm}x. Compute exit equity, MOIC and IRR.`,
+        fields: [
+          { key: 'e', label: 'Exit equity', answer: Math.round(eq5), unit: 'Rs. crore', tol: 5 },
+          { key: 'm', label: 'MOIC', answer: round(moic, 2), unit: 'x', tol: 0.03 },
+          { key: 'i', label: 'IRR', answer: round(irr, 1), unit: '%', tol: 0.4 },
+        ],
+        why: `Entry equity = ${EV} + ${fees} − ${debt} = ${fmt(eq0)}. Exit EBITDA = ${E} × ${fmt(1 + g, 2)}^5 = ${fmt(E5)}; EV = ${fmt(E5 * xm, 0)}; debt left ${fmt(debt5)}; equity ${fmt(eq5, 0)}. MOIC ${fmt(moic, 2)}x; IRR = MOIC^(1/5) − 1 = ${fmt(irr)}%. Rules of thumb: 2x in 5 years ≈ 15%, 2.5x ≈ 20%, 3x ≈ 25%.`,
+        diagnose: (v) => near(v.i, (moic - 1) / n * 100, 0.4) ? 'moic_irr' : near(v.e, E5 * xm - debt, 5) ? 'concept' : null,
+      };
+    },
+  },
+
+  // ---------- Venture capital
+  return_fund: {
+    topic: 'VC-01', title: 'What it takes to return the fund',
+    gen: (r) => {
+      const F = pick(r, [250, 500, 1000, 2000]), mult = pick(r, [3, 4]), own = pick(r, [0.08, 0.1, 0.12, 0.15]);
+      return {
+        q: `A Rs. ${fmt(F, 0)} crore fund targets ${mult}x gross and owns on average ${fmt(own * 100, 2)}% of its companies at exit. How much must the portfolio be worth at exit, and how big must one company's exit be to return the whole fund?`,
+        fields: [
+          { key: 'p', label: 'Portfolio value at exit', answer: Math.round(F * mult / own), unit: 'Rs. crore', tol: 5 },
+          { key: 'o', label: 'Exit value to return the fund', answer: Math.round(F / own), unit: 'Rs. crore', tol: 5 },
+        ],
+        why: `${fmt(F, 0)} × ${mult} ÷ ${fmt(own * 100, 2)}% = ${fmt(F * mult / own, 0)} crore of exit value across the portfolio. One company returns the fund only at ${fmt(F, 0)} ÷ ${fmt(own * 100, 2)}% = ${fmt(F / own, 0)} crore. Every new investment must plausibly reach that size, which is why good but small businesses are bad venture investments.`,
+        diagnose: (v) => near(v.p, F * mult, 5) ? 'concept' : null,
+      };
+    },
+  },
+  tam: {
+    topic: 'VC-03', title: 'Bottom-up market sizing',
+    gen: (r) => {
+      const N = pick(r, [1.5, 2, 2.5, 4, 6]), P = pick(r, [24000, 36000, 60000, 120000]), sam = pick(r, [0.3, 0.4, 0.5]), som = pick(r, [0.05, 0.08, 0.1]), x = pick(r, [6, 8, 10]);
+      const tam = N * P / 100, samV = tam * sam, somV = samV * som;
+      return {
+        q: `About ${N} lakh small businesses could use a tool priced at Rs. ${fmt(P, 0)} a year. ${fmt(sam * 100, 2)}% are reachable today, and you might win ${fmt(som * 100, 2)}% of those in five years. Size TAM, SAM and SOM (Rs. crore of annual revenue) and value the SOM at ${x}x revenue.`,
+        fields: [
+          { key: 't', label: 'TAM', answer: round(tam, 1), unit: 'Rs. crore', tol: 1 },
+          { key: 's', label: 'SAM', answer: round(samV, 1), unit: 'Rs. crore', tol: 1 },
+          { key: 'o', label: 'SOM', answer: round(somV, 1), unit: 'Rs. crore', tol: 0.5 },
+          { key: 'v', label: 'Value at the multiple', answer: round(somV * x, 0), unit: 'Rs. crore', tol: 5 },
+        ],
+        why: `TAM = ${N} lakh × Rs. ${fmt(P, 0)} = Rs. ${fmt(tam)} crore; SAM ${fmt(samV)}; SOM ${fmt(somV)}; value ≈ ${fmt(somV * x, 0)} crore. Compare that with the outcome the fund needs: unless the company can expand into adjacencies, this is a good business but not venture scale.`,
+      };
+    },
+  },
+  runway: {
+    topic: 'VC-07', title: 'Burn and runway',
+    gen: (r) => {
+      const C = pick(r, [12, 18, 24, 30, 45]), b = pick(r, [0.8, 1, 1.2, 1.5, 2]), up = pick(r, [0.2, 0.25, 0.5]);
+      return {
+        q: `A startup has Rs. ${C} crore in the bank and burns Rs. ${b} crore a month. What is its runway? If it hires ahead of the round and burn rises ${fmt(up * 100, 2)}% from next month, what is the runway then?`,
+        fields: [
+          { key: 'r', label: 'Runway today', answer: round(C / b, 1), unit: 'months', tol: 0.1 },
+          { key: 'n', label: 'Runway at the higher burn', answer: round(C / (b * (1 + up)), 1), unit: 'months', tol: 0.1 },
+        ],
+        why: `Runway = cash ÷ net burn = ${C} ÷ ${b} = ${fmt(C / b)} months; at ${fmt(b * (1 + up), 2)} a month it is ${fmt(C / (b * (1 + up)))}. Founders should raise with 12 to 18 months left, having hit the milestones that justify a higher price.`,
+      };
+    },
+  },
+  round: {
+    topic: 'VC-08', title: 'Pricing a round with an option pool',
+    gen: (r) => {
+      const P = pick(r, [16, 20, 40, 60, 80]), M = pick(r, [4, 5, 10, 15, 20]), p = pick(r, [0.08, 0.1, 0.12]);
+      const post = P + M, inv = M / post, fnd = 1 - inv - p, eff = P - p * post;
+      return {
+        q: `Founders own 100% before a round. An investor puts in Rs. ${M} crore at a Rs. ${P} crore pre-money and asks for a ${fmt(p * 100, 2)}% post-money option pool created in the pre-money. What do the investor and the founders own after the round, and what is the effective pre-money for the founders?`,
+        fields: [
+          { key: 'i', label: 'Investor ownership', answer: round(inv * 100, 1), unit: '%', tol: 0.2 },
+          { key: 'f', label: 'Founder ownership', answer: round(fnd * 100, 1), unit: '%', tol: 0.2 },
+          { key: 'e', label: 'Effective pre-money', answer: round(eff, 2), unit: 'Rs. crore', tol: 0.1 },
+        ],
+        why: `Post-money = ${P} + ${M} = ${post}; investor = ${M} ÷ ${post} = ${fmt(inv * 100)}%. The pool comes out of the pre-money, so founders keep 100 − ${fmt(inv * 100)} − ${fmt(p * 100, 2)} = ${fmt(fnd * 100)}%. The pool is worth ${fmt(p * post, 2)} crore, so the effective pre-money is ${fmt(eff, 2)}, not ${P}.`,
+        diagnose: (v) => near(v.f, (1 - inv) * (1 - p) * 100, 0.2) ? 'pool_shuffle' : null,
+      };
+    },
+  },
+  liq_pref: {
+    topic: 'VC-09', title: 'Liquidation preference payout',
+    gen: (r) => {
+      const I = pick(r, [10, 20, 30]), o = pick(r, [0.15, 0.2, 0.25]), V = I * pick(r, [1.5, 2.5, 4, 6]), part = r() < 0.5;
+      const nonp = Math.max(I, o * V), parti = I + o * (V - I), ans = part ? parti : nonp, other = part ? nonp : parti;
+      return {
+        q: `A Series A investor put in Rs. ${I} crore for ${fmt(o * 100, 2)}% with a 1x ${part ? 'participating' : 'non-participating'} preference. The company sells for Rs. ${fmt(V, 0)} crore. What does the investor receive, and what is left for everyone else?`,
+        fields: [
+          { key: 'i', label: 'Investor receives', answer: round(ans, 1), unit: 'Rs. crore', tol: 0.2 },
+          { key: 'r', label: 'Left for others', answer: round(V - ans, 1), unit: 'Rs. crore', tol: 0.2 },
+        ],
+        why: part ? `Participating: money back first (${I}), then ${fmt(o * 100, 2)}% of the remaining ${fmt(V - I, 0)} = ${fmt(o * (V - I))}, total ${fmt(parti)}.`
+          : `Non-participating: the greater of the preference (${I}) and ${fmt(o * 100, 2)}% of ${fmt(V, 0)} = ${fmt(o * V)}, so ${fmt(nonp)}. It converts once ${fmt(o * 100, 2)}% of the exit exceeds ${I}, above ${fmt(I / o, 0)} crore.`,
+        diagnose: (v) => near(v.i, other, 0.2) ? 'pref_type' : null,
+      };
+    },
+  },
+  antidil: {
+    topic: 'VC-09', title: 'Weighted-average anti-dilution',
+    gen: (r) => {
+      const A = pick(r, [10, 20, 40]), p0 = pick(r, [100, 150, 200]), amt = pick(r, [1, 2, 3]), p1 = p0 * pick(r, [0.5, 0.6, 0.75]);
+      const B = amt * 1e7 / p0 / 1e5, Cc = amt * 1e7 / p1 / 1e5, np = p0 * (A + B) / (A + Cc);
+      return {
+        q: `${A} lakh shares are outstanding. The last round was at Rs. ${p0}. A Rs. ${amt} crore down round is priced at Rs. ${fmt(p1, 0)}. Under broad-based weighted-average anti-dilution, what is the old investors' new conversion price?`,
+        fields: [{ key: 'p', label: 'New conversion price', answer: round(np, 1), unit: 'Rs.', tol: 0.2 }],
+        why: `B = ${amt} crore ÷ ${p0} = ${fmt(B, 2)} lakh shares; C = ${amt} crore ÷ ${fmt(p1, 0)} = ${fmt(Cc, 2)} lakh. New price = ${p0} × (${A} + ${fmt(B, 2)}) ÷ (${A} + ${fmt(Cc, 2)}) = ${fmt(np)}. A full ratchet would drop it all the way to ${fmt(p1, 0)}.`,
+        diagnose: (v) => near(v.p, p1, 0.2) ? 'concept' : null,
+      };
+    },
+  },
+
+  // ---------- Adjacent roles
+  sharpe: {
+    topic: 'ADJ-04', title: 'Sharpe, Treynor and alpha',
+    gen: (r) => {
+      const Rp = pick(r, [12, 14, 16, 18]), rf = pick(r, [6.5, 7]), sd = pick(r, [12, 15, 18, 20]), b = pick(r, [0.8, 0.9, 1.1, 1.2]), Rm = pick(r, [12, 13, 14]);
+      const sh = (Rp - rf) / sd, tr = (Rp - rf) / b, al = Rp - (rf + b * (Rm - rf));
+      return {
+        q: `A fund returned ${Rp}% with ${sd}% volatility and a beta of ${b}. The risk-free rate is ${rf}% and the market returned ${Rm}%. Compute the Sharpe ratio, the Treynor ratio and Jensen's alpha.`,
+        fields: [
+          { key: 's', label: 'Sharpe ratio', answer: round(sh, 2), tol: 0.01 },
+          { key: 't', label: 'Treynor ratio (%)', answer: round(tr, 2), tol: 0.05 },
+          { key: 'a', label: "Jensen's alpha", answer: round(al, 2), unit: '%', tol: 0.05 },
+        ],
+        why: `Sharpe = (${Rp} − ${rf}) ÷ ${sd} = ${fmt(sh, 2)}. Treynor = (${Rp} − ${rf}) ÷ ${b} = ${fmt(tr, 2)}. CAPM expects ${rf} + ${b} × (${Rm} − ${rf}) = ${fmt(rf + b * (Rm - rf), 2)}%, so alpha = ${fmt(al, 2)}%.`,
+      };
+    },
+  },
+  put_call: {
+    topic: 'ADJ-06', title: 'Put-call parity',
+    gen: (r) => {
+      const S = pick(r, [95, 100, 105, 110]), K = 100, rr = pick(r, [0.06, 0.07, 0.08]), T = pick(r, [0.5, 1]), C = pick(r, [6, 8, 10, 12]);
+      const pvk = K / (1 + rr) ** T, P = C - S + pvk;
+      if (P <= 0.2) return GENERATORS.put_call.gen(r);
+      return {
+        q: `A European call with strike ${K} and ${T === 1 ? 'one year' : 'six months'} to expiry costs ${C}. The stock is at ${S} and pays no dividend; the interest rate is ${fmt(rr * 100, 2)}% a year (annual compounding). What should the matching put cost?`,
+        fields: [{ key: 'p', label: 'Put price', answer: round(P, 2), tol: 0.05 }],
+        why: `C − P = S − PV(K), so P = C − S + K ÷ (1 + r)^T = ${C} − ${S} + ${fmt(pvk, 2)} = ${fmt(P, 2)}. If the market put differs, buy the cheap side and sell the rich side.`,
+        diagnose: (v) => near(v.p, C - S + K, 0.05) ? 'discounting' : null,
+      };
+    },
+  },
+  credit: {
+    topic: 'ADJ-07', title: 'Credit ratios for a lending decision',
+    gen: (r) => {
+      const E = pick(r, [120, 150, 200]), da = pick(r, [0.2, 0.25]) * E, i = pick(r, [20, 25, 30]), prin = pick(r, [30, 40, 50]), cfads = E * pick(r, [0.55, 0.6, 0.65]), nd = E * pick(r, [2, 2.5, 3.2]);
+      return {
+        q: `A borrower has EBITDA of Rs. ${E} crore, D&A of ${fmt(da, 0)}, interest of ${i} and scheduled principal of ${prin}. Cash available for debt service is Rs. ${fmt(cfads, 0)} crore and net debt is Rs. ${fmt(nd, 0)} crore. Compute interest coverage (EBIT basis), DSCR and net debt/EBITDA.`,
+        fields: [
+          { key: 'c', label: 'Interest coverage (EBIT)', answer: round((E - da) / i, 2), unit: 'x', tol: 0.03 },
+          { key: 'd', label: 'DSCR', answer: round(cfads / (prin + i), 2), unit: 'x', tol: 0.03 },
+          { key: 'l', label: 'Net debt / EBITDA', answer: round(nd / E, 2), unit: 'x', tol: 0.03 },
+        ],
+        why: `EBIT = ${E} − ${fmt(da, 0)} = ${fmt(E - da, 0)}; coverage ${fmt((E - da) / i, 2)}x (comfort above 3x). DSCR = ${fmt(cfads, 0)} ÷ (${prin} + ${i}) = ${fmt(cfads / (prin + i), 2)}x (above 1.3x for term loans). Leverage ${fmt(nd / E, 2)}x (below 3x for most corporates). End with a lending decision: amount, tenor, security, covenants, pricing.`,
+        diagnose: (v) => near(v.d, cfads / i, 0.03) ? 'concept' : null,
+      };
+    },
+  },
+  dscr_debt: {
+    topic: 'ADJ-08', title: 'Sizing project debt with a DSCR',
+    gen: (r) => {
+      const cf = pick(r, [80, 100, 120, 150]), dscr = pick(r, [1.2, 1.3, 1.4]), rr = pick(r, [0.085, 0.09, 0.1]), n = pick(r, [10, 12, 15]), cost = cf * pick(r, [7, 7.5, 8]);
+      const ds = cf / dscr, af = (1 - (1 + rr) ** -n) / rr, debt = ds * af, eq = cost - debt;
+      return {
+        q: `A project generates Rs. ${cf} crore a year of cash available for debt service. Lenders want a minimum DSCR of ${dscr}x on a ${n}-year loan at ${fmt(rr * 100)}%. The project costs Rs. ${fmt(cost, 0)} crore. Size the debt service, the maximum debt and the sponsor equity.`,
+        fields: [
+          { key: 's', label: 'Maximum annual debt service', answer: round(ds, 1), unit: 'Rs. crore', tol: 0.2 },
+          { key: 'd', label: 'Maximum debt', answer: Math.round(debt), unit: 'Rs. crore', tol: 3 },
+          { key: 'e', label: 'Sponsor equity', answer: Math.round(eq), unit: 'Rs. crore', tol: 3 },
+        ],
+        why: `Debt service = ${cf} ÷ ${dscr} = ${fmt(ds)}. Annuity factor (${fmt(rr * 100)}%, ${n} years) = ${fmt(af, 2)}, so debt = ${fmt(debt, 0)}. Equity = ${fmt(cost, 0)} − ${fmt(debt, 0)} = ${fmt(eq, 0)} (${fmt(eq / cost * 100)}%).`,
+        diagnose: (v) => near(v.d, ds * n, 3) ? 'discounting' : null,
       };
     },
   },

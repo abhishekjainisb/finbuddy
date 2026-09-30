@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useStore } from '../lib/store';
 import {
-  LESSONS, PILOT, TOPIC_BY_ID, dayKey, streakOf, levelOf, currentWeek, weekStatus, isWeak, topicState, dueCards,
+  LESSONS, scopeTopics, TOPIC_BY_ID, dayKey, streakOf, levelOf, currentWeek, weekStatus, isWeak, topicState, dueCards,
   openErrors, stateCounts, focusTopics, whatNext, addDays, STATE_LABEL,
 } from '../lib/state';
 import { Icon, Ring, Bar, FactsGrid, StateDot } from '../components/ui';
@@ -23,7 +23,7 @@ export default function Today() {
   const st = streakOf(s); const lv = levelOf(s.xp.total);
   const wk = currentWeek(s); const ws = weekStatus(s, wk);
   const due = dueCards(s).length; const open = openErrors(s).length;
-  const weak = PILOT.filter((t) => isWeak(s, t.id)).slice(0, 5);
+  const weak = scopeTopics(s).filter((t) => isWeak(s, t.id)).slice(0, 5);
   const focus = focusTopics(s).slice(0, 5);
   const counts = stateCounts(s);
   const nl = nextLesson(s);

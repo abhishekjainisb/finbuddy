@@ -5,6 +5,8 @@ import trackerJson from '../data/tracker.json';
 import questionsJson from '../data/questions.json';
 import { CORE_DRILLS } from '../drills/core';
 import { IB_DRILLS } from '../drills/ib';
+import { TRACK_DRILLS } from '../drills/tracks';
+import { TRACK_DEFS, trackByName, topicInTrack, type TrackDef } from '../data/tracks';
 import { GEN_BY_TOPIC } from '../drills/generators';
 import type { StaticDrill } from '../drills/types';
 import { WEEKS, READINESS, type Check } from '../data/plan';
@@ -17,9 +19,25 @@ export interface Question { id: string; sec: string; secTitle: string; n: number
 export const LESSONS = lessonsJson as Lesson[];
 export const TRACKER = trackerJson as Topic[];
 export const QUESTIONS = questionsJson as Question[];
-export const STATIC: StaticDrill[] = [...CORE_DRILLS, ...IB_DRILLS];
+export const STATIC: StaticDrill[] = [...CORE_DRILLS, ...IB_DRILLS, ...TRACK_DRILLS];
 export const STATIC_BY_ID: Record<string, StaticDrill> = Object.fromEntries(STATIC.map((d) => [d.id, d]));
-export const PILOT = TRACKER.filter((t) => t.id.startsWith('CORE') || t.id.startsWith('IB'));
+export const CORE_TOPICS = TRACKER.filter((t) => t.id.startsWith('CORE'));
+
+// ---------- tracks: the common core plus the student's primary and adjacent tracks
+export function tracksOf(s: UserState): TrackDef[] {
+  const p = trackByName(s.profile?.primary);
+  const a = s.profile?.adjacent ? TRACK_DEFS.find((t) => t.name === s.profile!.adjacent && t.name !== p.name) : undefined;
+  return a ? [p, a] : [p];
+}
+export function scopeTopics(s: UserState): Topic[] {
+  const ts = tracksOf(s);
+  return TRACKER.filter((t) => t.id.startsWith('CORE') || ts.some((tr) => topicInTrack(t.id, tr)));
+}
+export const scopeIds = (s: UserState) => scopeTopics(s).map((t) => t.id);
+export function readinessFor(s: UserState) {
+  const ts = tracksOf(s);
+  return { technicals: [...READINESS.technicals, ...ts.map((t) => t.readiness)], other: READINESS.other };
+}
 export const TOPIC_BY_ID: Record<string, Topic> = Object.fromEntries(TRACKER.map((t) => [t.id, t]));
 export const LESSON_BY_ID: Record<string, Lesson> = Object.fromEntries(LESSONS.map((l) => [l.id, l]));
 export const LESSONS_BY_TOPIC: Record<string, Lesson[]> = {};
@@ -243,18 +261,23 @@ export function checkStatus(s: UserState, c: Check): CheckStatus {
     }
     case 'bank': { const n = Object.values(s.cards).reduce((a, c) => a + c.reps, 0); return { ok: n >= c.min, label: `${c.min} question bank reviews`, detail: `${n} done`, progress: [Math.min(n, c.min), c.min], action: { label: 'Review', to: '/bank' } }; }
     case 'readiness': {
-      const all = [...READINESS.technicals, ...READINESS.other]; const n = all.filter((r) => s.readiness[r.id]).length;
+      const R = readinessFor(s); const all = [...R.technicals, ...R.other]; const n = all.filter((r) => s.readiness[r.id]).length;
       return { ok: n === all.length, label: 'Readiness checklist complete', detail: `${n}/${all.length}`, progress: [n, all.length], action: { label: 'Open checklist', to: '/progress?focus=readiness' } };
     }
   }
 }
+// A week's gate is the common checks plus the primary track's checks for that week.
+export function planWeek(s: UserState, n: number) {
+  const w = WEEKS[n - 1]; const tr = tracksOf(s)[0]; const tw = tr.weeks[n - 1];
+  return { ...w, track: tr, trackText: tw?.text || '', chapters: [...new Set([...w.chapters, ...(tw?.chapters || [])])], checks: [...w.checks, ...(tw?.checks || [])] };
+}
 export function weekStatus(s: UserState, n: number) {
-  const w = WEEKS[n - 1]; const cs = w.checks.map((c) => checkStatus(s, c));
+  const w = planWeek(s, n); const cs = w.checks.map((c) => checkStatus(s, c));
   return { week: w, checks: cs, done: cs.filter((c) => c.ok).length, total: cs.length, complete: cs.every((c) => c.ok) };
 }
 
 // ---------- summary numbers
-export function stateCounts(s: UserState, topics = PILOT.map((t) => t.id)) {
+export function stateCounts(s: UserState, topics = scopeIds(s)) {
   const m: Record<TopicState, number> = { new: 0, read: 0, drilled: 0, proven: 0, mastered: 0 };
   for (const t of topics) m[topicState(s, t)]++;
   return m;
@@ -290,10 +313,10 @@ export function topicQueue(s: UserState, topic: string, n = 8): QItem[] {
   return out.slice(0, n);
 }
 export function focusTopics(s: UserState): string[] {
-  const w = WEEKS[currentWeek(s) - 1];
+  const w = planWeek(s, currentWeek(s)); const scope = scopeTopics(s);
   const ids = new Set<string>();
   for (const c of w.checks) if (c.kind === 'topics') c.ids.forEach((i) => ids.add(i));
-  for (const u of w.chapters) PILOT.filter((t) => LESSONS_BY_TOPIC[t.id]?.some((l) => l.unit === u)).forEach((t) => ids.add(t.id));
+  for (const u of w.chapters) scope.filter((t) => LESSONS_BY_TOPIC[t.id]?.some((l) => l.unit === u)).forEach((t) => ids.add(t.id));
   return [...ids].filter((t) => !atLeast(topicState(s, t), 'proven'));
 }
 export function dailyQueue(s: UserState, n = 10): QItem[] {
@@ -304,8 +327,9 @@ export function dailyQueue(s: UserState, n = 10): QItem[] {
     if (STATIC_BY_ID[e.ref]) out.push({ kind: 'static', id: e.ref, topic: e.topic });
     else if (e.ref.startsWith('gen:')) out.push({ kind: 'gen', id: e.ref.slice(4), topic: e.topic, seed: Date.now() + out.length });
   }
-  const weak = PILOT.map((t) => t.id).filter((t) => isWeak(s, t));
-  const pool = [...new Set([...weak, ...focusTopics(s), ...PILOT.map((t) => t.id).filter((t) => atLeast(topicState(s, t), 'read') && !atLeast(topicState(s, t), 'mastered'))])];
+  const scope = scopeIds(s);
+  const weak = scope.filter((t) => isWeak(s, t));
+  const pool = [...new Set([...weak, ...focusTopics(s), ...scope.filter((t) => atLeast(topicState(s, t), 'read') && !atLeast(topicState(s, t), 'mastered'))])];
   const topics = pool.length ? pool : ['CORE-01', 'CORE-04', 'CORE-17'];
   let i = 0;
   while (out.length < n && i < 60) {

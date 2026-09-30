@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useStore } from '../lib/store';
 import { emptyState, type Profile } from '../lib/state';
 import { READING_PATHS } from '../data/startHere';
-import { TRACKS, TARGETS, LIVE_TRACKS } from './Onboarding';
+import { TRACKS, TARGETS } from './Onboarding';
 import { PageHead } from '../components/ui';
 
 export default function ProfilePage() {
@@ -27,9 +27,10 @@ export default function ProfilePage() {
         <div className="grid g2">
           <label className="field" htmlFor="pf-bg">Background<select id="pf-bg" value={p.background} onChange={(e) => set('background', e.target.value)}>{READING_PATHS.map((r) => <option key={r.who}>{r.who}</option>)}</select></label>
           <label className="field" htmlFor="pf-start">Plan start date<input id="pf-start" type="date" value={p.startDate} onChange={(e) => set('startDate', e.target.value)} /></label>
-          <label className="field" htmlFor="pf-track">Track<select id="pf-track" value={p.primary} onChange={(e) => set('primary', e.target.value)}>{TRACKS.map((t) => <option key={t} value={t} disabled={!LIVE_TRACKS.includes(t)}>{t}{LIVE_TRACKS.includes(t) ? '' : ' (coming soon)'}</option>)}</select></label>
+          <label className="field" htmlFor="pf-track">Primary track<select id="pf-track" value={p.primary} onChange={(e) => setP((x) => ({ ...x, primary: e.target.value, adjacent: x.adjacent === e.target.value ? '' : x.adjacent }))}>{TRACKS.map((t) => <option key={t} value={t}>{t}</option>)}</select></label>
+          <label className="field" htmlFor="pf-adj">Adjacent track<select id="pf-adj" value={p.adjacent} onChange={(e) => set('adjacent', e.target.value)}><option value="">None</option>{TRACKS.filter((t) => t !== p.primary).map((t) => <option key={t} value={t}>{t}</option>)}</select></label>
         </div>
-        <label className="field" htmlFor="pf-firms">Target banks ({firms.length}; five or more clears the week-1 check)<textarea id="pf-firms" value={p.firms} onChange={(e) => set('firms', e.target.value)} /></label>
+        <label className="field" htmlFor="pf-firms">Target firms ({firms.length}; five or more clears the week-1 check)<textarea id="pf-firms" value={p.firms} onChange={(e) => set('firms', e.target.value)} /></label>
         <div className="field">Daily XP target
           <div className="seg">{TARGETS.map(([v, l]) => <button key={v} className={p.dailyTarget === v ? 'on' : ''} onClick={() => set('dailyTarget', v)}>{l} · {v}</button>)}</div>
         </div>
