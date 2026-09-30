@@ -65,13 +65,19 @@ export default function Onboarding() {
               </button>
             ))}
           </div>
-          <label className="field" htmlFor="ob-adj">Adjacent track (optional)
-            <select id="ob-adj" value={p.adjacent} onChange={(e) => set('adjacent', e.target.value)}>
-              <option value="">None for now</option>
-              {TRACK_DEFS.filter((t) => t.name !== p.primary).map((t) => <option key={t.name} value={t.name}>{t.name}</option>)}
-            </select>
-          </label>
-          <div className="small muted">Most successful candidates prepare one primary track and one adjacent track that shares most of the preparation: IB with PE, PE with equity research, corporate finance with consulting. Your plan, practice and progress follow these choices; you can change them later in Profile.</div>
+          <h3 className="serif" style={{ fontSize: 20, color: 'var(--navy)', marginTop: 6 }}>Secondary track <span className="small muted" style={{ fontFamily: 'inherit', fontWeight: 400 }}>(optional)</span></h3>
+          <div className="stack" style={{ gap: 8 }} role="radiogroup" aria-label="Secondary track">
+            {[{ name: '', blurb: 'Focus on your primary track only. You can add one later.' }, ...TRACK_DEFS].map((tr) => {
+              const isPrimary = tr.name === p.primary; const on = p.adjacent === tr.name;
+              return (
+                <button key={tr.name || 'none'} type="button" role="radio" aria-checked={on} className={`opt ${on ? 'sel' : ''} ${isPrimary ? 'off' : ''}`} disabled={isPrimary} onClick={() => set('adjacent', tr.name)}>
+                  <span className="k">{on ? <Icon n="check" s={13} /> : ''}</span>
+                  <span style={{ flex: 1 }}><b>{tr.name || 'None for now'}</b>{isPrimary && <span className="chip" style={{ marginLeft: 8 }}>Your primary</span>}<span className="small muted" style={{ display: 'block' }}>{tr.blurb}</span></span>
+                </button>
+              );
+            })}
+          </div>
+          <div className="small muted">Your plan follows your primary track; your focus topics, Today's 10 and readiness list cover both. Every track stays open in Practice, and you can change both tracks anytime in Profile.</div>
           <details>
             <summary className="small" style={{ cursor: 'pointer', fontWeight: 600 }}>Not sure? What you enjoy tells you more than prestige</summary>
             <div className="tablewrap" style={{ marginTop: 8 }}><table className="gt"><thead><tr><th>If you enjoy</th><th>Look at</th><th>Try this first</th></tr></thead>

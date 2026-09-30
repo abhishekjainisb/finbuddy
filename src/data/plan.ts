@@ -23,7 +23,7 @@ export interface Week {
 export const WEEKS: Week[] = [
   {
     n: 1, goal: 'Diagnose and set targets',
-    common: '20-question diagnostic from the core question bank; A1 statements; read one annual report; choose primary and adjacent track; five target firms each.',
+    common: '20-question diagnostic from the core question bank; A1 statements; read one annual report; choose primary and secondary track; five target firms each.',
     ib: 'Map coverage and product groups; shortlist banks (B1).',
     chapters: ['A1'],
     exit: 'Diagnostic score recorded; target list; 90-second story draft.',

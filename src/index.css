@@ -205,6 +205,8 @@ table.gt td:not(:first-child) { font-variant-numeric: tabular-nums; }
 .opt.right { border-color: var(--good); background: var(--good-bg); }
 .opt.wrong { border-color: var(--bad); background: var(--bad-bg); }
 .opt[disabled] { cursor: default; }
+.opt.off { opacity: .45; cursor: not-allowed; background: var(--wash); }
+.opt.off:hover { border-color: var(--line); }
 .feedback { margin-top: 16px; border-radius: 11px; padding: 14px 16px; animation: rise .2s ease; }
 .feedback.ok { background: var(--good-bg); border: 1px solid color-mix(in srgb, var(--good) 35%, transparent); }
 .feedback.no { background: var(--bad-bg); border: 1px solid color-mix(in srgb, var(--bad) 35%, transparent); }

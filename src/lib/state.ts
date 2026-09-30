@@ -23,7 +23,7 @@ export const STATIC: StaticDrill[] = [...CORE_DRILLS, ...IB_DRILLS, ...TRACK_DRI
 export const STATIC_BY_ID: Record<string, StaticDrill> = Object.fromEntries(STATIC.map((d) => [d.id, d]));
 export const CORE_TOPICS = TRACKER.filter((t) => t.id.startsWith('CORE'));
 
-// ---------- tracks: the common core plus the student's primary and adjacent tracks
+// ---------- tracks: the common core plus the student's primary and secondary tracks
 export function tracksOf(s: UserState): TrackDef[] {
   const p = trackByName(s.profile?.primary);
   const a = s.profile?.adjacent ? TRACK_DEFS.find((t) => t.name === s.profile!.adjacent && t.name !== p.name) : undefined;

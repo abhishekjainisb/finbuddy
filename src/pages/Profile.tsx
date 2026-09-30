@@ -28,8 +28,9 @@ export default function ProfilePage() {
           <label className="field" htmlFor="pf-bg">Background<select id="pf-bg" value={p.background} onChange={(e) => set('background', e.target.value)}>{READING_PATHS.map((r) => <option key={r.who}>{r.who}</option>)}</select></label>
           <label className="field" htmlFor="pf-start">Plan start date<input id="pf-start" type="date" value={p.startDate} onChange={(e) => set('startDate', e.target.value)} /></label>
           <label className="field" htmlFor="pf-track">Primary track<select id="pf-track" value={p.primary} onChange={(e) => setP((x) => ({ ...x, primary: e.target.value, adjacent: x.adjacent === e.target.value ? '' : x.adjacent }))}>{TRACKS.map((t) => <option key={t} value={t}>{t}</option>)}</select></label>
-          <label className="field" htmlFor="pf-adj">Adjacent track<select id="pf-adj" value={p.adjacent} onChange={(e) => set('adjacent', e.target.value)}><option value="">None</option>{TRACKS.filter((t) => t !== p.primary).map((t) => <option key={t} value={t}>{t}</option>)}</select></label>
+          <label className="field" htmlFor="pf-adj">Secondary track<select id="pf-adj" value={p.adjacent} onChange={(e) => set('adjacent', e.target.value)}><option value="">None for now</option>{TRACKS.map((t) => <option key={t} value={t} disabled={t === p.primary}>{t === p.primary ? `${t} (your primary)` : t}</option>)}</select></label>
         </div>
+        <div className="small muted" style={{ marginTop: -4 }}>Every track stays open in Practice, whatever you pick here.</div>
         <label className="field" htmlFor="pf-firms">Target firms ({firms.length}; five or more clears the week-1 check)<textarea id="pf-firms" value={p.firms} onChange={(e) => set('firms', e.target.value)} /></label>
         <div className="field">Daily XP target
           <div className="seg">{TARGETS.map(([v, l]) => <button key={v} className={p.dailyTarget === v ? 'on' : ''} onClick={() => set('dailyTarget', v)}>{l} · {v}</button>)}</div>

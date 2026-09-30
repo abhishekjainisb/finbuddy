@@ -1,4 +1,4 @@
-export const ONE_PAGE = 'Pick one primary track and at most one adjacent track in week 1. Build the common core in weeks 1 to 3. Go deep on your track in weeks 3 to 6. From week 4, do one mock interview and one written or modelled output every week. Track your errors, not your hours.';
+export const ONE_PAGE = 'Pick one primary track and at most one secondary track in week 1. Build the common core in weeks 1 to 3. Go deep on your track in weeks 3 to 6. From week 4, do one mock interview and one written or modelled output every week. Track your errors, not your hours.';
 
 export const INTRO = 'Finance interviews reward people who can explain a concept simply, apply it to a real company, and defend a view under follow-up questions. Reading is the smallest part of that. Use this portal to decide what to learn, then spend most of your time producing evidence: a company primer, a model, a pitch, a mock interview.';
 
@@ -63,7 +63,7 @@ export const TRACK_FIT = [
 export const TRACK_TRAPS = [
   ['Applying to everything.', 'Recruiters can tell. A candidate who explains why IB and not PE, and why this bank\'s ECM desk, beats a generically strong candidate.'],
   ['Confusing prestige with fit.', 'VC has very few seats and rewards a specific kind of network and judgement. If you have not spent time with startups, a credible story takes months to build.'],
-  ['Ignoring the adjacent track.', 'Most successful candidates prepare one primary track and one adjacent one that shares 70% of the preparation: IB with PE, PE with ER, corporate finance with consulting.'],
+  ['Ignoring the secondary track.', 'Most successful candidates prepare one primary track and one secondary track that shares 70% of the preparation: IB with PE, PE with ER, corporate finance with consulting.'],
 ];
 
-export const WEEK1_DRILL = 'By the end of week 1, write down: your primary and adjacent track, five target firms for each, the desk or team you want, and one sentence on why. Read three real job descriptions for each and list the skills they mention. This list drives everything else.';
+export const WEEK1_DRILL = 'By the end of week 1, write down: your primary and secondary track, five target firms for each, the desk or team you want, and one sentence on why. Read three real job descriptions for each and list the skills they mention. This list drives everything else.';

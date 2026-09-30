@@ -78,7 +78,7 @@ select * from public.topic_accuracy order by accuracy;
 
 ## Tracks
 
-All seven tracks are live: Investment banking, Corporate finance, Private equity, Venture capital, Consulting or deal advisory, Equity research or markets, and Corporate banking and credit. Each student picks one primary track and, optionally, one adjacent track. Their practice, focus topics, mastery map, readiness checklist and weekly plan gates follow the common core plus those tracks (`src/data/tracks.ts`).
+All seven tracks are live: Investment banking, Corporate finance, Private equity, Venture capital, Consulting or deal advisory, Equity research or markets, and Corporate banking and credit. Each student picks one primary track and, optionally, one secondary track (the primary is greyed out in that list). Focus topics, the mastery map and the readiness checklist follow the common core plus both tracks; the weekly plan gates follow the primary. Every track stays open in Practice, and both can be changed in Profile (`src/data/tracks.ts`).
 
 Content: 111 guide sections across Parts A to F, 346 hand-written drills covering all 112 topics, and 47 numeric generators.
 
