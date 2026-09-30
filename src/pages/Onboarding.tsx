@@ -102,7 +102,7 @@ export default function Onboarding() {
           </div>
           <label className="row" style={{ cursor: 'pointer', alignItems: 'flex-start' }}>
             <input type="checkbox" checked={p.board} onChange={(e) => set('board', e.target.checked)} style={{ marginTop: 4 }} />
-            <span><b>Show me on the cohort leaderboard</b><br /><span className="small muted">Shares your name, XP, streak and topics proven. Never your answers or error log. {backend.kind === 'local' ? 'The leaderboard needs a synced account; on this device it stays off.' : ''}</span></span>
+            <span><b>Show me on the cohort leaderboard</b><br /><span className="small muted">Shares your name, XP, streak and topics proven. Never your answers or error log. You can switch this on or off anytime from the Leaderboard or Profile page. {backend.kind === 'local' ? 'The leaderboard needs a synced account; on this device it stays off.' : ''}</span></span>
           </label>
           <div className="small muted">How XP works: correct first try 10, generated numeric problem 12, lesson finished 15, error resolved 15, mock logged 25, plan gate 60. A streak day needs 20 XP.</div>
         </>}
