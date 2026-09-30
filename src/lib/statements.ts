@@ -174,7 +174,7 @@ export const sign = (x: number) => (Math.abs(x) < 0.005 ? '0' : (x > 0 ? '+' : '
 
 // How to say it in an interview, generated from the numbers: income statement, then cash flow, then balance sheet.
 export function sayIt(r: Res) {
-  const lab = (lines: Line[], keys: string[]) => keys.filter((k) => Math.abs(r[k]) > 0.004).map((k) => `${lines.find((x) => x.k === k)!.l.toLowerCase()} ${sign(r[k])}`);
+  const lab = (lines: Line[], keys: string[]) => keys.filter((k) => Math.abs(r[k]) > 0.004).map((k) => `${lines.find((x) => x.k === k)!.l.replace(/^[A-Z](?=[a-z])/, (c) => c.toLowerCase())} ${sign(r[k])}`);
   const is = lab(IS_LINES, ['rev', 'cogs', 'opex', 'da', 'nc', 'gain', 'interest', 'tax']);
   const p1 = is.length ? `Income statement: ${is.join(', ')}, so net income ${sign(r.ni)}.` : 'Income statement: no effect.';
   const adj = lab(CF_LINES, ['cf_da', 'cf_nc', 'cf_gain', 'cf_ar', 'cf_inv', 'cf_pre', 'cf_ap', 'cf_acc', 'cf_def']);

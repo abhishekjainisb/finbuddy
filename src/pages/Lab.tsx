@@ -13,6 +13,7 @@ import { PageHead, Icon, Bar } from '../components/ui';
 
 type Mode = 'walk' | 'predict' | 'year';
 const GROUPS = ['Operating', 'Investing', 'Financing', 'Accruals and non-cash'] as const;
+const RATIO_GROUPS: [string, string[]][] = [['Profitability', ['gm', 'em', 'ebm', 'nm']], ['Returns', ['roe', 'roa']], ['Leverage and liquidity', ['ic', 'nd', 'cr']], ['Cash and working capital', ['cc', 'dso', 'dio', 'dpo']]];
 
 // ---------- the three statements side by side
 function Statements({ r, delta, flash, nonce, pick, onlyMoved }: { r: Res; delta: boolean; flash?: Set<string>; nonce?: number; pick?: Set<string>; onlyMoved?: boolean }) {
@@ -42,7 +43,8 @@ function Statements({ r, delta, flash, nonce, pick, onlyMoved }: { r: Res; delta
       </div>
     );
   };
-  const okBal = Math.abs(r.ta - r.tle) < 0.01, okCash = Math.abs(r.cash - r.dcash) < 0.01;
+  const g = (k: string) => r[k] || 0;
+  const okBal = Math.abs(g('ta') - g('tle')) < 0.01, okCash = Math.abs(g('cash') - g('dcash')) < 0.01;
   const f = (x: number) => (delta ? sign(x) : fmtN(x));
   return (
     <>
@@ -52,8 +54,8 @@ function Statements({ r, delta, flash, nonce, pick, onlyMoved }: { r: Res; delta
         {block('Balance sheet', 'Step 3 · at period end', BS_LINES)}
       </div>
       <div className="row small" style={{ gap: 14, marginTop: 10 }}>
-        <span className={okBal ? 'ok-t' : 'bad-t'}><Icon n={okBal ? 'check' : 'x'} s={13} /> Assets {f(r.ta)} = liabilities {f(r.tl)} + equity {f(r.te)}</span>
-        <span className={okCash ? 'ok-t' : 'bad-t'}><Icon n={okCash ? 'check' : 'x'} s={13} /> Cash on the balance sheet {f(r.cash)} = {delta ? 'net change' : 'cumulative net change'} on the cash flow {f(r.dcash)}</span>
+        <span className={okBal ? 'ok-t' : 'bad-t'}><Icon n={okBal ? 'check' : 'x'} s={13} /> Assets {f(g('ta'))} = liabilities {f(g('tl'))} + equity {f(g('te'))}</span>
+        <span className={okCash ? 'ok-t' : 'bad-t'}><Icon n={okCash ? 'check' : 'x'} s={13} /> Cash on the balance sheet {f(g('cash'))} = {delta ? 'net change' : 'cumulative net change'} on the cash flow {f(g('dcash'))}</span>
       </div>
     </>
   );
@@ -105,35 +107,36 @@ function Walk({ start }: { start: string }) {
         <p className="small muted" style={{ margin: '8px 0 0' }}>In an interview, always go income statement, then cash flow, then balance sheet, and finish by saying it balances. State the tax rate you assume.</p>
       </details>
 
-      <div className="card stack" style={{ gap: 12 }}>
-        {GROUPS.map((g) => (
-          <div key={g}>
-            <div className="kicker" style={{ marginBottom: 6 }}>{g}</div>
-            <div className="row" style={{ gap: 6 }}>
-              {TXS.filter((t) => t.group === g).map((t) => (
-                <button key={t.id} className={`chip txchip ${t.id === id ? 'p1' : ''}`} onClick={() => { setId(t.id); setNonce((x) => x + 1); }}>{t.name}</button>
+      <div className="card raised stack" style={{ gap: 12 }}>
+        <label className="field" htmlFor="lab-tx" style={{ margin: 0 }}>Pick a transaction
+          <div className="row" style={{ gap: 8, flexWrap: 'nowrap', marginTop: 6 }}>
+            <button className="btn sm" aria-label="Previous transaction" onClick={() => go(-1)}><Icon n="arrowL" s={15} /></button>
+            <select id="lab-tx" value={id} onChange={(e) => { setId(e.target.value); setNonce((x) => x + 1); }} style={{ flex: 1, minWidth: 0 }}>
+              {GROUPS.map((g) => (
+                <optgroup key={g} label={g}>
+                  {TXS.filter((t) => t.group === g).map((t) => <option key={t.id} value={t.id}>{t.name}</option>)}
+                </optgroup>
               ))}
-            </div>
+            </select>
+            <button className="btn sm" aria-label="Next transaction" onClick={() => go(1)}><Icon n="arrowR" s={15} /></button>
+            <button className="btn sm hide-sm" onClick={() => { const o = TXS.filter((t) => t.id !== id); setId(o[Math.floor(Math.random() * o.length)].id); setNonce((x) => x + 1); }}><Icon n="shuffle" s={15} /> Surprise me</button>
           </div>
-        ))}
-      </div>
-
-      <div className="card raised stack" style={{ gap: 10 }}>
-        <div className="row" style={{ justifyContent: 'space-between' }}>
+        </label>
+        <div>
           <div className="kicker">{tx.group} · {idx + 1} of {TXS.length}</div>
-          <div className="row" style={{ gap: 8 }}>
-            <div className="seg" aria-label="Tax rate">
-              <button className={tax ? 'on' : ''} onClick={() => { setTax(0.25); setNonce((x) => x + 1); }}>Tax 25%</button>
-              <button className={!tax ? 'on' : ''} onClick={() => { setTax(0); setNonce((x) => x + 1); }}>No tax</button>
-            </div>
-            <div className="seg" aria-label="Rows">
-              <button className={!full ? 'on' : ''} onClick={() => setFull(false)}>What moved</button>
-              <button className={full ? 'on' : ''} onClick={() => setFull(true)}>Full</button>
-            </div>
+          <h2 className="serif" style={{ fontSize: 24, color: 'var(--navy)', margin: '4px 0 4px' }}>{tx.name}</h2>
+          <p style={{ margin: 0 }}>{tx.desc(X)}</p>
+        </div>
+        <div className="row" style={{ gap: 8 }}>
+          <div className="seg" aria-label="Tax rate">
+            <button className={tax ? 'on' : ''} onClick={() => { setTax(0.25); setNonce((x) => x + 1); }}>Tax 25%</button>
+            <button className={!tax ? 'on' : ''} onClick={() => { setTax(0); setNonce((x) => x + 1); }}>No tax</button>
+          </div>
+          <div className="seg" aria-label="Rows">
+            <button className={!full ? 'on' : ''} onClick={() => setFull(false)}>Only what moved</button>
+            <button className={full ? 'on' : ''} onClick={() => setFull(true)}>Full statements</button>
           </div>
         </div>
-        <h2 className="serif" style={{ fontSize: 24, color: 'var(--navy)', margin: 0 }}>{tx.name}</h2>
-        <p style={{ margin: 0 }}>{tx.desc(X)}</p>
       </div>
 
       <Statements r={r} delta flash={flash} nonce={nonce} onlyMoved={!full} />
@@ -267,8 +270,8 @@ function Year() {
   const [n, setN] = useState(0);
   const [play, setPlay] = useState(false);
   const [ratio, setRatio] = useState<string | null>(null);
-  const totals = useMemo(() => STORY.slice(0, n).reduce((a, s) => add(a, compute(s.p, 0)), {} as Res), [n]);
-  const stepRes = n ? compute(STORY[n - 1].p, 0) : ({} as Res);
+  const totals = useMemo(() => STORY.slice(0, n).reduce((a, s) => add(a, compute(s.p, 0)), compute({}, 0)), [n]);
+  const stepRes = n ? compute(STORY[n - 1].p, 0) : compute({}, 0);
   const flash = new Set(Object.keys(stepRes).filter((k) => Math.abs(stepRes[k]) > 0.004));
   const end = n === STORY.length;
   useEffect(() => {
@@ -298,8 +301,15 @@ function Year() {
       {end && (
         <div className="card stack" style={{ gap: 10 }}>
           <div className="kicker">Year end · which numbers does each ratio use?</div>
-          <div className="row" style={{ gap: 6 }}>
-            {RATIOS.map((x) => <button key={x.id} className={`chip txchip ${ratio === x.id ? 'p1' : ''}`} onClick={() => setRatio(ratio === x.id ? null : x.id)}>{x.l}</button>)}
+          <div className="stack" style={{ gap: 8 }}>
+            {RATIO_GROUPS.map(([gl, ids]) => (
+              <div key={gl} className="rgroup">
+                <span className="small muted">{gl}</span>
+                <div className="row" style={{ gap: 6 }}>
+                  {ids.map((rid) => { const x = RATIOS.find((q) => q.id === rid)!; return <button key={rid} className={`chip txchip ${ratio === rid ? 'p1' : ''}`} onClick={() => setRatio(ratio === rid ? null : rid)}>{x.l}</button>; })}
+                </div>
+              </div>
+            ))}
           </div>
           {R && (() => { const [f, v, u] = R.calc(totals); return (
             <div className="feedback ok" style={{ marginTop: 0 }}>

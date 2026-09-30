@@ -349,3 +349,5 @@ table.gt td:not(:first-child) { font-variant-numeric: tabular-nums; }
 .lab-link { border-left: 4px solid var(--c-india); }
 @media (max-width: 620px) { .pr-row .seg button { min-width: 0; padding: 9px 12px; } .st-row { font-size: 15px; } }
 @media (prefers-reduced-motion: reduce) { .st-row.flash { animation: none; background: var(--warn-bg); } }
+.rgroup { display: grid; grid-template-columns: 170px 1fr; gap: 8px; align-items: center; }
+@media (max-width: 620px) { .rgroup { grid-template-columns: 1fr; gap: 4px; } }

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Component, useEffect, type ReactNode } from 'react';
 import { HashRouter, MemoryRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { StoreProvider, useBoot, useStore, applyTheme, getTheme } from './lib/store';
 import { Layout, More } from './components/Layout';
@@ -25,6 +25,27 @@ function ScrollTop() {
   return null;
 }
 
+// One broken page must not blank the whole app: show a message and recover on navigation.
+class PageGuard extends Component<{ path: string; children: ReactNode }, { err: string | null; path: string }> {
+  state = { err: null as string | null, path: this.props.path };
+  static getDerivedStateFromError(e: Error) { return { err: e.message || 'error' }; }
+  static getDerivedStateFromProps(p: { path: string }, s: { err: string | null; path: string }) { return p.path !== s.path ? { err: null, path: p.path } : null; }
+  render() {
+    if (!this.state.err) return this.props.children;
+    return (
+      <div className="content narrow"><div className="card stack" style={{ gap: 10 }}>
+        <b>Something broke on this page.</b>
+        <span className="small muted">Your progress is safe. Go back, or tell the Finance Club team what you clicked. ({this.state.err})</span>
+        <div className="row"><button className="btn" onClick={() => history.back()}>Go back</button><a className="btn primary" href="#/">Today</a></div>
+      </div></div>
+    );
+  }
+}
+function Guarded({ children }: { children: ReactNode }) {
+  const { pathname, search } = useLocation();
+  return <PageGuard path={pathname + search}>{children}</PageGuard>;
+}
+
 function Routed() {
   const { s, backend, mutate } = useStore();
   // keep the name and PGID on the profile in step with the roster link
@@ -36,6 +57,7 @@ function Routed() {
   return (
     <Layout>
       <ScrollTop />
+      <Guarded>
       <Routes>
         <Route path="/" element={<Today />} />
         <Route path="/start" element={<StartHere />} />
@@ -58,6 +80,7 @@ function Routed() {
         <Route path="/more" element={<More />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      </Guarded>
     </Layout>
   );
 }
