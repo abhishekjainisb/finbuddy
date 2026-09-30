@@ -23,6 +23,7 @@ export interface Backend {
   link?: { pgid: string; name: string } | null;
   email?: string | null;
   signInOAuth?(provider: 'azure' | 'google'): Promise<void>;
+  providers?(): Promise<{ azure: boolean; google: boolean; email: boolean }>;
   sendEmailOtp?(email: string): Promise<void>;
   verifyEmailOtp?(email: string, code: string): Promise<void>;
   lookupPgid?(pgid: string): Promise<{ status: PgidStatus; name?: string }>;
@@ -159,6 +160,15 @@ export function supabaseBackend(url: string, key: string): Backend & { client: S
     async logAttempts(a) {
       if (!b.uid || !a.length) return;
       await client.from('attempts').insert(a.map((x) => ({ user_id: b.uid, t: new Date(x.t).toISOString(), ref: x.ref, topic: x.topic, ok: x.ok, tag: x.tag, src: x.src })));
+    },
+    // which sign-in options are switched on in Supabase (public settings endpoint)
+    async providers() {
+      try {
+        const r = await fetch(`${url}/auth/v1/settings`, { headers: { apikey: key } });
+        const j = await r.json();
+        const ex = j?.external || {};
+        return { azure: !!ex.azure, google: !!ex.google, email: ex.email !== false };
+      } catch { return { azure: false, google: false, email: true }; }
     },
     async signInOAuth(provider) {
       const { error } = await client.auth.signInWithOAuth({

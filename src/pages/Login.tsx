@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { authReturnError, type Backend } from '../lib/backend';
 import { Icon } from '../components/ui';
 
@@ -39,6 +39,9 @@ export default function Login({ backend, onDone }: { backend: Backend; onDone: (
     setBusy(false);
   };
   const at = stage === 'start' || stage === 'code' ? 0 : 1;
+  // show a single-sign-on button only when that provider is switched on
+  const [prov, setProv] = useState<{ azure: boolean; google: boolean } | null>(null);
+  useEffect(() => { backend.providers?.().then(setProv).catch(() => setProv({ azure: false, google: false })); }, [backend]);
 
   return (
     <div className="auth">
@@ -54,14 +57,14 @@ export default function Login({ backend, onDone }: { backend: Backend; onDone: (
       <form className="stepcard stack" style={{ minHeight: 0, gap: 14 }} onSubmit={(e) => e.preventDefault()}>
         {stage === 'start' && <>
           <h1 className="serif auth-h">Sign in to FinBuddy</h1>
-          <p className="muted" style={{ margin: 0 }}>Use your ISB Microsoft account and your PGID links itself. No password to create.</p>
-          <button type="button" className="btn lg sso" disabled={busy} onClick={() => run(() => backend.signInOAuth!('azure'))}>
+          <p className="muted" style={{ margin: 0 }}>{prov?.azure ? 'Use your ISB Microsoft account and your PGID links itself.' : 'Use your ISB email and your PGID links itself.'} No password to create.</p>
+          {prov?.azure && <button type="button" className="btn lg sso" disabled={busy} onClick={() => run(() => backend.signInOAuth!('azure'))}>
             <MsLogo /> Continue with Microsoft (ISB)
-          </button>
-          <button type="button" className="btn lg sso" disabled={busy} onClick={() => run(() => backend.signInOAuth!('google'))}>
+          </button>}
+          {prov?.google && <button type="button" className="btn lg sso" disabled={busy} onClick={() => run(() => backend.signInOAuth!('google'))}>
             <GoogleLogo /> Continue with Google
-          </button>
-          <div className="or"><span>or get a code by email</span></div>
+          </button>}
+          {(prov?.azure || prov?.google) && <div className="or"><span>or get a code by email</span></div>}
           <label className="field" htmlFor="email">Email
             <input id="email" type="email" inputMode="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="yourname_pgp2027@isb.edu" />
           </label>
