@@ -19,7 +19,7 @@ export default function ProfilePage() {
         {backend.link ? (
           <div className="card row" style={{ background: 'var(--wash)', flexWrap: 'nowrap' }}>
             <span className="tick on">✓</span>
-            <div style={{ flex: 1 }}><b>{backend.link.name}</b><div className="small muted">PGID {backend.link.pgid} · linked to your phone number</div></div>
+            <div style={{ flex: 1 }}><b>{backend.link.name}</b><div className="small muted">PGID {backend.link.pgid} · linked to {backend.email || 'your account'}</div></div>
           </div>
         ) : (
           <label className="field" htmlFor="pf-name">Name<input id="pf-name" type="text" value={p.name} onChange={(e) => set('name', e.target.value)} /></label>

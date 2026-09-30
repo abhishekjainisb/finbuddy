@@ -309,3 +309,8 @@ table.gt td:not(:first-child) { font-variant-numeric: tabular-nums; }
   .tabs button { padding: 10px 10px; }
   .seg button { padding: 9px 11px; }
 }
+.btn.sso { width: 100%; justify-content: center; gap: 10px; background: var(--paper); border: 1.5px solid var(--line); font-weight: 600; }
+.btn.sso:hover { border-color: var(--indigo); }
+.or { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 12.5px; }
+.or::before, .or::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+.auth input[type=email] { width: 100%; font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 9px; padding: 11px 12px; font-size: 16px; }

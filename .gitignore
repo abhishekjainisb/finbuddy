@@ -26,3 +26,4 @@ dist-ssr
 # class roster: personal data, never commit
 supabase/roster_seed.sql
 .env
+supabase/roster_emails.sql

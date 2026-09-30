@@ -1,5 +1,5 @@
 // Storage backends. The same app runs on three:
-//  - supabase: the production portal (phone OTP login, Postgres with row-level security)
+//  - supabase: the production portal (Microsoft/Google SSO or email code, Postgres with row-level security)
 //  - artifact: the claude.ai preview (per-person private data + a shared leaderboard)
 //  - local:    a browser-only fallback (progress stays on this device)
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
@@ -17,12 +17,14 @@ export interface Backend {
   subscribeBoard(cb: (rows: BoardRow[]) => void): () => void;
   names(ids: string[]): Promise<Record<string, string>>;
   logAttempts?(a: Attempt[]): Promise<void>;
-  // phone OTP (supabase only)
+  // sign-in (supabase only): Microsoft or Google SSO, or a code sent by email
   needsLogin?: boolean;
   needsLink?: boolean;
   link?: { pgid: string; name: string } | null;
-  sendOtp?(phone: string): Promise<void>;
-  verifyOtp?(phone: string, code: string): Promise<void>;
+  email?: string | null;
+  signInOAuth?(provider: 'azure' | 'google'): Promise<void>;
+  sendEmailOtp?(email: string): Promise<void>;
+  verifyEmailOtp?(email: string, code: string): Promise<void>;
   lookupPgid?(pgid: string): Promise<{ status: PgidStatus; name?: string }>;
   claimPgid?(pgid: string): Promise<{ ok: boolean; status: string; pgid?: string; name?: string }>;
   signOut?(): Promise<void>;
@@ -111,16 +113,23 @@ export async function artifactBackend(): Promise<Backend | null> {
 
 // ---------- Supabase (production)
 export function supabaseBackend(url: string, key: string): Backend & { client: SupabaseClient } {
-  const client = createClient(url, key, { auth: { persistSession: true, autoRefreshToken: true } });
+  // PKCE keeps the OAuth return in the query string (?code=), clear of the hash router
+  const client = createClient(url, key, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, flowType: 'pkce' } });
   const b: Backend & { client: SupabaseClient } = {
     kind: 'supabase', uid: null, canBoard: true, needsLogin: true, client,
     async load() {
       const { data: sess } = await client.auth.getSession();
-      b.uid = sess.session?.user.id ?? null; b.needsLogin = !b.uid;
+      b.uid = sess.session?.user.id ?? null; b.needsLogin = !b.uid; b.email = sess.session?.user.email ?? null;
+      cleanUrl();
       if (!b.uid) return null;
-      // signed in but not yet linked to a PGID from the class roster: ask for it first
+      // signed in but not yet linked to a PGID: a verified ISB email links itself;
+      // anyone else (Google, a personal email) confirms their PGID by hand
       const { data: link } = await client.rpc('my_link');
-      const row = Array.isArray(link) ? link[0] : link;
+      let row = Array.isArray(link) ? link[0] : link;
+      if (!row) {
+        const { data: auto } = await client.rpc('auto_link');
+        if (auto?.ok) row = { pgid: auto.pgid, name: auto.name };
+      }
       if (!row) { b.needsLogin = true; b.needsLink = true; b.link = null; return null; }
       b.needsLink = false; b.link = { pgid: row.pgid, name: row.name };
       const { data } = await client.from('user_state').select('state').eq('user_id', b.uid).maybeSingle();
@@ -151,10 +160,20 @@ export function supabaseBackend(url: string, key: string): Backend & { client: S
       if (!b.uid || !a.length) return;
       await client.from('attempts').insert(a.map((x) => ({ user_id: b.uid, t: new Date(x.t).toISOString(), ref: x.ref, topic: x.topic, ok: x.ok, tag: x.tag, src: x.src })));
     },
-    async sendOtp(phone) { const { error } = await client.auth.signInWithOtp({ phone }); if (error) throw error; },
-    async verifyOtp(phone, code) {
-      const { data, error } = await client.auth.verifyOtp({ phone, token: code, type: 'sms' });
-      if (error) throw error; b.uid = data.user?.id ?? null; b.needsLogin = !b.uid;
+    async signInOAuth(provider) {
+      const { error } = await client.auth.signInWithOAuth({
+        provider,
+        options: { redirectTo: window.location.origin + window.location.pathname, scopes: provider === 'azure' ? 'email openid profile' : undefined, queryParams: provider === 'google' ? { prompt: 'select_account' } : undefined },
+      });
+      if (error) throw error;
+    },
+    async sendEmailOtp(email) {
+      const { error } = await client.auth.signInWithOtp({ email, options: { shouldCreateUser: true } });
+      if (error) throw error;
+    },
+    async verifyEmailOtp(email, code) {
+      const { data, error } = await client.auth.verifyOtp({ email, token: code, type: 'email' });
+      if (error) throw error; b.uid = data.user?.id ?? null; b.needsLogin = !b.uid; b.email = data.user?.email ?? null;
     },
     async lookupPgid(pgid) {
       const { data, error } = await client.rpc('lookup_pgid', { p: pgid });
@@ -171,6 +190,20 @@ export function supabaseBackend(url: string, key: string): Backend & { client: S
     async signOut() { await client.auth.signOut(); b.uid = null; b.needsLogin = true; b.link = null; },
   };
   return b;
+}
+
+// drop the ?code= left behind by an OAuth return so a refresh does not replay it
+export let authReturnError = '';
+function cleanUrl() {
+  try {
+    const u = new URL(window.location.href);
+    const desc = u.searchParams.get('error_description') || new URLSearchParams(u.hash.replace(/^#\/?/, '')).get('error_description');
+    if (desc) authReturnError = desc.replace(/\+/g, ' ');
+    if (u.searchParams.has('code') || u.searchParams.has('error') || u.searchParams.has('error_description')) {
+      ['code', 'error', 'error_code', 'error_description', 'state'].forEach((k) => u.searchParams.delete(k));
+      window.history.replaceState(null, '', u.pathname + (u.search ? u.search : '') + u.hash);
+    }
+  } catch { /* ignore */ }
 }
 
 export async function pickBackend(): Promise<Backend> {

@@ -1,0 +1,11 @@
+<!-- Paste into Supabase: Authentication > Emails > Templates, for BOTH "Magic link or OTP" and "Confirm sign up".
+     Subject line to use:  FinBuddy sign-in code: {{ .Token }}
+     Plain text, one code, no links and no images: this is what keeps it out of spam. -->
+<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.5;color:#1b1d2e;max-width:480px">
+  <p>Hi,</p>
+  <p>Your FinBuddy sign-in code is:</p>
+  <p style="font-size:28px;font-weight:bold;letter-spacing:6px;margin:12px 0">{{ .Token }}</p>
+  <p>Enter it on the FinBuddy sign-in page. It expires in 10 minutes.</p>
+  <p>If you did not ask for this code, you can ignore this email.</p>
+  <p>ISB Finance Club, PGP Co'27</p>
+</div>

@@ -36,7 +36,7 @@ export default function Onboarding() {
       <div className="stepcard stack" style={{ gap: 16, marginTop: 16 }}>
         {step === 0 && <>
           <h1 className="serif" style={{ fontSize: 30, color: 'var(--navy)' }}>{linked ? `Welcome, ${linked.name.split(' ')[0]}.` : 'Read. Drill. Prove. Track.'}</h1>
-          {linked && <div className="card row" style={{ background: 'var(--wash)', flexWrap: 'nowrap' }}><Icon n="user" /><div><b>{linked.name}</b><div className="small muted">PGID {linked.pgid} · linked to your phone</div></div></div>}
+          {linked && <div className="card row" style={{ background: 'var(--wash)', flexWrap: 'nowrap' }}><Icon n="user" /><div><b>{linked.name}</b><div className="small muted">PGID {linked.pgid} · linked to {backend.email || 'your account'}</div></div></div>}
           <p className="muted" style={{ margin: 0 }}>{ONE_PAGE}</p>
           {!linked && <label className="field" htmlFor="ob-name">Your name<input id="ob-name" type="text" value={p.name} onChange={(e) => set('name', e.target.value)} placeholder="As your peers know you" autoFocus /></label>}
         </>}
