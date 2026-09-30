@@ -38,13 +38,13 @@ SINGLE=1 npx vite build   # one self-contained index.html (figures stay in dist/
 
 Without Supabase keys the app saves progress in the browser. Inside a claude.ai artifact it saves to the viewer's account and shares an opt-in leaderboard.
 
-## Sign-in: Microsoft, Google or an email code, then PGID
+## Sign-in: a code to the ISB email
 
-1. The student signs in with **Microsoft (ISB account)**, **Google**, or a **6-digit code by email**. All three are free.
-2. If the verified email is on the class roster (the ISB address), the PGID links automatically.
-3. Otherwise (Google, a personal email) the student types their PGID once and confirms the name.
+1. The student enters their ISB address (`...@isb.edu`) and gets a 6-digit code by email.
+2. The verified address is matched to the class roster on the server, which links the PGID automatically. No PGID typing, and nobody can claim someone else's PGID.
+3. Sessions persist: a student signs in once per device and browser and stays signed in until they sign out.
 
-Guard rails: one PGID per account; a PGID linked by hand is taken back automatically when its owner signs in with their ISB account; 15 PGID lookups per hour per account; roster emails stay on the server and are never sent to the browser. `roster_seed.sql` and `roster_emails.sql` are git-ignored because they are personal data.
+Only @isb.edu addresses are accepted. A student whose address is not on the roster sees "We could not find you"; add them with `insert into public.roster (pgid, name, email) values (...)` or fix their email with an `update`. Roster emails stay on the server and are never sent to the browser. `roster_seed.sql` and `roster_emails.sql` are git-ignored because they are personal data.
 
 ## Go live
 
@@ -56,16 +56,6 @@ Run in the Supabase SQL editor, in order: `migrations/0001_init.sql`, `roster_se
 - Authentication, Emails, Templates: paste `supabase/email/code_email.html` into both **Magic link or OTP** and **Confirm sign up**, subject `FinBuddy sign-in code: {{ .Token }}`.
 - Authentication, Sign In / Providers, Email: set OTP expiry to 600 seconds.
 - Authentication, Rate Limits: raise emails per hour to about 200 for launch day.
-
-**Microsoft (ISB accounts only)**
-- portal.azure.com, Microsoft Entra ID, App registrations, New registration: name FinBuddy, "Accounts in any organizational directory", redirect URI (Web) `https://<project>.supabase.co/auth/v1/callback`.
-- Certificates & secrets: new client secret, copy the Value. Token configuration: add optional claim `email` to the ID token.
-- Supabase, Providers, **Azure**: Application (client) ID, secret, and Azure Tenant URL `https://login.microsoftonline.com/a4dae443-38ab-404a-b331-9d1d337fcf37` (ISB's tenant, so only ISB accounts can sign in).
-- If ISB IT blocks consent for new apps, students see "Need admin approval"; the app tells them to use the email code with their ISB address, which links the PGID the same way.
-
-**Google**
-- console.cloud.google.com: new project, OAuth consent screen (External, app name FinBuddy), then **Publish app**. Credentials, OAuth client ID, Web application, redirect URI `https://<project>.supabase.co/auth/v1/callback`.
-- Supabase, Providers, **Google**: client ID and secret.
 
 **URLs**: Authentication, URL Configuration: Site URL = your Vercel address; Redirect URLs add `https://<your-vercel-address>/**`.
 
