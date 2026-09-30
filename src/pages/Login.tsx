@@ -27,7 +27,7 @@ export default function Login({ backend, onDone }: { backend: Backend; onDone: (
   const e164 = '+91' + digits;
   const run = async (f: () => Promise<void>) => {
     setErr(''); setBusy(true);
-    try { await f(); } catch (e: any) { setErr(friendly(e?.message)); }
+    try { await f(); } catch (e: any) { setErr(friendly(e, stage)); }
     setBusy(false);
   };
 
@@ -109,10 +109,15 @@ export default function Login({ backend, onDone }: { backend: Backend; onDone: (
   );
 }
 
-function friendly(m?: string) {
-  if (!m) return 'Something went wrong. Try again.';
-  if (/token has expired|invalid/i.test(m)) return 'That code is wrong or has expired. Check it, or tap Resend code.';
-  if (/rate limit|too many/i.test(m)) return 'Too many attempts. Wait a minute and try again.';
-  if (/phone.*(provider|disabled)|sms/i.test(m)) return 'SMS sign-in is not switched on yet. Tell the Finance Club team.';
-  return m;
+// Map Supabase auth errors to plain messages, using the error code first so a
+// failed SMS send is never reported as a wrong code.
+function friendly(e: any, stage: Stage) {
+  const code: string = e?.code || '';
+  const m: string = e?.message || '';
+  if (code === 'sms_send_failed' || /sending.*otp|provider/i.test(m)) return 'We could not send the SMS. The sign-in service is being set up; please try again later or tell the Finance Club team.';
+  if (code === 'over_sms_send_rate_limit' || code === 'over_request_rate_limit' || /rate limit|too many/i.test(m)) return 'Too many attempts. Wait a minute and try again.';
+  if (code === 'phone_provider_disabled' || /phone.*disabled/i.test(m)) return 'Phone sign-in is switched off right now. Tell the Finance Club team.';
+  if (code === 'otp_expired' || (stage === 'code' && /expired|invalid/i.test(m))) return 'That code is wrong or has expired. Check it, or tap Resend code.';
+  if (code === 'validation_failed' || /phone/i.test(m)) return 'That phone number does not look right. Enter your 10-digit mobile number.';
+  return m || 'Something went wrong. Try again.';
 }
