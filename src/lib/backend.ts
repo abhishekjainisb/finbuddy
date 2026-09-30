@@ -24,6 +24,7 @@ export interface Backend {
   email?: string | null;
   signInOAuth?(provider: 'azure' | 'google'): Promise<void>;
   providers?(): Promise<{ azure: boolean; google: boolean; email: boolean }>;
+  findStudent?(q: string): Promise<{ pgid: string; name: string; email: string }[]>;
   sendEmailOtp?(email: string): Promise<void>;
   verifyEmailOtp?(email: string, code: string): Promise<void>;
   lookupPgid?(pgid: string): Promise<{ status: PgidStatus; name?: string }>;
@@ -176,6 +177,11 @@ export function supabaseBackend(url: string, key: string): Backend & { client: S
         options: { redirectTo: window.location.origin + window.location.pathname, scopes: provider === 'azure' ? 'email openid profile' : undefined, queryParams: provider === 'google' ? { prompt: 'select_account' } : undefined },
       });
       if (error) throw error;
+    },
+    async findStudent(q) {
+      const { data, error } = await client.rpc('find_student', { q });
+      if (error) throw error;
+      return (data || []) as { pgid: string; name: string; email: string }[];
     },
     async sendEmailOtp(email) {
       const { error } = await client.auth.signInWithOtp({ email, options: { shouldCreateUser: true } });

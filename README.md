@@ -9,7 +9,7 @@ A practice-first portal built from the *Finance Placement Prep Guide* (Edition 1
 | Lessons | 111 guide sections across Parts A to F. Each is a stepped lesson with quick checks, plus a full-page view. |
 | Drills | 346 hand-written items (multiple choice, multi-select, ordering, sorting) covering all 112 topics, and 47 numeric generators that make fresh problems every time and diagnose the kind of slip. |
 | Question bank | 103 guide interview questions with model answers. Answer aloud against a timer, then grade yourself; grades schedule spaced review (1, 3, 7, 14, 30, 60 days). |
-| Sign-in | Phone OTP, then a one-time link to the student's PGID on the class roster. |
+| Sign-in | Find yourself by name or PGID, get a 6-digit code at your ISB email, stay signed in. The PGID links automatically. |
 | Tracking | Topic states (Not started, Read, Drilled, Proven, Mastered), weak flags, XP, levels, streaks, daily target, error log, 8-week plan with automatic exit gates, readiness checklist, mock interview rubric, opt-in leaderboard. |
 | Library | Formula sheet, 90-term glossary, 97 deep links into the club SharePoint folder (ISB login required; nothing is re-hosted), and the market dashboard with an as-of date and a re-check date on every figure. |
 
@@ -38,17 +38,19 @@ SINGLE=1 npx vite build   # one self-contained index.html (figures stay in dist/
 
 Without Supabase keys the app saves progress in the browser. Inside a claude.ai artifact it saves to the viewer's account and shares an opt-in leaderboard.
 
-## Sign-in: a code to the ISB email
+## Sign-in: find yourself, get a code at your ISB email
 
-1. The student enters their ISB address (`...@isb.edu`) and gets a 6-digit code by email.
-2. The verified address is matched to the class roster on the server, which links the PGID automatically. No PGID typing, and nobody can claim someone else's PGID.
+1. The student types part of their name (any order, partial words) or 4+ digits of their PGID and picks themselves from the class list. Their ISB email fills in from the roster (`find_student`, migration 0003).
+2. A 6-digit code goes to that ISB email. The verified address is matched to the roster on the server, which links the PGID automatically.
 3. Sessions persist: a student signs in once per device and browser and stays signed in until they sign out.
 
-Only @isb.edu addresses are accepted. A student whose address is not on the roster sees "We could not find you"; add them with `insert into public.roster (pgid, name, email) values (...)` or fix their email with an `update`. Roster emails stay on the server and are never sent to the browser. `roster_seed.sql` and `roster_emails.sql` are git-ignored because they are personal data.
+Students can also type their @isb.edu address directly. A student whose address is not on the roster sees "We could not find you"; add them with `insert into public.roster (pgid, name, email) values (...)` or fix their email with an `update`.
+
+**Why the open search is safe.** The search shows name, PGID and ISB email (the public class list, at most 6 matches per query). That cannot be used to take an account: the code only reaches the owner's inbox, and a PGID links only to the email verified for it. The one residual risk is nuisance: someone could trigger code emails to classmates and use up the hourly email limit. If that happens, turn on CAPTCHA (Authentication, Attack Protection, Cloudflare Turnstile). `roster_seed.sql` and `roster_emails.sql` stay git-ignored so the repo itself does not carry the list.
 
 ## Go live
 
-Run in the Supabase SQL editor, in order: `migrations/0001_init.sql`, `roster_seed.sql`, `migrations/0002_sso_email.sql`, `roster_emails.sql`. Migration 0002 also deletes any old phone sign-in account, which frees its PGID.
+Run in the Supabase SQL editor, in order: `migrations/0001_init.sql`, `roster_seed.sql`, `migrations/0002_sso_email.sql`, `roster_emails.sql`, `migrations/0003_find_student.sql`. Migration 0002 also deletes any old phone sign-in account, which frees its PGID.
 
 **Email codes (free, no Twilio)**
 - Authentication, Sign In / Providers: turn **Phone** off; **Email** on.

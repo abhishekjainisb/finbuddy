@@ -314,3 +314,9 @@ table.gt td:not(:first-child) { font-variant-numeric: tabular-nums; }
 .or { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 12.5px; }
 .or::before, .or::after { content: ''; flex: 1; height: 1px; background: var(--line); }
 .auth input[type=email] { width: 100%; font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 9px; padding: 11px 12px; font-size: 16px; }
+.combo { position: relative; }
+.combo-list { list-style: none; margin: 6px 0 0; padding: 4px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); box-shadow: var(--shadow); max-height: 320px; overflow-y: auto; }
+.combo-list button { all: unset; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px; width: 100%; padding: 10px 12px; border-radius: 8px; cursor: pointer; font-size: 15px; }
+.combo-list button span { font-size: 12.5px; }
+.combo-list button.on, .combo-list button:hover { background: var(--wash2); }
+.combo-list button:focus-visible { outline: 2px solid var(--indigo); }
