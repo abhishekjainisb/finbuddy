@@ -295,8 +295,12 @@ function GenDrill({ item, firstTry, onAnswer, onNext, hideTopic }: Props) {
           return (
             <div key={f.key} className={`numfield ${st}`}>
               <label htmlFor={`f-${f.key}`}>{f.label}{f.unit ? <span className="muted"> ({f.unit})</span> : null}</label>
-              <input id={`f-${f.key}`} ref={i === 0 ? first : undefined} type="text" inputMode="decimal" autoComplete="off" value={vals[f.key] || ''} disabled={ok !== null}
-                onChange={(e) => setVals((v) => ({ ...v, [f.key]: e.target.value }))} placeholder="0" />
+              <div className="numin">
+                <button type="button" className="pm" tabIndex={-1} disabled={ok !== null} aria-label="Flip the sign" title="Flip the sign (phone keypads have no minus key)"
+                  onClick={() => setVals((v) => { const x = (v[f.key] || '').trim(); return { ...v, [f.key]: x.startsWith('-') || x.startsWith('−') ? x.slice(1) : '-' + x }; })}>±</button>
+                <input id={`f-${f.key}`} ref={i === 0 ? first : undefined} type="text" inputMode="decimal" autoComplete="off" value={vals[f.key] || ''} disabled={ok !== null}
+                  onChange={(e) => setVals((v) => ({ ...v, [f.key]: e.target.value }))} placeholder="0" />
+              </div>
               {ok !== null && st === 'wrong' && <div className="ans">Answer: <b>{show(f.answer)}</b></div>}
             </div>
           );

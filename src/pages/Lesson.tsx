@@ -11,6 +11,7 @@ import { Blocks } from '../components/Blocks';
 import { Drill, type Outcome } from '../components/Drill';
 import { Bar, Icon, StateDot, hashStr } from '../components/ui';
 import { UNITS } from './Learn';
+import { LabLink } from './Lab';
 
 type Step = { kind: 'content'; blocks: Block[] } | { kind: 'check'; item: QItem } | { kind: 'end' };
 
@@ -130,6 +131,7 @@ function Player({ l }: { l: Lesson }) {
     return (
       <div className="content narrow">
         {header}{title}
+        <LabLink topics={l.topics} style={{ marginBottom: 14 }} />
         <div className="card" style={{ padding: '24px 26px' }}>
           <Blocks blocks={l.blocks} taskKey={l.id} />
           <div className="row" style={{ justifyContent: 'flex-end', borderTop: '1px solid var(--line)', paddingTop: 14 }}>
@@ -150,6 +152,7 @@ function Player({ l }: { l: Lesson }) {
         <span className="small muted tnum">{i + 1}/{steps.length}</span>
       </div>
       {i === 0 && title}
+      {i === 0 && <LabLink topics={l.topics} style={{ marginBottom: 14 }} />}
       <div className="stepcard" key={i}>
         {i > 0 && step.kind === 'content' && <div className="kicker" style={{ marginBottom: 10 }}>{l.id} {l.title}</div>}
         {step.kind === 'content' && <Blocks blocks={step.blocks} taskKey={`${l.id}:${i}`} />}

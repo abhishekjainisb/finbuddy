@@ -7,7 +7,7 @@ A practice-first portal built from the *Finance Placement Prep Guide* (Edition 1
 | Area | Contents |
 |---|---|
 | Lessons | 111 guide sections across Parts A to F. Each is a stepped lesson with quick checks, plus a full-page view. |
-| Drills | 346 hand-written items (multiple choice, multi-select, ordering, sorting) covering all 112 topics, and 47 numeric generators that make fresh problems every time and diagnose the kind of slip. |
+| Drills | 346 hand-written items (multiple choice, multi-select, ordering, sorting) covering all 112 topics, and 48 numeric generators that make fresh problems every time and diagnose the kind of slip. |
 | Question bank | 103 guide interview questions with model answers. Answer aloud against a timer, then grade yourself; grades schedule spaced review (1, 3, 7, 14, 30, 60 days). |
 | Sign-in | Find yourself by name or PGID, get a 6-digit code at your ISB email, stay signed in. The PGID links automatically. |
 | Tracking | Topic states (Not started, Read, Drilled, Proven, Mastered), weak flags, XP, levels, streaks, daily target, error log, 8-week plan with automatic exit gates, readiness checklist, mock interview rubric, opt-in leaderboard. |
@@ -80,7 +80,7 @@ select * from public.topic_accuracy order by accuracy;
 
 All seven tracks are live: Investment banking, Corporate finance, Private equity, Venture capital, Consulting or deal advisory, Equity research or markets, and Corporate banking and credit. Each student picks one primary track and, optionally, one secondary track (the primary is greyed out in that list). Focus topics, the mastery map and the readiness checklist follow the common core plus both tracks; the weekly plan gates follow the primary. Every track stays open in Practice, and both can be changed in Profile (`src/data/tracks.ts`).
 
-Content: 111 guide sections across Parts A to F, 346 hand-written drills covering all 112 topics, and 47 numeric generators.
+Content: 111 guide sections across Parts A to F, 346 hand-written drills covering all 112 topics, and 48 numeric generators.
 
 ## Keeping it current
 

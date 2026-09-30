@@ -8,6 +8,7 @@ const NAV = [
   { to: '/', n: 'home', l: 'Today', end: true },
   { to: '/learn', n: 'book', l: 'Learn' },
   { to: '/practice', n: 'target', l: 'Practice' },
+  { to: '/lab', n: 'layers', l: 'Statements lab' },
   { to: '/bank', n: 'cards', l: 'Question bank', badge: 'due' },
   { to: '/errors', n: 'alert', l: 'Error log', badge: 'errors' },
   { sep: true },
@@ -80,7 +81,7 @@ export function Layout({ children }: { children: ReactNode }) {
 export function More() {
   const { s } = useStore();
   const items = [
-    ['/bank', 'cards', 'Question bank', `${dueCards(s).length} due`], ['/errors', 'alert', 'Error log', `${openErrors(s).length} open`],
+    ['/lab', 'layers', 'Statements lab', 'See the three statements move'], ['/bank', 'cards', 'Question bank', `${dueCards(s).length} due`], ['/errors', 'alert', 'Error log', `${openErrors(s).length} open`],
     ['/progress', 'chart', 'Progress', ''], ['/mocks', 'mic', 'Mock interviews', `${s.mocks.length} logged`], ['/board', 'trophy', 'Leaderboard', ''],
     ['/library', 'lib', 'Library', 'Formulas, glossary, club folder, markets'], ['/start', 'flag', 'Start here', ''], ['/profile', 'user', 'Profile', ''],
   ];

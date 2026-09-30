@@ -4,6 +4,7 @@ import { useStore } from '../lib/store';
 import { tracksOf, LESSON_BY_ID, TOPIC_BY_ID, topicState, isWeak, STATE_LABEL, QUESTIONS_BY_TOPIC, DRILLS_BY_TOPIC } from '../lib/state';
 import { GEN_BY_TOPIC } from '../drills/generators';
 import { PARTS } from '../data/startHere';
+import { LabLink } from './Lab';
 import { Icon, Bar, PageHead, StateDot, Inline, Back } from '../components/ui';
 
 export interface Unit { id: string; part: string; kicker: string; title: string; intro: string; page: number; sections: string[] }
@@ -69,6 +70,7 @@ export function UnitPage() {
     <div className="content">
       <Back to="/learn" label="All units" />
       <PageHead kicker={u.kicker} title={u.title} sub={<Inline t={u.intro} />} />
+      <LabLink topics={u.sections.flatMap((sid) => LESSON_BY_ID[sid]?.topics || [])} style={{ marginBottom: 16 }} />
       <div className="stack">
         {u.sections.map((sid) => {
           const l = LESSON_BY_ID[sid]; if (!l) return null;

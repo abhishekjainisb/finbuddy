@@ -1,6 +1,8 @@
 // Parametric numeric drills. Each generator builds a fresh question from a seed,
 // computes the answer key, and diagnoses common wrong answers into error tags.
 
+import { TX_BY_ID, compute, sayIt } from '../lib/statements';
+
 export type Rng = () => number;
 export function rng(seed: number): Rng {
   let a = seed >>> 0;
@@ -71,6 +73,30 @@ export const GENERATORS: Record<string, { topic: string; title: string; gen: Gen
         ],
         why: `EBIT and PBT fall by ${X}; tax falls by ${fmt(X * t)}; net income falls by ${fmt(X * (1 - t))}. CFO = net income ${fmt(dNI)} + depreciation ${X} = +${fmt(dCash)}. PP&E falls ${X}, cash rises ${fmt(dCash)}, so assets fall ${fmt(X * (1 - t))}, matching the fall in retained earnings.`,
         diagnose: (v) => near(v.ni, -X) ? 'forgot_tax' : near(v.cfo, -X) || near(v.cfo, dNI) ? 'dep_as_cash' : null,
+      };
+    },
+  },
+  walk_tx: {
+    topic: 'CORE-04', title: 'Walk a transaction through the statements',
+    gen: (r) => {
+      const ids = ['interest', 'sell', 'cashsale', 'creditsale', 'invsale', 'earned', 'cashexp', 'dep', 'wages', 'prepaid', 'invwd', 'impair', 'sbc', 'collect', 'advance'];
+      const tx = TX_BY_ID[pick(r, ids)]; const X = pick(r, [20, 40, 50, 60, 80, 100, 120, 200]); const t = pick(r, [0.25, 0.3]);
+      const R = compute(tx.p(X), t), R0 = compute(tx.p(X), 0);
+      const wc = Math.abs(R.cfo - R.ni - R.cf_da - R.cf_nc - R.cf_gain) > 0.004;
+      return {
+        q: `${tx.desc(X)} The tax rate is ${fmt(t * 100, 2)}%, paid in cash. Walk it through: give the change in each line (use a minus sign for a fall, 0 for no change).`,
+        fields: [
+          { key: 'ni', label: 'Change in net income', answer: R.ni },
+          { key: 'cfo', label: 'Change in cash from operations', answer: R.cfo },
+          { key: 'cash', label: 'Change in cash on the balance sheet', answer: R.dcash },
+        ],
+        why: sayIt(R).join(' ') + ' ' + tx.note,
+        diagnose: (v) => {
+          if (Math.abs(R0.ni - R.ni) > 0.004 && near(v.ni, R0.ni)) return 'forgot_tax';
+          if (near(v.cfo, R.ni) && Math.abs(R.cfo - R.ni) > 0.004) return wc ? 'wc_sign' : 'dep_as_cash';
+          if (wc && near(v.cfo, 2 * R.ni - R.cfo)) return 'wc_sign';
+          return null;
+        },
       };
     },
   },

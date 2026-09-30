@@ -14,6 +14,7 @@ import Plan from './pages/Plan';
 import Progress from './pages/Progress';
 import Mocks from './pages/Mocks';
 import Library from './pages/Library';
+import Lab from './pages/Lab';
 import Board from './pages/Board';
 import ProfilePage from './pages/Profile';
 import StartHere from './pages/StartHere';
@@ -44,6 +45,7 @@ function Routed() {
         <Route path="/topic/:id" element={<TopicPage />} />
         <Route path="/practice" element={<Practice />} />
         <Route path="/practice/run" element={<PracticeRun />} />
+        <Route path="/lab" element={<Lab />} />
         <Route path="/diagnostic" element={<Diagnostic />} />
         <Route path="/bank" element={<Bank />} />
         <Route path="/errors" element={<Errors />} />

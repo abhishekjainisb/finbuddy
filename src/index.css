@@ -229,7 +229,10 @@ table.gt td:not(:first-child) { font-variant-numeric: tabular-nums; }
 .sortrow select { width: auto; min-width: 150px; max-width: 46vw; padding: 6px 8px; font-size: 13px; }
 .numfields { display: grid; gap: 10px; }
 .numfield { display: grid; grid-template-columns: minmax(0, 1fr) 150px; align-items: center; gap: 10px; }
-.numfield input { text-align: right; font-variant-numeric: tabular-nums; }
+.numfield input { text-align: right; font-variant-numeric: tabular-nums; min-width: 0; flex: 1; }
+.numin { display: flex; gap: 6px; min-width: 0; }
+.numin .pm { flex: none; width: 40px; border: 1px solid var(--line); border-radius: 10px; background: var(--wash); font: 700 16px/1 var(--sans); color: var(--ink2); cursor: pointer; }
+.numin .pm:disabled { opacity: .4; cursor: default; }
 .numfield.right input { border-color: var(--good); background: var(--good-bg); }
 .numfield.wrong input { border-color: var(--bad); background: var(--bad-bg); }
 .numfield .ans { grid-column: 2; font-size: 12px; color: var(--muted); text-align: right; }
@@ -322,3 +325,27 @@ table.gt td:not(:first-child) { font-variant-numeric: tabular-nums; }
 .combo-list button span { font-size: 12.5px; }
 .combo-list button.on, .combo-list button:hover { background: var(--wash2); }
 .combo-list button:focus-visible { outline: 2px solid var(--indigo); }
+
+/* Statements lab */
+.st-card { padding: 16px; }
+.st-sub { font: 700 10.5px/1.2 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 10px 0 4px; }
+.st-row { display: flex; justify-content: space-between; gap: 10px; padding: 4px 6px; margin: 0 -6px; border-radius: 6px; font-size: 14px; }
+.st-row.total { font-weight: 700; border-top: 1px solid var(--line); margin-top: 2px; padding-top: 6px; }
+.st-row.zero { color: var(--faint); }
+.st-row b.up { color: var(--good); }
+.st-row b.down { color: var(--bad); }
+.st-row.flash { animation: stflash 1.6s ease; }
+.st-row.pick { outline: 2px solid var(--indigo); background: var(--wash2); }
+@keyframes stflash { 0%, 35% { background: var(--warn-bg); } 100% { background: transparent; } }
+.ok-t { color: var(--good); display: inline-flex; align-items: center; gap: 4px; }
+.bad-t { color: var(--bad); display: inline-flex; align-items: center; gap: 4px; }
+.txchip { cursor: pointer; font-size: 13px; padding: 5px 11px; }
+.pr-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; flex-wrap: wrap; }
+.pr-row .pr-l { font-weight: 600; }
+.pr-row.right { border-color: color-mix(in srgb, var(--good) 50%, transparent); background: var(--good-bg); }
+.pr-row.wrong { border-color: color-mix(in srgb, var(--bad) 50%, transparent); background: var(--bad-bg); }
+.pr-row .seg button.truth { box-shadow: inset 0 0 0 2px var(--good); }
+.pr-row .seg button { min-width: 62px; }
+.lab-link { border-left: 4px solid var(--c-india); }
+@media (max-width: 620px) { .pr-row .seg button { min-width: 0; padding: 9px 12px; } .st-row { font-size: 15px; } }
+@media (prefers-reduced-motion: reduce) { .st-row.flash { animation: none; background: var(--warn-bg); } }

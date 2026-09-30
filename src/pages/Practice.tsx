@@ -10,6 +10,7 @@ import { GENERATORS, GEN_BY_TOPIC, TAG_LABELS } from '../drills/generators';
 import { Session, type SessionResult } from '../components/Session';
 import { Bar, Icon, PageHead, StateDot, Back, shuffled } from '../components/ui';
 import { UNITS, PART_COLOR } from './Learn';
+import { LabLink } from './Lab';
 import { TRACK_DEFS, topicInTrack } from '../data/tracks';
 
 const clusterOf = (id: string) => TOPIC_BY_ID[id]?.cluster || id;
@@ -32,7 +33,7 @@ export default function Practice() {
   return (
     <div className="content">
       <PageHead kicker="Drill" title="Practice" sub="Short rounds. Wrong answers come back at the end of the round and go into your error log, tagged by the kind of slip." />
-      <div className="grid g3" style={{ marginBottom: 18 }}>
+      <div className="grid g4" style={{ marginBottom: 18 }}>
         <Link to="/practice/run?mode=daily" className="card raised stack" style={{ textDecoration: 'none', color: 'inherit', borderTop: '4px solid var(--navy)' }}>
           <Icon n="bolt" s={22} /><h3>Today's 10</h3><span className="small muted">Due bank cards, open errors, weak and this-week topics, in one round.</span>
         </Link>
@@ -41,6 +42,9 @@ export default function Practice() {
         </Link>
         <Link to="/practice/run?mode=mixed" className="card raised stack" style={{ textDecoration: 'none', color: 'inherit', borderTop: '4px solid var(--c-worked)' }}>
           <Icon n="shuffle" s={22} /><h3>Mixed interview round</h3><span className="small muted">12 items across everything you have read, like a technical round.</span>
+        </Link>
+        <Link to="/lab?m=predict" className="card raised stack" style={{ textDecoration: 'none', color: 'inherit', borderTop: '4px solid var(--c-india)' }}>
+          <Icon n="layers" s={22} /><h3>Statements lab</h3><span className="small muted">Predict how a transaction moves all three statements. 8 per round.</span>
         </Link>
       </div>
       <div className="tabs" role="tablist">
@@ -174,6 +178,7 @@ export function TopicPage() {
     <div className="content">
       <Back to="/practice" label="All topics" />
       <PageHead kicker={`${t.id} · ${t.cluster}${t.priority === 1 ? ' · P1' : ''}`} title={t.title} sub={<>Evidence to produce: <b>{t.output}</b></>} />
+      <LabLink topics={[t.id]} style={{ marginBottom: 16 }} />
       <div className="card raised" style={{ marginBottom: 16 }}>
         <div className="row" style={{ gap: 0, flexWrap: 'nowrap' }}>
           {STATE_ORDER.map((k: TopicState, i) => (
