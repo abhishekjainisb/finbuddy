@@ -86,4 +86,5 @@ public/figs/          figures from the guide (WebP)
 
 ## Phase 2
 
-Parts C to F (Corporate finance, PE, VC, adjacent roles) plug into the same structure: add lessons, map topics in the tracker, add drills. The engine, plan and tracking need no change.
+Parts C to F (Corporate finance, PE, VC, adjacent roles) plug into the same structure: add lessons, map topics in the tracker, add drills. The engine, plan and tracking need no change. OK
+
