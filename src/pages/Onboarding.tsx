@@ -6,22 +6,25 @@ import { READING_PATHS, TRACK_FIT, ONE_PAGE } from '../data/startHere';
 import { Icon, Bar } from '../components/ui';
 
 export const TRACKS = ['Investment banking', 'Corporate finance', 'Private equity', 'Venture capital', 'Consulting or deal advisory', 'Equity research or markets'];
+// Only the IB track is live in this release; the rest are listed so students see what is coming.
+export const LIVE_TRACKS = ['Investment banking'];
 export const TARGETS = [[30, 'Light', 'about 15 min'], [50, 'Steady', 'about 25 min'], [80, 'Serious', 'about 40 min'], [120, 'All in', 'an hour+']] as const;
 
 export default function Onboarding() {
   const { mutate, backend } = useStore();
   const nav = useNavigate();
   const [step, setStep] = useState(0);
-  const [p, setP] = useState<Profile>({ name: '', section: '', background: '', primary: 'Investment banking', adjacent: 'Private equity', firms: '', startDate: dayKey(), dailyTarget: 50, board: true });
+  const linked = backend.link || null;
+  const [p, setP] = useState<Profile>({ name: linked?.name || '', pgid: linked?.pgid, background: '', primary: 'Investment banking', adjacent: '', firms: '', startDate: dayKey(), dailyTarget: 50, board: true });
   const set = (k: keyof Profile, v: any) => setP((x) => ({ ...x, [k]: v }));
   const firms = p.firms.split(/[,\n]/).map((x) => x.trim()).filter(Boolean);
   const path = READING_PATHS.find((r) => r.who === p.background);
-  const canNext = [p.name.trim().length > 1, !!p.background, !!p.primary, true][step];
-  const finish = (to: string) => { mutate((d) => { d.profile = { ...p, name: p.name.trim() }; }); nav(to); };
+  const canNext = [!!linked || p.name.trim().length > 1, !!p.background, !!p.primary, true][step];
+  const finish = (to: string) => { mutate((d) => { d.profile = { ...p, name: (linked?.name || p.name).trim(), adjacent: '' }; }); nav(to); };
   const STEPS = ['You', 'Background', 'Track', 'Rhythm'];
 
   return (
-    <div className="content narrow" style={{ paddingTop: 40 }}>
+    <div className="content narrow" style={{ paddingTop: 'calc(24px + env(safe-area-inset-top, 0px))' }}>
       <div className="row" style={{ marginBottom: 18 }}>
         <div className="brand-mark">FC</div>
         <div><div className="kicker">ISB Finance Club · Co'27</div><b>FinBuddy</b></div>
@@ -32,10 +35,10 @@ export default function Onboarding() {
       <Bar v={(step + 1) / STEPS.length} good />
       <div className="stepcard stack" style={{ gap: 16, marginTop: 16 }}>
         {step === 0 && <>
-          <h1 className="serif" style={{ fontSize: 30, color: 'var(--navy)' }}>Read. Drill. Prove. Track.</h1>
+          <h1 className="serif" style={{ fontSize: 30, color: 'var(--navy)' }}>{linked ? `Welcome, ${linked.name.split(' ')[0]}.` : 'Read. Drill. Prove. Track.'}</h1>
+          {linked && <div className="card row" style={{ background: 'var(--wash)', flexWrap: 'nowrap' }}><Icon n="user" /><div><b>{linked.name}</b><div className="small muted">PGID {linked.pgid} · linked to your phone</div></div></div>}
           <p className="muted" style={{ margin: 0 }}>{ONE_PAGE}</p>
-          <label className="field">Your name<input type="text" value={p.name} onChange={(e) => set('name', e.target.value)} placeholder="As your peers know you" autoFocus /></label>
-          <label className="field">Section (optional)<input type="text" value={p.section} onChange={(e) => set('section', e.target.value)} placeholder="e.g. Section C" /></label>
+          {!linked && <label className="field" htmlFor="ob-name">Your name<input id="ob-name" type="text" value={p.name} onChange={(e) => set('name', e.target.value)} placeholder="As your peers know you" autoFocus /></label>}
         </>}
         {step === 1 && <>
           <h2 className="serif" style={{ fontSize: 24, color: 'var(--navy)' }}>Where are you starting from?</h2>
@@ -53,25 +56,32 @@ export default function Onboarding() {
           </div>}
         </>}
         {step === 2 && <>
-          <h2 className="serif" style={{ fontSize: 24, color: 'var(--navy)' }}>Pick one primary track and one adjacent track</h2>
-          <div className="grid g2">
-            <label className="field">Primary<select value={p.primary} onChange={(e) => set('primary', e.target.value)}>{TRACKS.map((t) => <option key={t}>{t}</option>)}</select></label>
-            <label className="field">Adjacent<select value={p.adjacent} onChange={(e) => set('adjacent', e.target.value)}><option value="">None yet</option>{TRACKS.filter((t) => t !== p.primary).map((t) => <option key={t}>{t}</option>)}</select></label>
+          <h2 className="serif" style={{ fontSize: 24, color: 'var(--navy)' }}>Your track</h2>
+          <div className="stack" style={{ gap: 8 }}>
+            {TRACKS.map((tr) => {
+              const live = LIVE_TRACKS.includes(tr);
+              return (
+                <button key={tr} className={`opt track-opt ${p.primary === tr ? 'sel' : ''}`} disabled={!live} onClick={() => live && set('primary', tr)}>
+                  <span className="k">{p.primary === tr ? <Icon n="check" s={13} /> : live ? '' : <Icon n="lock" s={12} />}</span>
+                  <span style={{ flex: 1 }}><b>{tr}</b>{!live && <span className="small muted"> · coming soon</span>}</span>
+                </button>
+              );
+            })}
           </div>
-          {p.primary !== 'Investment banking' && <div className="banner">The pilot covers the Common Core and the Investment banking track. Your track chapters arrive in phase 2; the core applies to every track.</div>}
+          <div className="small muted">This release covers Investment banking, built on the Common Core it relies on (accounting, valuation, capital markets). Other tracks open in the next phase.</div>
           <details>
             <summary className="small" style={{ cursor: 'pointer', fontWeight: 600 }}>Not sure? What you enjoy tells you more than prestige</summary>
             <div className="tablewrap" style={{ marginTop: 8 }}><table className="gt"><thead><tr><th>If you enjoy</th><th>Look at</th><th>Try this first</th></tr></thead>
               <tbody>{TRACK_FIT.map((r) => <tr key={r[1]}><td>{r[0]}</td><td><b>{r[1]}</b></td><td>{r[2]}</td></tr>)}</tbody></table></div>
           </details>
-          <label className="field">Five target firms (one per line or comma separated)
-            <textarea value={p.firms} onChange={(e) => set('firms', e.target.value)} placeholder={'Kotak Investment Banking\nAxis Capital\nJM Financial\n...'} />
+          <label className="field" htmlFor="ob-firms">Five target banks (one per line or comma separated)
+            <textarea id="ob-firms" value={p.firms} onChange={(e) => set('firms', e.target.value)} placeholder={'Kotak Investment Banking\nAxis Capital\nJM Financial\nAvendus\nGoldman Sachs'} />
           </label>
-          <div className="row small"><Bar v={Math.min(firms.length, 5) / 5} good /><span className="tnum">{firms.length}/5</span><span className="muted">You can finish this in week 1; it is part of the week-1 gate.</span></div>
+          <div className="stack small" style={{ gap: 6 }}><div className="row" style={{ flexWrap: 'nowrap' }}><div style={{ flex: 1 }}><Bar v={Math.min(firms.length, 5) / 5} good /></div><span className="tnum">{firms.length}/5</span></div><span className="muted">You can finish this in week 1; it is part of the week-1 gate.</span></div>
         </>}
         {step === 3 && <>
           <h2 className="serif" style={{ fontSize: 24, color: 'var(--navy)' }}>Set your rhythm</h2>
-          <label className="field">Plan start date (week 1 begins here)<input type="date" value={p.startDate} onChange={(e) => set('startDate', e.target.value || dayKey())} /></label>
+          <label className="field" htmlFor="ob-start">Plan start date (week 1 begins here)<input id="ob-start" type="date" value={p.startDate} onChange={(e) => set('startDate', e.target.value || dayKey())} /></label>
           <div className="field">Daily XP target
             <div className="grid g4">
               {TARGETS.map(([v, l, t]) => (

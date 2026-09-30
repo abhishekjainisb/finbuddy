@@ -286,3 +286,26 @@ table.gt td:not(:first-child) { font-variant-numeric: tabular-nums; }
 .lb .rank { width: 36px; font-weight: 800; color: var(--muted); }
 .kbd { font-family: var(--monof); font-size: 11px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; color: var(--muted); }
 .banner { border-radius: 12px; padding: 12px 14px; background: var(--warn-bg); color: var(--ink); border: 1px solid color-mix(in srgb, var(--warn) 30%, transparent); font-size: 13.5px; }
+
+/* ---------- sign-in and phone-first polish */
+.auth { max-width: 440px; margin: 0 auto; padding: calc(40px + env(safe-area-inset-top, 0px)) 16px 40px; }
+.auth-h { font-size: 26px; color: var(--navy); line-height: 1.2; }
+.otp { font-size: 26px !important; letter-spacing: .45em; text-align: center; font-variant-numeric: tabular-nums; padding: 12px !important; }
+.linkbtn { background: none; border: 0; padding: 0; color: var(--navy2); text-decoration: underline; cursor: pointer; font: inherit; }
+.auth .btn.lg { width: 100%; }
+.track-opt[disabled] { opacity: .5; cursor: not-allowed; }
+@media (max-width: 860px) {
+  /* 16px stops iOS Safari zooming into form fields */
+  input[type=text], input[type=tel], input[type=number], input[type=date], input[type=url], select, textarea { font-size: 16px; }
+  .btn { min-height: 44px; }
+  .btn.sm { min-height: 36px; }
+  .opt { padding: 14px; }
+  .page-head h1 { font-size: 26px; }
+  .hero { padding: 20px; }
+  .hero h2 { font-size: 23px; }
+  .stepcard { border-radius: 12px; }
+  .player-nav .btn { flex: 1; }
+  .grades { grid-template-columns: repeat(2, 1fr); }
+  .tabs button { padding: 10px 10px; }
+  .seg button { padding: 9px 11px; }
+}

@@ -9,6 +9,7 @@ A practice-first portal built from the *Finance Placement Prep Guide* (Edition 1
 | Lessons | 51 guide sections (A1.1 to B6.1): Common Core (Part A) and Investment Banking (Part B). Each is a stepped lesson with quick checks, plus a full-page view. |
 | Drills | 202 hand-written items (multiple choice, multi-select, ordering, sorting), covering all 51 pilot topics, and 29 numeric generators that make fresh problems every time and diagnose the kind of slip. |
 | Question bank | 103 guide interview questions with model answers. Answer aloud against a timer, then grade yourself; grades schedule spaced review (1, 3, 7, 14, 30, 60 days). |
+| Sign-in | Phone OTP, then a one-time link to the student's PGID on the class roster. |
 | Tracking | Topic states (Not started, Read, Drilled, Proven, Mastered), weak flags, XP, levels, streaks, daily target, error log, 8-week plan with automatic exit gates, readiness checklist, mock interview rubric, opt-in leaderboard. |
 | Library | Formula sheet, 90-term glossary, 97 deep links into the club SharePoint folder (ISB login required; nothing is re-hosted), and the market dashboard with an as-of date and a re-check date on every figure. |
 
@@ -37,30 +38,44 @@ SINGLE=1 npx vite build   # one self-contained index.html (figures stay in dist/
 
 Without Supabase keys the app saves progress in the browser. Inside a claude.ai artifact it saves to the viewer's account and shares an opt-in leaderboard.
 
-## Deploy with Supabase (production)
+## Sign-in: phone OTP, then PGID
 
-1. **Create a Supabase project** (region: Mumbai, ap-south-1).
-2. **Run the schema**: open SQL Editor, paste `supabase/migrations/0001_init.sql`, run it. It creates the tables, row-level security, the `join_cohort` function and the `leaderboard_public` view, and seeds a pilot cohort code `FC27-PILOT`. Change that code before you share it:
-   ```sql
-   update public.cohorts set code = 'FC27-XXXX' where code = 'FC27-PILOT';
-   ```
-3. **Turn on phone login**: Authentication, Providers, Phone. Use **Twilio Verify** as the SMS provider. Indian SMS needs DLT registration for plain Twilio or MessageBird senders; Twilio Verify handles the templates for you. Set OTP expiry to 300 seconds and rate limits to your pilot size.
-4. **Set environment variables** on the host:
-   - `VITE_SUPABASE_URL` = project URL
-   - `VITE_SUPABASE_ANON_KEY` = anon public key (never the service role key)
-5. **Host it**
-   - *Vercel*: import the repo, framework Vite, build `npm run build`, output `dist`, add the two variables.
-   - *Lovable*: import from GitHub, add the two variables under project settings, publish.
-   - The app uses hash routes (`#/learn/A1`), so no rewrite rules are needed.
-6. **Share** the link and the invite code on the class group. Phone numbers cannot prove ISB membership, so the invite code is the gate; rotate it if it leaks (`update public.cohorts set active = false ...`).
+1. The student enters a mobile number and gets a 6-digit SMS code.
+2. On first sign-in they type their PGID. FinBuddy shows the name from the class roster ("Is this you?") and they confirm.
+3. That links the phone to the PGID for good. Only linked accounts can save progress or see the leaderboard, and the leaderboard name always comes from the roster.
 
-### Why phone OTP plus an invite code
+Guard rails: one PGID per phone and one phone per PGID; a PGID that is already linked never reveals its name; 15 lookups per hour per phone, so nobody can walk the PGID range. The roster holds PGID and name only (no emails, no sections) and is loaded from `supabase/roster_seed.sql`, which is git-ignored because it is personal data.
 
-Phone login was the decision for the pilot. It cannot restrict sign-up to ISB, so a first-time user enters the cohort code once. Row-level security refuses every write from a user who is not a cohort member, and the leaderboard view shows only opted-in members of the viewer's own cohort.
+## Go live (about 30 minutes)
 
-### What the club can see
+1. **Supabase project**: supabase.com, New project, region Mumbai (ap-south-1).
+2. **Database**: SQL Editor, run `supabase/migrations/0001_init.sql`, then run `roster_seed.sql` (420 students). Check with `select count(*) from public.roster;`.
+3. **SMS**: Authentication, Sign In / Providers, Phone: enable it and pick **Twilio Verify** (it handles India's DLT rules for you). Paste the Twilio Account SID, Auth Token and Verify Service SID. OTP expiry 300 seconds.
+   - To test before Twilio is ready: in the same Phone settings add *Test phone numbers and OTPs* (for example `919876543210=123456`). Those numbers sign in with the fixed code and no SMS is sent.
+4. **URL settings**: Authentication, URL Configuration: set Site URL to your Vercel address.
+5. **Vercel**: Project, Settings, Environment Variables, add
+   - `VITE_SUPABASE_URL` = Project URL (Supabase, Settings, API)
+   - `VITE_SUPABASE_ANON_KEY` = the anon public key (never the service role key)
+   then Deployments, latest, Redeploy.
 
-`public.topic_accuracy` (admin SQL only) gives attempts, accuracy and student count per topic, which shows which chapters the cohort struggles with. Individual answers and error logs are readable only by their owner.
+Without those two variables the site runs in local mode: no sign-in, progress saved in each browser only.
+
+### Admin (SQL editor)
+
+```sql
+-- free a PGID someone linked by mistake
+update public.roster set claimed_by = null, claimed_at = null where pgid = '6261xxxx';
+-- add a late joiner
+insert into public.roster (pgid, name) values ('6261xxxx', 'Full Name');
+-- who has linked
+select pgid, name, claimed_at from public.roster where claimed_by is not null order by claimed_at desc;
+-- how the cohort is doing by topic
+select * from public.topic_accuracy order by accuracy;
+```
+
+## Scope of this release
+
+Investment banking is the only live track; the other tracks show as coming soon. The Common Core (Part A) stays in because the IB track and the 8-week plan are built on it.
 
 ## Keeping it current
 
@@ -86,5 +101,4 @@ public/figs/          figures from the guide (WebP)
 
 ## Phase 2
 
-Parts C to F (Corporate finance, PE, VC, adjacent roles) plug into the same structure: add lessons, map topics in the tracker, add drills. The engine, plan and tracking need no change. OK
-
+Parts C to F (Corporate finance, PE, VC, adjacent roles) plug into the same structure: add lessons, map topics in the tracker, add drills. The engine, plan and tracking need no change.

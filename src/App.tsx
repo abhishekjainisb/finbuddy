@@ -25,7 +25,12 @@ function ScrollTop() {
 }
 
 function Routed() {
-  const { s } = useStore();
+  const { s, backend, mutate } = useStore();
+  // keep the name and PGID on the profile in step with the roster link
+  useEffect(() => {
+    const l = backend.link;
+    if (l && s.profile && (s.profile.pgid !== l.pgid || s.profile.name !== l.name)) mutate((d) => { if (d.profile) { d.profile.pgid = l.pgid; d.profile.name = l.name; } });
+  }, [backend.link, s.profile, mutate]);
   if (!s.profile) return <Onboarding />;
   return (
     <Layout>

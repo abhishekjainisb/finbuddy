@@ -37,7 +37,7 @@ export interface Attempt { t: number; ref: string; topic: string; ok: boolean; t
 export interface ErrorItem { id: string; topic: string; ref: string; prompt: string; given?: string; correct?: string; tag: string; times: number; first: number; last: number; okDays: string[]; resolved?: number; reviewed?: number }
 export interface Card { box: number; due: string; reps: number; lapses: number; last?: string; grade?: number }
 export interface Mock { id: string; date: string; kind: string; scores: Record<string, number>; notes: string; partner?: string }
-export interface Profile { name: string; section: string; background: string; primary: string; adjacent: string; firms: string; startDate: string; dailyTarget: number; board: boolean }
+export interface Profile { name: string; pgid?: string; section?: string; background: string; primary: string; adjacent: string; firms: string; startDate: string; dailyTarget: number; board: boolean }
 export interface TopicStat { attempts: number; correct: number; days: string[]; firstOk?: string; recent: number[] }
 export interface UserState {
   v: 1;

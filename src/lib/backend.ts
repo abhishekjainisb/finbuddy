@@ -5,6 +5,7 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import type { UserState, BoardEntry, Attempt } from './state';
 
+export type PgidStatus = 'free' | 'mine' | 'taken' | 'not_found' | 'invalid' | 'too_many' | 'signed_out';
 export interface BoardRow extends BoardEntry { id: string; name?: string }
 export interface Backend {
   kind: 'supabase' | 'artifact' | 'local';
@@ -18,10 +19,12 @@ export interface Backend {
   logAttempts?(a: Attempt[]): Promise<void>;
   // phone OTP (supabase only)
   needsLogin?: boolean;
-  needsInvite?: boolean;
+  needsLink?: boolean;
+  link?: { pgid: string; name: string } | null;
   sendOtp?(phone: string): Promise<void>;
   verifyOtp?(phone: string, code: string): Promise<void>;
-  joinCohort?(code: string): Promise<boolean>;
+  lookupPgid?(pgid: string): Promise<{ status: PgidStatus; name?: string }>;
+  claimPgid?(pgid: string): Promise<{ ok: boolean; status: string; pgid?: string; name?: string }>;
   signOut?(): Promise<void>;
 }
 
@@ -112,10 +115,11 @@ export function supabaseBackend(url: string, key: string): Backend & { client: S
       const { data: sess } = await client.auth.getSession();
       b.uid = sess.session?.user.id ?? null; b.needsLogin = !b.uid;
       if (!b.uid) return null;
-      // signed in but not yet in the cohort: ask for the invite code before anything else
-      const { data: mem } = await client.from('cohort_members').select('cohort').eq('user_id', b.uid).maybeSingle();
-      if (!mem) { b.needsLogin = true; b.needsInvite = true; return null; }
-      b.needsInvite = false;
+      // signed in but not yet linked to a PGID from the class roster: ask for it first
+      const { data: link } = await client.rpc('my_link');
+      const row = Array.isArray(link) ? link[0] : link;
+      if (!row) { b.needsLogin = true; b.needsLink = true; b.link = null; return null; }
+      b.needsLink = false; b.link = { pgid: row.pgid, name: row.name };
       const { data } = await client.from('user_state').select('state').eq('user_id', b.uid).maybeSingle();
       return (data?.state as UserState) ?? null;
     },
@@ -123,7 +127,7 @@ export function supabaseBackend(url: string, key: string): Backend & { client: S
       if (!b.uid) return;
       const { error } = await client.from('user_state').upsert({ user_id: b.uid, state: s, updated_at: new Date().toISOString() });
       if (error) throw error;
-      if (s.profile) await client.from('profiles').upsert({ id: b.uid, name: s.profile.name, section: s.profile.section, background: s.profile.background, primary_track: s.profile.primary, adjacent_track: s.profile.adjacent, board_opt_in: s.profile.board });
+      if (s.profile) await client.from('profiles').upsert({ id: b.uid, name: b.link?.name || s.profile.name, background: s.profile.background, primary_track: s.profile.primary, board_opt_in: s.profile.board, updated_at: new Date().toISOString() });
     },
     async publishBoard(e) {
       if (!b.uid) return;
@@ -149,8 +153,19 @@ export function supabaseBackend(url: string, key: string): Backend & { client: S
       const { data, error } = await client.auth.verifyOtp({ phone, token: code, type: 'sms' });
       if (error) throw error; b.uid = data.user?.id ?? null; b.needsLogin = !b.uid;
     },
-    async joinCohort(code) { const { data, error } = await client.rpc('join_cohort', { invite: code }); const ok = !error && !!data; if (ok) { b.needsInvite = false; b.needsLogin = false; } return ok; },
-    async signOut() { await client.auth.signOut(); b.uid = null; b.needsLogin = true; },
+    async lookupPgid(pgid) {
+      const { data, error } = await client.rpc('lookup_pgid', { p: pgid });
+      if (error) throw error;
+      return data as { status: PgidStatus; name?: string };
+    },
+    async claimPgid(pgid) {
+      const { data, error } = await client.rpc('claim_pgid', { p: pgid });
+      if (error) throw error;
+      const r = data as { ok: boolean; status: string; pgid?: string; name?: string };
+      if (r.ok && r.pgid && r.name) { b.link = { pgid: r.pgid, name: r.name }; b.needsLink = false; b.needsLogin = false; }
+      return r;
+    },
+    async signOut() { await client.auth.signOut(); b.uid = null; b.needsLogin = true; b.link = null; },
   };
   return b;
 }

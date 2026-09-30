@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useStore } from '../lib/store';
 import { emptyState, type Profile } from '../lib/state';
 import { READING_PATHS } from '../data/startHere';
-import { TRACKS, TARGETS } from './Onboarding';
+import { TRACKS, TARGETS, LIVE_TRACKS } from './Onboarding';
 import { PageHead } from '../components/ui';
 
 export default function ProfilePage() {
@@ -16,21 +16,26 @@ export default function ProfilePage() {
     <div className="content narrow">
       <PageHead kicker="You" title="Profile" sub="Your track, targets and rhythm drive the plan, the focus topics and Today's 10." />
       <div className="card stack" style={{ gap: 14 }}>
+        {backend.link ? (
+          <div className="card row" style={{ background: 'var(--wash)', flexWrap: 'nowrap' }}>
+            <span className="tick on">✓</span>
+            <div style={{ flex: 1 }}><b>{backend.link.name}</b><div className="small muted">PGID {backend.link.pgid} · linked to your phone number</div></div>
+          </div>
+        ) : (
+          <label className="field" htmlFor="pf-name">Name<input id="pf-name" type="text" value={p.name} onChange={(e) => set('name', e.target.value)} /></label>
+        )}
         <div className="grid g2">
-          <label className="field">Name<input type="text" value={p.name} onChange={(e) => set('name', e.target.value)} /></label>
-          <label className="field">Section<input type="text" value={p.section} onChange={(e) => set('section', e.target.value)} /></label>
-          <label className="field">Background<select value={p.background} onChange={(e) => set('background', e.target.value)}>{READING_PATHS.map((r) => <option key={r.who}>{r.who}</option>)}</select></label>
-          <label className="field">Plan start date<input type="date" value={p.startDate} onChange={(e) => set('startDate', e.target.value)} /></label>
-          <label className="field">Primary track<select value={p.primary} onChange={(e) => set('primary', e.target.value)}>{TRACKS.map((t) => <option key={t}>{t}</option>)}</select></label>
-          <label className="field">Adjacent track<select value={p.adjacent} onChange={(e) => set('adjacent', e.target.value)}><option value="">None</option>{TRACKS.filter((t) => t !== p.primary).map((t) => <option key={t}>{t}</option>)}</select></label>
+          <label className="field" htmlFor="pf-bg">Background<select id="pf-bg" value={p.background} onChange={(e) => set('background', e.target.value)}>{READING_PATHS.map((r) => <option key={r.who}>{r.who}</option>)}</select></label>
+          <label className="field" htmlFor="pf-start">Plan start date<input id="pf-start" type="date" value={p.startDate} onChange={(e) => set('startDate', e.target.value)} /></label>
+          <label className="field" htmlFor="pf-track">Track<select id="pf-track" value={p.primary} onChange={(e) => set('primary', e.target.value)}>{TRACKS.map((t) => <option key={t} value={t} disabled={!LIVE_TRACKS.includes(t)}>{t}{LIVE_TRACKS.includes(t) ? '' : ' (coming soon)'}</option>)}</select></label>
         </div>
-        <label className="field">Target firms ({firms.length}; five or more clears the week-1 check)<textarea value={p.firms} onChange={(e) => set('firms', e.target.value)} /></label>
+        <label className="field" htmlFor="pf-firms">Target banks ({firms.length}; five or more clears the week-1 check)<textarea id="pf-firms" value={p.firms} onChange={(e) => set('firms', e.target.value)} /></label>
         <div className="field">Daily XP target
           <div className="seg">{TARGETS.map(([v, l]) => <button key={v} className={p.dailyTarget === v ? 'on' : ''} onClick={() => set('dailyTarget', v)}>{l} · {v}</button>)}</div>
         </div>
         <label className="row" style={{ cursor: 'pointer' }}><input type="checkbox" checked={p.board} onChange={(e) => set('board', e.target.checked)} /> Show me on the cohort leaderboard</label>
         <div className="row" style={{ justifyContent: 'flex-end' }}>
-          <button className="btn primary" disabled={!dirty || p.name.trim().length < 2} onClick={() => { mutate((d) => { d.profile = { ...p, name: p.name.trim() }; }); toast('Profile saved', 'good'); }}>Save changes</button>
+          <button className="btn primary" disabled={!dirty || p.name.trim().length < 2} onClick={() => { mutate((d) => { d.profile = { ...p, name: (backend.link?.name || p.name).trim(), pgid: backend.link?.pgid || p.pgid }; }); toast('Profile saved', 'good'); }}>Save changes</button>
         </div>
       </div>
 
