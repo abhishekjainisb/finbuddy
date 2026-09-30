@@ -62,6 +62,9 @@ export function compact(s: UserState): Record<string, unknown> {
 declare global { interface Window { claude?: { use: (n: string) => Promise<any> } } }
 export async function artifactBackend(): Promise<Backend | null> {
   // the viewer injects window.claude after the page script starts; give it a moment
+  // outside a claude.ai frame there is no runtime to wait for: fall back to local at once
+  let framed = true; try { framed = window.self !== window.top; } catch { framed = true; }
+  if (!framed && !window.claude?.use) return null;
   for (let i = 0; i < 30 && !window.claude?.use; i++) await new Promise((r) => setTimeout(r, 100));
   if (!window.claude?.use) return null;
   const [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]);
