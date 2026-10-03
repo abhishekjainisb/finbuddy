@@ -74,6 +74,7 @@ export interface UserState {
   diag?: { score: number; total: number; at: number; byUnit: Record<string, [number, number]> };
   gates: Record<string, number>;
   errorsReviewedAt?: number;
+  ib?: Record<string, import('./ib').IbCard>;
 }
 
 export const emptyState = (): UserState => ({

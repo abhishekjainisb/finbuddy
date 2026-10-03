@@ -8,6 +8,7 @@ A practice-first portal built from the *Finance Placement Prep Guide* (Edition 1
 |---|---|
 | Lessons | 111 guide sections across Parts A to F. Each is a stepped lesson with quick checks, plus a full-page view. |
 | Drills | 346 hand-written items (multiple choice, multi-select, ordering, sorting) covering all 112 topics, and 48 numeric generators that make fresh problems every time and diagnose the kind of slip. |
+| IB 400 | 400 investment banking interview questions in 28 sections (technical, deals and restructuring, fit), rewritten for ISB and Indian IB with our own model answers, key-point checklists, common traps and India notes. Answer first, tick the key points you hit, and the score schedules the next visit. Mark questions as important, revisit or nailed, and add a note. Content: `src/data/ib400.json` (loaded on demand). |
 | Question bank | 103 guide interview questions with model answers. Answer aloud against a timer, then grade yourself; grades schedule spaced review (1, 3, 7, 14, 30, 60 days). |
 | Sign-in | Find yourself by name or PGID, get a 6-digit code at your ISB email, stay signed in. The PGID links automatically. |
 | Tracking | Topic states (Not started, Read, Drilled, Proven, Mastered), weak flags, XP, levels, streaks, daily target, error log, 8-week plan with automatic exit gates, readiness checklist, mock interview rubric, opt-in leaderboard. |

@@ -35,6 +35,7 @@ const P: Record<string, string> = {
   timer: 'M10 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm0-9v3.5l2 1.5M8 2.5h4',
   shuffle: 'M3 6h3.5c4 0 5 8 9 8H17m0 0-2-2m2 2-2 2M3 14h3.5c1.3 0 2.2-.8 3-2M17 6h-1.5c-1.3 0-2.2.8-3 2M17 6l-2-2m2 2-2 2',
   menu: 'M3.5 6h13M3.5 10h13M3.5 14h13',
+  qa: 'M3.5 4.5h13v8.5H9l-4 3v-3H3.5z M7 8h6m-6 2.5h4',
   layers: 'M10 3 2.5 7 10 11l7.5-4L10 3ZM2.5 10 10 14l7.5-4M2.5 13 10 17l7.5-4',
 };
 export function Icon({ n, s = 18, className }: { n: keyof typeof P | string; s?: number; className?: string }) {

@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { useStore, getTheme, applyTheme } from '../lib/store';
 import { streakOf, levelOf, openErrors, dueCards, dayKey, currentWeek } from '../lib/state';
 import { Icon, BrandMark, TAGLINE } from './ui';
+import { ibDueIds } from '../lib/ib';
 
 const NAV = [
   { to: '/', n: 'home', l: 'Today', end: true },
@@ -10,6 +11,7 @@ const NAV = [
   { to: '/practice', n: 'target', l: 'Practice' },
   { to: '/lab', n: 'layers', l: 'Statements lab' },
   { to: '/bank', n: 'cards', l: 'Question bank', badge: 'due' },
+  { to: '/ib400', n: 'qa', l: 'IB 400', badge: 'ib' },
   { to: '/errors', n: 'alert', l: 'Error log', badge: 'errors' },
   { sep: true },
   { to: '/plan', n: 'cal', l: '8-week plan' },
@@ -26,7 +28,7 @@ export function Layout({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState(getTheme());
   const st = streakOf(s); const lv = levelOf(s.xp.total);
   const today = s.xp.days[dayKey()] || 0; const tgt = s.profile?.dailyTarget || 50;
-  const badges: Record<string, number> = { due: dueCards(s).length, errors: openErrors(s).length };
+  const badges: Record<string, number> = { due: dueCards(s).length, errors: openErrors(s).length, ib: ibDueIds(s).length };
   const cycle = () => { const t = theme === 'auto' ? 'dark' : theme === 'dark' ? 'light' : 'auto'; applyTheme(t); setTheme(t); };
   return (
     <div className="shell">
@@ -82,7 +84,7 @@ export function Layout({ children }: { children: ReactNode }) {
 export function More() {
   const { s } = useStore();
   const items = [
-    ['/lab', 'layers', 'Statements lab', 'See the three statements move'], ['/bank', 'cards', 'Question bank', `${dueCards(s).length} due`], ['/errors', 'alert', 'Error log', `${openErrors(s).length} open`],
+    ['/ib400', 'qa', 'IB 400', `${ibDueIds(s).length} due`], ['/lab', 'layers', 'Statements lab', 'See the three statements move'], ['/bank', 'cards', 'Question bank', `${dueCards(s).length} due`], ['/errors', 'alert', 'Error log', `${openErrors(s).length} open`],
     ['/progress', 'chart', 'Progress', ''], ['/mocks', 'mic', 'Mock interviews', `${s.mocks.length} logged`], ['/board', 'trophy', 'Leaderboard', ''],
     ['/library', 'lib', 'Library', 'Formulas, glossary, club folder, markets'], ['/start', 'flag', 'Start here', ''], ['/profile', 'user', 'Profile', ''],
   ];

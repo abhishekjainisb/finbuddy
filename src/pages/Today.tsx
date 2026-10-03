@@ -4,6 +4,7 @@ import {
   LESSONS, scopeTopics, TOPIC_BY_ID, dayKey, streakOf, levelOf, currentWeek, weekStatus, isWeak, topicState, dueCards,
   openErrors, stateCounts, focusTopics, whatNext, addDays, STATE_LABEL,
 } from '../lib/state';
+import { ibDueIds, ibStats } from '../lib/ib';
 import { Icon, Ring, Bar, FactsGrid, StateDot } from '../components/ui';
 
 export function nextLesson(s: ReturnType<typeof useStore>['s']) {
@@ -17,6 +18,7 @@ export function nextLesson(s: ReturnType<typeof useStore>['s']) {
 
 export default function Today() {
   const { s } = useStore();
+  const ibDue = ibDueIds(s).length; const ibSeen = ibStats(s).seen;
   const p = s.profile!;
   const today = dayKey();
   const xpToday = s.xp.days[today] || 0;
@@ -66,6 +68,13 @@ export default function Today() {
           <span>Open errors</span><b style={{ color: open ? 'var(--bad)' : undefined }}>{open}</b><span>Resolve by getting each right on two different days</span>
         </Link>
       </div>
+      {(ibDue > 0 || ibSeen > 0 || s.profile?.primary === 'Investment banking' || s.profile?.adjacent === 'Investment banking') && (
+        <Link to={ibDue ? '/ib400?study=due' : '/ib400'} className="card row lab-link" style={{ textDecoration: 'none', color: 'inherit', flexWrap: 'nowrap', margin: '16px 0' }}>
+          <Icon n="qa" s={22} />
+          <div style={{ flex: 1 }}><b>{ibDue ? `IB 400: ${ibDue} question${ibDue === 1 ? '' : 's'} due for revisit` : ibSeen ? `IB 400: ${ibSeen} of 400 seen` : 'IB 400: the classic interview questions, rewritten for India'}</b><div className="small muted">{ibDue ? 'Answer aloud, tick your key points, done in a few minutes.' : 'Answer first, then check yourself against the key points.'}</div></div>
+          <Icon n="arrowR" s={16} />
+        </Link>
+      )}
 
       <div className="grid g2" style={{ marginBottom: 16 }}>
         <div className="card">

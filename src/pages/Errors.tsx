@@ -62,7 +62,7 @@ function ErrorCard({ e }: { e: ErrorItem }) {
   const [x, setX] = useState(false);
   const t = TOPIC_BY_ID[e.topic];
   const today = dayKey();
-  const retry = e.ref.startsWith('gen:') ? `/practice/run?gen=${e.ref.slice(4)}` : `/practice/run?topic=${e.topic}`;
+  const retry = e.ref.startsWith('gen:') ? `/practice/run?gen=${e.ref.slice(4)}` : e.ref.startsWith('ib:') ? `/ib400?study=q:${e.ref.slice(3)}` : e.ref.startsWith('lab:') ? '/lab?m=predict' : `/practice/run?topic=${e.topic}`;
   return (
     <div className="card" style={{ borderLeft: `3px solid ${e.resolved ? 'var(--good)' : 'var(--bad)'}` }}>
       <div className="row" style={{ justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'nowrap' }}>
